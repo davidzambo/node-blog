@@ -1,0 +1,12 @@
+/* body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+} */
+.ql-editor{
+  min-height: 500px;
+}
+article img{
+  max-width: 100%;
+  height: auto;
+}
