@@ -83,7 +83,7 @@ export const postsFetchData = () => {
 export const createPost = (data) => {
   return (dispatch) => {
     dispatch(postsAreLoading(true));
-    axios.post('/api/posts', data)
+    axios.post('api/posts', data)
       .then((response) => {
         if (response.status !== 200){
           throw Error(response.statusText);
@@ -95,7 +95,10 @@ export const createPost = (data) => {
         dispatch(postsFetchDataSuccess(posts.data.posts));
         dispatch(setNavbar('articles'))
       })
-      .catch(() => dispatch(postsHasErrored(true)));
+      .catch((e) => {
+          console.log(e);
+          dispatch(postsHasErrored(true))
+      });
   }
 }
 
@@ -110,7 +113,7 @@ export const editPost = (post) => {
 export const updatePost = (post) => {
   return dispatch => {
     dispatch(postsAreLoading(true));
-    axios.put('api/posts/', post)
+    axios.put('api/posts/' + post._id, post)
       .then( response => {
         if (response.status !== 200)
           throw Error(response.statusText);
