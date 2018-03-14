@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { createPost, updatePost } from "../actions/posts";
+import { createPost, updatePost, cancelPostAction } from "../actions/posts";
 import { Form, Button, Divider } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
@@ -22,7 +22,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addPost: post => dispatch(createPost(post)),
-    updatePost: post => dispatch(updatePost(post))
+    updatePost: post => dispatch(updatePost(post)),
+    cancelPostAction: () => dispatch(cancelPostAction())
   };
 }
 
@@ -56,8 +57,8 @@ const categories = [
 const validator = (rule, inputToTest) => {
 
   const rules = {
-    title: /^[\W\w]{4,}$/gi,
-    tags: /^[\W\w]{4,}$/gi,
+    title: /^[\W\w]{2,}$/gi,
+    tags: /^[\W\w]{2,}$/gi,
     category: /(personal|handball)/,
     body: /^[\W\w]{10,}$/gi,
   }
@@ -109,7 +110,13 @@ class ConnectedNewArticleFormForm extends Component {
 
   render() {
     const { title, tags, body, category } = this.state;
-    const button = (this.props.isEdit) ? <Button type="submit" color="orange">frissítés</Button> : <Button type="submit" color="blue">mentés</Button>
+    let button = <Button type="submit" color="blue">mentés</Button>
+    if (this.props.isEdit) {
+      button = <div>
+                <Button type="submit" color="orange">frissítés</Button>
+                <Button type="button" color='blue' onClick={this.props.cancelPostAction}>mégsem</Button>'
+              </div>
+    } 
     return (
       <Form onSubmit={this.handleSubmit} action='/api/posts/create' method='post'>
         <Form.Group>

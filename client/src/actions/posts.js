@@ -129,3 +129,11 @@ export const updatePost = (post) => {
       .catch( () => dispatch(postsHasErrored(true)));
   }
 }
+
+export const cancelPostAction = (post) => {
+  return dispatch => {
+    dispatch(postToHandle({}));
+    dispatch(isEdit(false));
+    dispatch(setNavbar('articles'));
+  }
+}
