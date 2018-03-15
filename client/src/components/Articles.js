@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postsFetchData } from "../actions/posts";
 import Article from './Article';
+import Layout from './Layout';
 import ConfirmDeletePostModal from './ConfirmDeletePostModal';
 
 const mapStateToProps = state => {
@@ -33,7 +34,7 @@ class ConnectedArticles extends Component {
     }
 
     return (
-      <div>
+      <Layout>
         {this.props.posts.map( (post) => {
           
           return <Article post={post} key={post._id}/>
@@ -42,7 +43,7 @@ class ConnectedArticles extends Component {
 
         <ConfirmDeletePostModal/>
         
-      </div>
+      </Layout>
     );
   }
 }

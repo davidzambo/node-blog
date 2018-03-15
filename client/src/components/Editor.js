@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { createPost, updatePost, cancelPostAction } from "../actions/posts";
 import { Form, Button, Divider } from 'semantic-ui-react';
+import Layout from './Layout';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 Quill.register('modules/ImageResize', ImageResize);
@@ -118,37 +119,39 @@ class ConnectedNewArticleFormForm extends Component {
               </div>
     } 
     return (
-      <Form onSubmit={this.handleSubmit} action='/api/posts/create' method='post'>
-        <Form.Group>
-          <Form.Input label="Cím:" 
-                      id="title" 
-                      value={title} 
-                      onChange={this.handleChange} 
-                      width={16}/>
-        </Form.Group>
-        <Form.Group>
-          <Form.Input label="Cimkék:" 
-                      id="tags" 
-                      value={tags} 
-                      onChange={this.handleChange} 
-                      width={9}/>
-          <Form.Select  label='Kategória' 
-                        id='category'
-                        value={ category }
-                        options={ categories } 
-                        onChange={ (e, {value}) => this.setState({ category: value})} 
-                        placeholder="Kategória" 
-                        width={6}/>
-        </Form.Group>
-        <ReactQuill label="Cikk:" 
-                    id="body"
-                    value={body}
-                    modules={modules}
-                    formats={formats}
-                    onChange={this.handleChange} />
-        <Divider horizontal />
-        { button }
-      </Form>
+      <Layout>
+        <Form onSubmit={this.handleSubmit} action='/api/posts/create' method='post'>
+          <Form.Group>
+            <Form.Input label="Cím:" 
+                        id="title" 
+                        value={title} 
+                        onChange={this.handleChange} 
+                        width={16}/>
+          </Form.Group>
+          <Form.Group>
+            <Form.Input label="Cimkék:" 
+                        id="tags" 
+                        value={tags} 
+                        onChange={this.handleChange} 
+                        width={9}/>
+            <Form.Select  label='Kategória' 
+                          id='category'
+                          value={ category }
+                          options={ categories } 
+                          onChange={ (e, {value}) => this.setState({ category: value})} 
+                          placeholder="Kategória" 
+                          width={6}/>
+          </Form.Group>
+          <ReactQuill label="Cikk:" 
+                      id="body"
+                      value={body}
+                      modules={modules}
+                      formats={formats}
+                      onChange={this.handleChange} />
+          <Divider horizontal />
+          { button }
+        </Form>
+      </Layout>
     );
   }
 }
