@@ -1,3 +1,7 @@
+const Post = require('../models/PostModel');
+const Helper = require('../helpers');
+const fs = require('fs');
+
 module.exports = {
 
     index(req, res){
@@ -7,11 +11,18 @@ module.exports = {
         });
     },
 
+    show(req, res){
+        Post.findOne({slug: req.params.slug}).exec( (err, post) => {
+            if (err) console.error(err);
+            res.status(200).json({ post });
+        })
+    },
+
     create(req, res){
         let post = new Post(req.body),
             body = req.body.body;
-        post.body = base64ToFileStorer(body, 'public/images');
-        post.tags = tagsHandler(req.body.tags);
+        post.body = Helper.base64ToFileStorer(body, 'public/images');
+        post.tags = Helper.tagsHandler(req.body.tags);
         post.save((err) => {
             if (err) console.error(err);
             Post.find().sort({ date: -1 }).exec((err, posts) => {
@@ -54,9 +65,9 @@ module.exports = {
                 });
                 // If the old body has images, that are not contained in the new body, erase it from the server
             }
-            post.body = base64ToFileStorer(req.body.body, 'public/images');
+            post.body = Helper.base64ToFileStorer(req.body.body, 'public/images');
             post.title = req.body.title;
-            post.tags = tagsHandler(req.body.tags);
+            post.tags = Helper.tagsHandler(req.body.tags);
             post.category = req.body.category;
             post.save((err) => {
                 if (err) console.error(err);

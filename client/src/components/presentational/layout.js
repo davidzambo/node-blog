@@ -1,6 +1,7 @@
 import React from 'react';
-import Navbar from './Navbar';
-import { Container, Grid, Header } from 'semantic-ui-react';
+import Navbar from './navbar';
+import LoginModal from './login-modal';
+import { Grid, Header } from 'semantic-ui-react';
 
 const Layout = (props) => {
   return (
@@ -22,6 +23,7 @@ const Layout = (props) => {
          
           </Grid.Column>
         </Grid.Row>
+        <LoginModal />
       </Grid>
   );
 }

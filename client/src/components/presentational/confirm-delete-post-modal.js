@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import { connect } from "react-redux";
-import { deletePost, isConfirmDeletePostModalOpen } from '../actions/posts';
+import { deletePost, isConfirmDeletePostModalOpen } from '../../actions/posts';
 
 
 const inlineStyle = {
     modal: {
-        marginTop: '100px !important',
+        marginTop: '30%',
         marginLeft: 'auto',
         marginRight: 'auto'
     }
@@ -45,6 +45,5 @@ const ConnectedConfirmDeletePostModal = (props) => {
     )
 }
 
-const ConfirmDeletePostModal = connect(mapStateToProps, mapDispatchToProps)(ConnectedConfirmDeletePostModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectedConfirmDeletePostModal);
 
-export default ConfirmDeletePostModal;

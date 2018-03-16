@@ -1,22 +1,24 @@
-import React, { Component } from 'react';
-import { Switch, BrowserRouter as Router, Route} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
-import Editor from './Editor';
-import Articles from './Articles';
+import PostList from './containers/posts.list';
+import PostShow from './containers/posts.show';
+import PostEditor from './containers/posts.editor';
 
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Route exact path="/" component={Articles} />
-          <Route exact path="/article/create" component={Editor} />
-          <Route exact path="/articles" component={Articles} />
-        </div>
-      </Router>
-    );
-  }
-}
+const App = () => (
+  <BrowserRouter>
+    <div>
+      <Route path="/:category(en-igy-gondolom|kezilabda|)"
+        render={props => <PostList {...props}/>} />
+      <Route path="/uj"
+        render={props => <PostEditor />} />
+      <Route path="/bejegyzesek/:slug/szerkesztes"
+        render={props => <PostEditor {...props} update />} />
+      <Route path={`/bejegyzesek/:slug`}
+        render={props => <PostShow {...props} />} />
+    </div>
+  </BrowserRouter>
+);
 
 export default App;
