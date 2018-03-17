@@ -1,33 +1,68 @@
 import React, { Component } from 'react';
-import { Modal, Form, Button, Divider } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { isAuthenticated, isLoginModalOpen } from "../../actions/auth";
+import { Modal, Form, Button, Divider, Message } from 'semantic-ui-react';
 import axios from 'axios';
 
 
 const inlineStyle = {
     modal: {
-        marginTop: '30%',
+        marginTop: '10%',
         marginLeft: 'auto',
         marginRight: 'auto'
     }
 };
 
-export default class LoginModal extends Component {
-    state = { open: false}
+const mapDispatchToProps = dispatch => {
+    return {
+        isAuthenticated: bool => dispatch(isAuthenticated(bool)),
+        setOpen: bool => dispatch(isLoginModalOpen(bool))
+    }
+}
+
+const mapStateToProps = state => {
+    return { isOpen: state.auth.isLoginModalOpen }
+}
+
+export class LoginModal extends Component {
+    state = {
+        hasError: false,
+        errorMessage: ''
+    }
 
     componentWillMount(){
         document.addEventListener('keydown', (event) => {
             if (event.ctrlKey && event.keyCode === 76 && !this.state.open) {
-                this.setState({ isOpen: true});
+                this.setState({ isOpen: true, hasError: false, errorMessage: ''});
             }
         })
     }
+
+    checkValidity(event){
+        const { email, password } = this.state;
+        console.log(this.state);
+        axios.post('/api/login', { email: email, password: password})
+            .then( response => {
+                console.log(response);
+                if (response.data.hasOwnProperty('error')){
+                    this.props.isAuthenticated(false);
+                    this.setState({hasError: true, errorMessage: response.data.error})
+                } else {
+                    this.props.isAuthenticated(true);
+                    this.props.setOpen(false);
+                    this.setState({isOpen: false, hasError: false, errorMessage: ''})
+                }
+            });
+    }
+
     render() {
+        const errorMessage = this.state.hasError ? <Message negative>{this.state.errorMessage}</Message> : '';
         return(
             <Modal 
                 size='mini' 
-                open={this.state.isOpen} 
+                open={this.props.isOpen}
                 style={inlineStyle.modal}
-                dimmer='inverted'>
+                dimmer='blurring'>
                 <Modal.Header>
                     Belépés
                 </Modal.Header>
@@ -36,27 +71,45 @@ export default class LoginModal extends Component {
                         <Form.Input 
                             placeholder='email' 
                             type='email' 
-                            id="email" 
+                            id="email"
+                            icon='mail'
+                            iconPosition='left'
                             onChange={ (event) => this.setState({ [event.target.id]: event.target.value })}/>
                         <Form.Input
                             placeholder='jelszó'
                             type='password'
                             id="password"
+                            icon='key'
+                            iconPosition='left'
                             onChange={(event) => this.setState({ [event.target.id]: event.target.value })} />
+                            { errorMessage }
+                        <Form.Field>
+                            <div>
+                            <Button 
+                                negative 
+                                compact 
+                                content='Mégsem'
+                                icon='cancel'
+                                labelPosition='left'
+                                floated='left'
+                                onClick={() => this.props.setOpen(false)}/>
+                            <Button 
+                                positive 
+                                compact 
+                                content='Belépés' 
+                                icon='right arrow' 
+                                labelPosition='right'
+                                floated='right'
+                                onClick={this.checkValidity.bind(this)}/>
+                            </div>
+                        </Form.Field>
+                        <Divider horizontal/>
+                        <Divider horizontal />
                     </Form>
                 </Modal.Content>
-                <Modal.Actions>
-                    <Button negative compact content='mégsem' floated='left' onClick={() => this.setState({isOpen: false})}/>
-                    <Button positive 
-                        compact 
-                        content='belépés' 
-                        floated='right' 
-                        onClick={(event) => {
-                            console.log(this.state);
-                        }}/>
-                    <Divider horizontal />
-                </Modal.Actions>
             </Modal>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

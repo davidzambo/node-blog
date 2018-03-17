@@ -4,7 +4,7 @@ const LoginAttempt = require('../models/LoginAttemptModel');
 module.exports = {
     checkUser(req, res){
         // res.json({ request: req.body });
-        let limit = 15;
+        let limit = 35;
         LoginAttempt.find({ip: req.ip})
             .limit(limit)
             .sort({date: -1})
@@ -36,19 +36,19 @@ module.exports = {
                                 if (user === null){
                                     loginAttempt.result = false;
                                     loginAttempt.save();
-                                    res.status(401).json({error: 'A megadott email cím nem megfelelő'});
+                                    res.status(206).json({error: 'A megadott email cím nem megfelelő!'});
                                 } else if (req.body.password !== user.password){
                                     loginAttempt.result = false;
                                     loginAttempt.save();
-                                    res.status(401).json({error: 'A megadott jelszó nem megfelelő!'});;
+                                    res.status(206).json({error: 'A megadott jelszó nem megfelelő!'});;
                                 } else {
                                     loginAttempt.result = true;
                                     loginAttempt.save();
-                                    res.status(200).json({ user });
+                                    res.status(202).json({ user });
                                 }
                             })
                 } else {
-                    res.status(403).json({error: 'Sikertelen bejelentkezési kísérletei miatt 24 órára blokkoltuk az ip címét'});
+                    res.status(206).json({error: 'Sikertelen bejelentkezési kísérletei miatt 24 órára blokkoltuk az ip címét!'});
                 }
             });
     }    
