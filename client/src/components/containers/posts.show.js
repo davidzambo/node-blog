@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Divider, Button, Label } from "semantic-ui-react";
 import axios from 'axios';
-import Parser from 'html-react-parser';
 import { postToHandle, isConfirmDeletePostModalOpen, editPost } from "../../actions/posts";
 import Layout from '../presentational/layout';
 import Post from '../presentational/post';

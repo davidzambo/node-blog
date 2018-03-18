@@ -1,4 +1,4 @@
-const initialState = 'new_article';
+const initialState = 'home';
 
 const NavbarReducer = (state = initialState, action) => {
   switch (action.type) {

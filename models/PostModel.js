@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/trd');
 const Schema = mongoose.Schema;
+const slug = require('slug');
+const moment = require('moment');
 
 const postSchema = new Schema({
     title: { type: String, required: true, unique: true },
@@ -15,7 +17,8 @@ const postSchema = new Schema({
 });
 
 postSchema.pre('save', function (next) {
-    this.slug = this.title.toLowerCase().replace(/\s/g, '-');
+
+    this.slug = slug(moment().format('YYMMDD') + '-' + this.title);
     next();
 });
 

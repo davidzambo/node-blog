@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { createPost, updatePost, cancelPostAction } from "../../actions/posts";
-import { Form, Button, Divider } from 'semantic-ui-react';
+import { withRouter } from 'react-router';
+import axios from 'axios';
+import { cancelPostAction } from "../../actions/posts";
+import { Form, Button, Divider, Header } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 import Layout from '../presentational/layout';
@@ -22,8 +24,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addPost: post => dispatch(createPost(post)),
-        updatePost: post => dispatch(updatePost(post)),
         cancelPostAction: () => dispatch(cancelPostAction())
     };
 }
@@ -68,8 +68,8 @@ const validator = (rule, inputToTest) => {
 }
 
 class ConnectedPostEditor extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
@@ -81,7 +81,8 @@ class ConnectedPostEditor extends Component {
     }
 
     componentDidMount() {
-        this.setState(this.props)
+        if (this.props.isEdit)
+            this.setState(this.props);
     }
 
     handleChange(e) {
@@ -94,16 +95,33 @@ class ConnectedPostEditor extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+
         const { title, tags, body, category } = this.state;
         if (validator('title', title) &&
             validator('tags', tags) &&
             validator('body', body) &&
             validator('category', category)) {
-            if (this.props.isEdit)
-                this.props.updatePost(this.state)
-            else
-                this.props.addPost(this.state);
-            // this.setState({ title: '', body: '', tags: '', category: '' });
+            if (this.props.isEdit){
+                axios.put('/api/posts/'+this.state._id, this.state)
+                    .then( response => {
+                       if (response.status !== 200) {
+                           console.error(response.statusText);
+                       } else {
+                           this.props.cancelPostAction();
+                       }
+                    })
+                    .then( () => this.props.history.push('/'));
+            } else {
+                axios.post('/api/posts', this.state)
+                    .then( response => {
+                        if (response.status !== 200) {
+                            console.error(response.statusText);
+                        } else {
+                            this.props.cancelPostAction();
+                        }
+                    })
+                    .then( () => this.props.history.push('/'));
+            }
         } else {
             alert('Kérem ellenőrizze a megadott adatokat. Minden mezőt kitöltött?');
         }
@@ -112,15 +130,16 @@ class ConnectedPostEditor extends Component {
     render() {
         const { title, tags, body, category } = this.state;
         let button = <Button type="submit" color="blue">mentés</Button>
-        if (this.props.isEdit) {
+        if (this.props.update) {
             button = <div>
-                <Button type="submit" color="orange">frissítés</Button>
                 <Button type="button" color='blue' onClick={this.props.cancelPostAction}>mégsem</Button>'
+                <Button type="submit" color="orange">frissítés</Button>
               </div>
         }
         return (
             <Layout>
-                <Form onSubmit={this.handleSubmit} action='/api/posts/create' method='post'>
+                <Header content='Új bejegyzés szerkesztése' />
+                <Form onSubmit={this.handleSubmit}>
                     <Form.Group>
                         <Form.Input label="Cím:"
                             id="title"
@@ -133,7 +152,7 @@ class ConnectedPostEditor extends Component {
                             id="tags"
                             value={tags}
                             onChange={this.handleChange}
-                            width={9} />
+                            width={10} />
                         <Form.Select label='Kategória'
                             id='category'
                             value={category}
@@ -156,6 +175,4 @@ class ConnectedPostEditor extends Component {
     }
 }
 
-const PostEditor = connect(mapStateToProps, mapDispatchToProps)(ConnectedPostEditor);
-
-export default PostEditor;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConnectedPostEditor));

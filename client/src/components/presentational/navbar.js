@@ -1,43 +1,39 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {isAuthenticated, isLoginModalOpen} from "../../actions/auth";
-import {Grid, Menu} from 'semantic-ui-react';
-import {NavLink} from 'react-router-dom';
+import {Grid, Menu, Icon} from 'semantic-ui-react';
+import {NavLink, withRouter} from 'react-router-dom';
 
 
 const mapStateToProps = (state) => {
     return {
-        isLoggedIn: state.auth.isAuthenticated
+        isLoggedIn: state.auth.isAuthenticated,
+        active: state.navbar
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return  {
         setOpen: bool => dispatch(isLoginModalOpen(bool)),
-        isAuthenticated: bool => dispatch(isAuthenticated(bool))
+        isAuthenticated: bool => dispatch(isAuthenticated(bool)),
     }
 }
 
+
 class Navbar extends React.Component {
-
-    handleOnClick(e, data) {
-        this.props.setNavbar(data.id);
-    }
-
     render() {
-        console.log(this.props.isLoggedIn);
         if (this.props.isLoggedIn) {
             return (
                 <Grid>
                     <Grid.Column width={16}>
-                        <Menu fluid vertical tabular>
-                            <Menu.Item><NavLink to='/'>Bejegyzések</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/uj'>Új bejegyzés</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/en-igy-gondolom'>Én így gondolom</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/kezilabda'>Kézilabda</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/statiszkikak'>Statisztikák</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/rolam'>Rólam</NavLink></Menu.Item>
-                            <Menu.Item onClick={() => this.props.isAuthenticated(false)}>Kilépés</Menu.Item>
+                        <Menu attached='top' tabular>
+                            <Menu.Item as={NavLink} exact to='/'><Icon name='home' color='blue'/>Kezdőlap</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/uj'><Icon name='write' color='blue'/>Új bejegyzés</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/en-igy-gondolom'><Icon name='idea' color='blue'/>Én így gondolom</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/kezilabda'><Icon name='futbol outline' color='blue'/> Kézilabda</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/statisztikak'><Icon name='line chart' color='blue' />Statisztikáim</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/rolam'><Icon name='user circle' color='blue'/>Rólam</Menu.Item>
+                            <Menu.Item onClick={() => this.props.isAuthenticated(false)}><Icon name='sign out alternate' color='blue'/>Kilépés</Menu.Item>
                         </Menu>
                     </Grid.Column>
                 </Grid>
@@ -47,13 +43,13 @@ class Navbar extends React.Component {
             return (
                 <Grid>
                     <Grid.Column width={16}>
-                        <Menu fluid vertical tabular>
-                            <Menu.Item><NavLink to='/'>Bejegyzések</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/en-igy-gondolom'>Én így gondolom</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/kezilabda'>Kézilabda</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/statiszkikak'>Statisztikák</NavLink></Menu.Item>
-                            <Menu.Item><NavLink to='/rolam'>Rólam</NavLink></Menu.Item>
-                            <Menu.Item onClick={() => this.props.setOpen(true)}>Belépés</Menu.Item>
+                        <Menu fluid tabular>
+                            <Menu.Item as={NavLink} exact to='/'><Icon name='home' color='blue'/>Kezdőlap</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/en-igy-gondolom'><Icon name='idea' color='blue'/>Én így gondolom</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/kezilabda'><Icon name='futbol outline' color='blue'/> Kézilabda</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/statisztikak'><Icon name='line chart' color='blue' />Statisztikáim</Menu.Item>
+                            <Menu.Item as={NavLink} exact to='/rolam'><Icon name='user circle' color='blue'/>Rólam</Menu.Item>
+                            <Menu.Item onClick={() => this.props.setOpen(true)}><Icon name='sign in alternate' color='blue'/>Belépés</Menu.Item>
                         </Menu>
                     </Grid.Column>
                 </Grid>
@@ -62,4 +58,4 @@ class Navbar extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

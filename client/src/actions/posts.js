@@ -1,5 +1,5 @@
 import axios from 'axios';
-import setNavbar from './navbar';
+import {setNavbar} from './navbar';
 
 
 export const postToHandle = (post) => {
@@ -130,10 +130,9 @@ export const updatePost = (post) => {
   }
 }
 
-export const cancelPostAction = (post) => {
+export const cancelPostAction = () => {
   return dispatch => {
     dispatch(postToHandle({}));
     dispatch(isEdit(false));
-    dispatch(setNavbar('articles'));
   }
 }

@@ -11,7 +11,9 @@ module.exports = {
      * Generates a random filename
      */
     randomFilename(len = 8){
-        let filename = new Date().getFullYear().toString().substr(-2) + nice(new Date().getMonth() + 1) + nice(new Date().getDate());
+        let filename = new Date().getFullYear().toString().substr(-2)
+                    + this.twoDigitNumber(new Date().getMonth() + 1)
+                    + this.twoDigitNumber(new Date().getDate());
         for (let i = 0; i < len; i++)
             filename += String.fromCharCode(Math.ceil(Math.random() * 24) + 97);
         return filename;
@@ -35,7 +37,7 @@ module.exports = {
             // console.log('we have base64 images')
             base64Images.map((img) => {
                 // console.log('mapping body');
-                body = body.replace(img, base64img.imgSync(img, destination, randomFilename()));
+                body = body.replace(img, '/'+base64img.imgSync(img, destination, this.randomFilename()));
     
             });
         }

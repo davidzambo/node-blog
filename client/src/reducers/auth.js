@@ -1,6 +1,6 @@
 const initialState = {
     isLoginModalOpen: false,
-    isAuthenticated: false,
+    isAuthenticated: true,
     authUser: {
         email: '',
     }

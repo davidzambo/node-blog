@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5000/",
   "private": true,
   "dependencies": {
+    "moment": "^2.21.0",
     "quill-image-resize-module": "^3.0.0",
     "react": "^16.2.0",
     "react-app-rewire-provide-plugin": "^1.0.0",

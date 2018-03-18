@@ -40,7 +40,7 @@ export class LoginModal extends Component {
 
     checkValidity(event){
         const { email, password } = this.state;
-        console.log(this.state);
+
         axios.post('/api/login', { email: email, password: password})
             .then( response => {
                 console.log(response);
