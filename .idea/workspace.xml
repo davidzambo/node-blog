@@ -2,225 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16054596-9930-4bf2-b757-9406961de06d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/containers/newsletter.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/presentational/paginatior.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/containers/match.editor.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/containers/match.list.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/presentational/admin-navbar.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/client/src/components/presentational/match.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/controllers/MatchController.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/00ed28e45ba43518bcd7d60dfd8d3233315ebd15.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/00f050a81124ed0c29b384f5557d177349da9c40.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/013dc23dd1ffc95aaabf582e938363100690dcab.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/034d4b74ac1cd436f40a526850f3ce577d321b88.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0366debe29343bb4bfca6ce69f799934fa4ff5b1.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/03851e2baf7418c15d72bc244d0573127d84e608.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/05dbcebdb9cd6b623d82467eccaa4578c27b5f83.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0838656814fdd083c2b3c9cbd8a47aa4ca6013a7.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0913477c9336934efe9ab79db2f6884ec80f62a4.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0b639618fe80eccce92e863f5f8c172069069dae.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0bc901779aa970b6b093ead9440c7e4b4c8d2082.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0c7e41fe211d089ae2993cac40569af62c9a4d87.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0ccab810b0ccba4960c7e5f6290de99804136bc2.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0d79fe35448f7cb8da1fdaeccf6e639a15f62aed.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/0e8560b20e074b140b1671e0130e961b45600175.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/1105ab65c6b11ed7917fe75611e23e97a4b03a96.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/13a606f3215266f9a1f1730acac43634a39dee10.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/13c5e87eb9717ce9ebc5385f49543cf20e7a233e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/15a9df1e25879ca54d7d2a7b454ca41abb009989.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/15c18b743787f3908da36ec212f530d29cd38eac.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/16d9f1ef8d6f46c70a3d6e60ab9a7ab29cc7092b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/183de93b9fc1106b5f844347d02485c60505d86f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/19413206140a0f1afd30d33b0ff59a2b6dec14a2.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/19572651a229f08173da0d5a0d1f8c7cca32256f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/19f174955b2a4e94d2fb38bbda2a9e9ce36fa701.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/1bbb0ec118b2f1e05827fa28ffa8b40e3e1c47bb.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/1e816897448567bd87eca23028f4361d735a6876.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/1f5c2573e011534e1544aaa592d31e6a83be501d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2103f9d3eff04629429a0f62cbf8807706ed510d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/215b2c3250e48f5867aa230a7c8a6f5f36c27cd4.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/21ecacfe9eca1a784ae3bb581d93e3a2d713c7ec.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/22c15c3d9b9a968a64eae1b14f9575c51f72b591.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/247fd9f5ad6e136db032d279200d9a82841293ed.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2635b7a29bf145d8dc20a9aeeeeabe25f6fea515.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2a2437992f7d34270d0587531573512c83f0121c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2bc2a1b0a58f5b8a945894973bfdf32d48c483bf.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2d0abbc27a3f11ebf6caffd74da9efedca0940b7.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2e2ef4ac175a7c38f84a8114a19344850d6ee412.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2e58b485b654092adfa36bd9b5a705ece749b14a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/2f464169e18f710fae2f4d903ebeb1dd32d71fe0.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3027fe1321953b1728c00eda2a2387e478fe18f2.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/304b73a7cf657ffbd21f5bead3f63d00e4fdab66.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/311b8928e5c9a11f5f525de8b057ee55fa62df1c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/32f8e97026c811fb6dd04c3b39738f3b08179cb3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/341520c53e437d89964c73a727cad6fcd517fcd2.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3563cde28ad3fae9a2391dafeeebe0828abcef7d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/35b12c4b6540b19de0f6e5cc9999daefe54038fb.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3a81910daba0c7c9e868b93a2f7085e697af06ec.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3bc629c2aa156045b6b3a762534f85d8bbd25966.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3cbe599e7b791e439e2dfc835543395fdcfb1018.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/3cd1cbebda783ab2708d11430bb7cfc02ccd2663.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/429925e7013eed80b882de2a0286c0d878d831fd.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4386e79926d34b93d094f6d334829dfec3632efc.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/452548a94000236a90e24cd690dacb02cbe6d4c8.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4806a8cb2927d41ff516d8ac4d0968079d036f0c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4a859f4b0b20d93b2d3bf02225b4af28af7f2d47.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4b03ef9b92a6c3cd08d2fced9dfff6b00d144645.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4d98d9ead76b0de9fddcf3ad0974313454a0f178.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/4f361b65d7459820b71c61046bd3fdc0a3328a9a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/51a31ba58b9f0b25a546a7f3b4680bc937485781.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/52379ff3af00e3495a3c1ce0bad8449851e1a0c8.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/556ab6a0816e1e7c96e05a39191da30343eb0de6.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/562f1689f04ede52e6b8a31e259428fee08c03c3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/564fca046266c23bb8e7af142069fe566e9612e4.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/56ea9f5a8ca532640460737e2304e250db5b7e5f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/57364ec07617d3bb3e9f04dbdbfe000a0416bd51.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/596c1630172208196c37031445ef17146d22d215.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/5bd2e4d92c2128d29236de9ba8c014647d671f57.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/5d706b312b60d3d665d6e96314e5e1136e174ca6.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/5f2e8f4229930769618f9491d848750c49daf62d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/5f7349e76192095f1aac26882d8840c08c0f8422.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/60d3c0277f5a084b590eac94102f06926c476da6.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/617326950ee0725fd21aa598ba4e8f37e8ae1626.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/61d8909e9ceb210c227e593c452877fedec29247.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/626c809d78b345464f8a4a8eca7b41068f6b5747.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/627e3b2e962a151daaf03f8d087d6f18e4343241.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6386327225745c97e66d6aa782866fa3a9903893.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6520b9508d44bb9d26bfab82cd3233e0e737733a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/65da79641d5ae28b5eff5736d406621dcec9c080.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/662120d183095960f382db7784d7d3ab5ac25b22.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/67886e0b1a144cd0dd8f0d709b54b69d4dcbce37.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/68eee8aafd4ea1434c9009599f9e2bd200488dec.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6b096095c8676d9feb35b37d765de4ab0a61fa9f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6c85a72dd64b3f5c8ad6f544fc4a7dd1c64bd27a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6ea53ab28ecd4e7619714990bf060db982a34080.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/6fda17bd75f0a1a5184939e738a841846e4afe27.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/71e7856a1304d80fcfc5919bdcfed14c0e5bd543.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7365aef2a636a01546ba0f8d43d5b35c72096979.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7414fe326995440f548db3ecb167c92c9215390a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/74d0f66b66ab46eda0ac091dc9fa2ff286a9896b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/74d9b8f6c3c4a74d839fa6ff6d698d2f329596cc.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7608350a22246e0a6e916aee07a229731f99c915.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7756ea338cba0863fda4a153438159d040159abb.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/79941cc654a14e02fde4309a625edcaed0bd1c50.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7a136d8621b6a5df558c3f87b9f7d165397e8333.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7a620c5cd4c066524e608980fa6695d6dfd41e95.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7a6e04ecdb2d0c6e6a103494c29ed16c730a4199.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7c4a9d1cbf96e8ee6733eaae093b4240467b4a6b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7d7078bbd58a9ce7dedf6d29bde1ee186d6b5d1e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7f2ae66c2caf0c67f1f2910d13c66af260e3dfd6.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/7fb94165fe1aad9d1a3da3c8ba5fbad22056c7c9.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8176c8b37b00e0cff71689a2e9fd82b977199f3d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/819d4c9973215f16f7e9ef9cb6edac4f353c6232.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/823123ff72e4d10047f4dd980bdb34baf06c279a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8418c32348218903e6779687c476b7916fce2458.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/848506fd57451a0828d6cf1a8bc6c3f155fbc135.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/862705c9bc7131bdd4ff2a33e6b29b7bacd78428.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8aa9cbddae6c6cea138d6f89522ec3d135d2bebc.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8ad4b805f4f3dcc13fbe068abde2c78bdd787fb5.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8b156eedd24149ef963ea6dd590ad92c771dc47c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8b904fd7663a755283f4dfa8112cf94dfba1fa92.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8c41c21608b3e4f2ea6a1aa3a9caecf7a624fef7.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8d3bed44289cd9a81214a57e90fd038842cae665.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8e1dca24dc6a932b84b1fbf0d6951e9601e665b3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8e459cb3e30fffca17c9fdcad56d7c4c0cfd094a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/8e92ccf5d201c989451540f89235aae9c7efc749.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/95aa0a84552d97a3e5d7ec34e70a67a8eeec2427.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/95cf9a5861009f448f4ef8ad36ee4b613485f935.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/96c9e16a2f6164c96711114c2528a8c827474aab.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/97d7f55409384beb81ccdbc1f778418d4456485a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/98ad1ce569e80234c1300f16d0467d983d42c07b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/99517876dffa30aaec2cbcf131b1322d21660f42.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9a7b8dca809bce076e3f9fa84e819000140d196a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9b9608bcf6c6f34a99ceccdc2fb206afceecf568.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9bf285002a70b834b7ed1f4fe9378b3d7f2f5fa5.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9c51169fdc393fee7dedf06a8d8bbde15b6a5e3b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9c5b26bcea31ca3bf30be51ee55917c0ab0f1a08.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/9e53d26d0573955fb35ed4c941984d0396eecd1a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a100042e84ab680777b65fc75423c6a5bea3fe6e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a1a6fa652b4be655a45e76223b103a8af218c9b6.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a3099fc76f10f5a2f98e24b61ddd878e342a69cf.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a3fbcea63a3804f6565bb2b21de90492fc4a87fb.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a45a3d123fb78a5c72933652a1987b4e925c886f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a501d83540c9191c28c32fa4e589919fcf1045dd.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a5cb68a37904f3faec36d6b78bcfb24a886c0eb5.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a5de8349ac3103cc20b1f4133a7c6b9e9411b2af.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a6ea126fe1e57f46cceea1f97cf2eb2cc45d286a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a6eebe39a8de01c0be915b62fe4dcdd0120aea34.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/a8879610fbd5e44688e5563c692d391bdbf9824e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/aa6504e074b00a916290d016695e8b8c37eff667.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/af6f648306cd536503c28c3b144a1a8569a6a435.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b114d7186eb4dde9cb691b1403cb0696d1e790d1.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b12aed6a557d96d3ee133a8fdea6485e18588046.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b1b76931c00a67008b2c1dcb7d88629e5fc4908e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b20f41cef75f53c8f349dd29526de89c18164b7c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b5d47229a866ea3cb2603241f413d4874a6858c2.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/b7ef5d01738ff3b45203dbb53059c7374749eeb5.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/baadcc9d22b1f57842ebf55d585f38946a231f09.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c17dc8551eb097eb4ff1e7d88ecf43782a996254.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c21f751ea106aa4d4c0632b75b98cec46d580e1d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c3c54e7b87491d73a3606b5ef30950af719f6dcb.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c4dbb359bdccb557f8ae2707edf937bb815fd9b3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c62c40994f4b848de6e0935143d13cb1dcd30b6c.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c7c126410b0b96fdf5e5212da01aa7b0dfea597f.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/c8c342f2d67db2440245766eb94a096b67223279.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cad407260156d0f58345bc091e9e7a2f1333cd4e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cb8fc3f0045e1b1fa42b64e4ccd0d3c2ba3b2fee.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cc656e264478a83bbcb6a5a20f594387a3ec09a7.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cd2acc23b1576971f910ca723b37f181bd77d057.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cd31f4cc3560e49bda4ebc43877eec6c6552a3ad.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/cebfd1888b806a434a1d575a85d469f93411549d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d0f93fab5a24d278eef78a28e1568fc17e992206.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d14ccfb18e0540b86fe6b2a28dfb1a7ada1f380d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d1f8e2dcdc240c1808f29774641ad83f761cf762.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d381b6d1bf416a02b6c883f7a9786deb7db05541.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d4cfad96649dbd68e2f6974ecb379c9215701f4d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d58da39ee10d8c6759ba13664ec97335bff0c362.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d6b0f1ecb9d660746e4ecacf4c591fe5c00e499a.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/d7d805ea91bf201a00fd009b2b312d6ff34f0061.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/db288dfd822ba1525a6c0f9dd7fdda2e6e31f218.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/de131d4b878178e7a3d56a712a532fbd624adbaf.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/df0006b82ab33ff52d5d55dc8ba3a3f8e5fdc57b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/e01a7e346e0938bc29e7cd2b75d8d41b370791f1.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/e1bddf510cf52337fde05e8a1e4dcaccc8cc6ade.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/e24254caa329a2f5606c1b820eede2707a01a02b.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/e2986293f09dfac534c76d6d5919f7443781da5d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/e403185828e2d368fff767208f86cdc146d45d83.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/ec3eacd6388c8f85b8d49f344fd09e1022fb4801.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/eca53e65f3b0fec9e3cee58bf767e54327a475ad.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/ef2edad68286270232439f476f4842ead60c7812.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/effa4dcab3852e1c42967ae66e28c0ac06e44e67.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f0e316aab0c41055abb0646a3c67fc7d0a8c29fe.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f15452f1eca5e0bcecfb071f3c63fe86e0562303.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f4264e0f1017518e5c494f54225f50b58873aebe.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f489605ad5190b358e00e77c8bb7bef041470429.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f5a9957ca4bedc4accda849d2fb1b87644c58289.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f746cf8b75931bb8922a750d776a98f7dfbc639e.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f85d3ea83898bf604fb7016d64006c77e450aea3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f8e1668b7f24738f0b16994996e2a5384386de5d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/f970a527eb7e7a7b661461f14f58546e75221c19.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/fa3528885461f9ba2e26bd875cc04b36ac47216d.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/fad87a048a949e9da7e540df1bcbadf81694aaed.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/fca4bad0e70a49b056bff7f8aadd4263eeb1d981.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/fdc0ad0ab31ba73197d77fe068e991e112f3c224.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/feecb375d409089c1acbc46678418edcd9830d34.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/ff3498cd2edad4ef41b9e2c3583ae087a9e4a9c1.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/babel-loader/ff92520288510855ff3035a17cb4c0c2f9695bd3.json.gz" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/client/node_modules/.yarn-integrity" afterPath="$PROJECT_DIR$/client/node_modules/.yarn-integrity" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" afterPath="$PROJECT_DIR$/client/package.json" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/navbar.js" afterPath="$PROJECT_DIR$/client/src/actions/navbar.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/actions/posts.js" afterPath="$PROJECT_DIR$/client/src/actions/posts.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/actions/auth.js" afterPath="$PROJECT_DIR$/client/src/actions/auth.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App.js" afterPath="$PROJECT_DIR$/client/src/components/App.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/containers/posts.editor.js" afterPath="$PROJECT_DIR$/client/src/components/containers/posts.editor.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/containers/newsletter.js" afterPath="$PROJECT_DIR$/client/src/components/containers/newsletter.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/containers/posts.list.js" afterPath="$PROJECT_DIR$/client/src/components/containers/posts.list.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/containers/posts.show.js" afterPath="$PROJECT_DIR$/client/src/components/containers/posts.show.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/presentational/confirm-delete-post-modal.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/confirm-delete-post-modal.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/presentational/layout.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/layout.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/presentational/login-modal.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/login-modal.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/presentational/navbar.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/navbar.js" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/presentational/paginatior.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/paginatior.js" />
       <change beforePath="$PROJECT_DIR$/client/src/components/presentational/post.js" afterPath="$PROJECT_DIR$/client/src/components/presentational/post.js" />
       <change beforePath="$PROJECT_DIR$/client/src/reducers/auth.js" afterPath="$PROJECT_DIR$/client/src/reducers/auth.js" />
-      <change beforePath="$PROJECT_DIR$/client/src/reducers/navbar.js" afterPath="$PROJECT_DIR$/client/src/reducers/navbar.js" />
       <change beforePath="$PROJECT_DIR$/client/src/styles/styles.css" afterPath="$PROJECT_DIR$/client/src/styles/styles.css" />
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" afterPath="$PROJECT_DIR$/client/yarn.lock" />
       <change beforePath="$PROJECT_DIR$/controllers/PostController.js" afterPath="$PROJECT_DIR$/controllers/PostController.js" />
-      <change beforePath="$PROJECT_DIR$/helpers.js" afterPath="$PROJECT_DIR$/helpers.js" />
+      <change beforePath="$PROJECT_DIR$/controllers/UserController.js" afterPath="$PROJECT_DIR$/controllers/UserController.js" />
+      <change beforePath="$PROJECT_DIR$/models/LoginAttemptModel.js" afterPath="$PROJECT_DIR$/models/LoginAttemptModel.js" />
+      <change beforePath="$PROJECT_DIR$/models/MatchModel.js" afterPath="$PROJECT_DIR$/models/MatchModel.js" />
       <change beforePath="$PROJECT_DIR$/models/PostModel.js" afterPath="$PROJECT_DIR$/models/PostModel.js" />
       <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
       <change beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
@@ -237,168 +39,46 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.45179233">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/server.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                <state relative-caret-position="340">
+                  <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="navbar.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/presentational/navbar.js">
+          <file leaf-file-name="MatchController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/MatchController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="30" column="124" lean-forward="false" selection-start-line="30" selection-start-column="124" selection-end-line="30" selection-end-column="124" />
+                <state relative-caret-position="102">
+                  <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/App.js">
+          <file leaf-file-name="UserController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/UserController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="315">
-                  <caret line="21" column="81" lean-forward="false" selection-start-line="21" selection-start-column="81" selection-end-line="21" selection-end-column="81" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="posts.show.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.show.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-252">
-                  <caret line="1" column="38" lean-forward="false" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="posts.list.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="posts.list.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.list.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="420">
-                  <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+                <state relative-caret-position="102">
+                  <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
                   <folding>
                     <element signature="e#0#39#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="layout.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/presentational/layout.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="confirm-delete-post-modal.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/presentational/confirm-delete-post-modal.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="navbar.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/reducers/navbar.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/server.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="240">
-                  <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="posts.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/actions/posts.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="587">
-                  <caret line="128" column="48" lean-forward="false" selection-start-line="128" selection-start-column="48" selection-end-line="128" selection-end-column="48" />
-                  <folding>
-                    <element signature="e#0#26#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="paginatior.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/client/src/components/presentational/paginatior.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="6" column="65" lean-forward="false" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
-                  <folding>
-                    <element signature="e#0#39#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="PostController.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/controllers/PostController.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="helpers.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/helpers.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="540">
-                  <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/actions/auth.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="180">
-                  <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="posts.editor.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.editor.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="765">
-                  <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
-                  <folding>
-                    <element signature="e#0#41#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -407,8 +87,28 @@
           <file leaf-file-name="post.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/components/presentational/post.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="555">
-                  <caret line="58" column="37" lean-forward="false" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+                <state relative-caret-position="646">
+                  <caret line="57" column="43" lean-forward="false" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="LoginAttemptModel.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/LoginAttemptModel.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="match.editor.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/client/src/components/containers/match.editor.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="34">
+                  <caret line="136" column="47" lean-forward="false" selection-start-line="136" selection-start-column="47" selection-end-line="136" selection-end-column="47" />
                   <folding>
                     <element signature="e#0#39#0" expanded="true" />
                   </folding>
@@ -416,12 +116,68 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="PostModel.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/PostModel.js">
+          <file leaf-file-name="posts.editor.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.editor.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+                <state relative-caret-position="2057">
+                  <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/App.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="auth.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/actions/auth.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="289">
+                  <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="PostController.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/controllers/PostController.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="391">
+                  <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MatchModel.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/models/MatchModel.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="255">
+                  <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="layout.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/components/presentational/layout.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -445,28 +201,36 @@
       <list>
         <option value="$PROJECT_DIR$/client/src/components/Articles.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/index.js" />
-        <option value="$PROJECT_DIR$/client/src/actions/auth.js" />
-        <option value="$PROJECT_DIR$/client/src/styles/styles.css" />
-        <option value="$PROJECT_DIR$/client/src/components/presentational/login-modal.js" />
-        <option value="$PROJECT_DIR$/client/src/reducers/auth.js" />
         <option value="$PROJECT_DIR$/client/src/actions/navbar.js" />
         <option value="$PROJECT_DIR$/client/src/reducers/navbar.js" />
-        <option value="$PROJECT_DIR$/client/src/components/presentational/navbar.js" />
-        <option value="$PROJECT_DIR$/client/src/components/presentational/layout.js" />
-        <option value="$PROJECT_DIR$/client/src/components/containers/newsletter.js" />
-        <option value="$PROJECT_DIR$/models/PostModel.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/posts.show.js" />
         <option value="$PROJECT_DIR$/helpers.js" />
         <option value="$PROJECT_DIR$/client/src/actions/posts.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/posts.editor.js" />
         <option value="$PROJECT_DIR$/client/src/components/presentational/confirm-delete-post-modal.js" />
-        <option value="$PROJECT_DIR$/server.js" />
-        <option value="$PROJECT_DIR$/controllers/PostController.js" />
         <option value="$PROJECT_DIR$/client/src/components/presentational/pagination.js" />
+        <option value="$PROJECT_DIR$/models/LoginAttemptModel.js" />
+        <option value="$PROJECT_DIR$/client/src/actions/auth.js" />
         <option value="$PROJECT_DIR$/client/src/components/presentational/post.js" />
         <option value="$PROJECT_DIR$/client/src/components/presentational/paginatior.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/newsletter.js" />
+        <option value="$PROJECT_DIR$/models/PostModel.js" />
+        <option value="$PROJECT_DIR$/models/MatchModel.js" />
+        <option value="$PROJECT_DIR$/controllers/UserController.js" />
+        <option value="$PROJECT_DIR$/client/src/components/presentational/login-modal.js" />
+        <option value="$PROJECT_DIR$/client/src/reducers/auth.js" />
+        <option value="$PROJECT_DIR$/client/src/components/presentational/layout.js" />
+        <option value="$PROJECT_DIR$/client/src/components/presentational/navbar.js" />
+        <option value="$PROJECT_DIR$/client/src/components/presentational/admin-navbar.js" />
         <option value="$PROJECT_DIR$/client/src/components/App.js" />
         <option value="$PROJECT_DIR$/client/src/components/containers/posts.list.js" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/controllers/MatchController.js" />
+        <option value="$PROJECT_DIR$/controllers/PostController.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/match.list.js" />
+        <option value="$PROJECT_DIR$/client/src/styles/styles.css" />
+        <option value="$PROJECT_DIR$/client/src/components/presentational/match.js" />
+        <option value="$PROJECT_DIR$/client/src/components/containers/match.editor.js" />
       </list>
     </option>
   </component>
@@ -483,10 +247,10 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="41" />
-    <option name="y" value="27" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="x" value="126" />
+    <option name="y" value="40" />
+    <option name="width" value="1717" />
+    <option name="height" value="968" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -506,8 +270,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -525,13 +287,6 @@
               <item name="trd" type="462c0819:PsiDirectoryNode" />
               <item name="client" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="trd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trd" type="462c0819:PsiDirectoryNode" />
-              <item name="client" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="actions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="trd" type="b2602c69:ProjectViewProjectNode" />
@@ -573,21 +328,18 @@
               <item name="trd" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="trd" type="b2602c69:ProjectViewProjectNode" />
-              <item name="trd" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../inteliart/common-admin" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -620,33 +372,43 @@
       <workItem from="1520915152879" duration="1024000" />
       <workItem from="1520916236584" duration="621000" />
       <workItem from="1520948980949" duration="1565000" />
-      <workItem from="1521217969209" duration="39818000" />
+      <workItem from="1521217969209" duration="40075000" />
+      <workItem from="1521439085219" duration="5763000" />
+      <workItem from="1521452241042" duration="3007000" />
+      <workItem from="1521477944209" duration="14452000" />
+      <workItem from="1521576003494" duration="604000" />
+      <workItem from="1521786175620" duration="21000" />
+      <workItem from="1521786221496" duration="11000" />
+      <workItem from="1521795802799" duration="617000" />
+      <workItem from="1521823502640" duration="3352000" />
+      <workItem from="1521860528281" duration="25944000" />
+      <workItem from="1522034268072" duration="8922000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45911000" />
+    <option name="totallyTimeSpent" value="108861000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
+    <frame x="43" y="27" width="1877" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14583333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1509434" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489796" sideWeight="0.5061995" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15377176" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2489796" sideWeight="0.49380055" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -661,31 +423,46 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/components/presentational/navbar.js</url>
-          <properties lambdaOrdinal="-1" />
+          <url>file://$PROJECT_DIR$/client/src/components/containers/posts.list.js</url>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/post.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="58" column="37" lean-forward="false" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/PostModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/paginatior.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="6" column="65" lean-forward="false" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/actions/posts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1680">
           <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="31" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js" />
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -698,18 +475,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2712">
           <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js" />
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -722,18 +491,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2712">
           <caret line="113" column="22" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js" />
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2304">
@@ -750,35 +511,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="29" column="36" lean-forward="false" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js" />
     <entry file="file://$PROJECT_DIR$/client/src/actions/posts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1955">
           <caret line="115" column="35" lean-forward="false" selection-start-line="115" selection-start-column="35" selection-end-line="115" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="31" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/Articles.js" />
     <entry file="file://$PROJECT_DIR$/client/node_modules/react-redux/lib/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -786,9 +531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,7 +538,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,19 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/newsletter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -824,23 +552,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/reducers/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/styles/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,41 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/login-modal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/actions/posts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="128" column="48" lean-forward="false" selection-start-line="128" selection-start-column="48" selection-end-line="128" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -890,25 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="29" lean-forward="false" selection-start-line="11" selection-start-column="29" selection-end-line="11" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/PostModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="43" lean-forward="false" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -916,84 +573,225 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="24" lean-forward="false" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.show.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="38" lean-forward="false" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="51" lean-forward="false" selection-start-line="36" selection-start-column="51" selection-end-line="36" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/posts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="128" column="48" lean-forward="false" selection-start-line="128" selection-start-column="48" selection-end-line="128" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/UsersModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/paginatior.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="43" lean-forward="false" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/newsletter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="18" lean-forward="false" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/PostModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="52" lean-forward="false" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/layout.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.editor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="22" lean-forward="false" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+        <state relative-caret-position="2057">
+          <caret line="129" column="14" lean-forward="false" selection-start-line="129" selection-start-column="14" selection-end-line="129" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/LoginAttemptModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/UserController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="25" lean-forward="false" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/actions/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="22" lean-forward="false" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="36" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/MatchController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="25" lean-forward="false" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/PostController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/navbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="30" column="124" lean-forward="false" selection-start-line="30" selection-start-column="124" selection-end-line="30" selection-end-column="124" />
+        <state relative-caret-position="391">
+          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/presentational/post.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="58" column="37" lean-forward="false" selection-start-line="58" selection-start-column="37" selection-end-line="58" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.show.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-252">
-          <caret line="1" column="38" lean-forward="false" selection-start-line="1" selection-start-column="38" selection-end-line="1" selection-end-column="38" />
+        <state relative-caret-position="646">
+          <caret line="57" column="43" lean-forward="false" selection-start-line="57" selection-start-column="43" selection-end-line="57" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/paginatior.js">
+    <entry file="file://$PROJECT_DIR$/client/src/styles/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="65" lean-forward="false" selection-start-line="6" selection-start-column="65" selection-end-line="6" selection-end-column="65" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="238">
+          <caret line="14" column="34" lean-forward="true" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/App.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/match.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="81" lean-forward="false" selection-start-line="21" selection-start-column="81" selection-end-line="21" selection-end-column="81" />
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/match.list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="17" lean-forward="false" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/admin-navbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="30" lean-forward="false" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/navbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="23" column="38" lean-forward="false" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/login-modal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-272">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/reducers/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/presentational/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="12" lean-forward="false" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/MatchModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/containers/posts.list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="58" lean-forward="true" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
+        <state relative-caret-position="102">
+          <caret line="41" column="27" lean-forward="false" selection-start-line="41" selection-start-column="27" selection-end-line="41" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/containers/match.editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="136" column="47" lean-forward="false" selection-start-line="136" selection-start-column="47" selection-end-line="136" selection-end-column="47" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>

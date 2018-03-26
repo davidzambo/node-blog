@@ -55,17 +55,16 @@ class Post extends Component {
                             to={`/bejegyzesek/${post.slug}/szerkesztes`}
                             className='ui orange button'
                             onClick={this.handleEdit}
-                            floated='right'
-                            labelPosition='left'>
+                            floated='right'>
                         <Icon name='edit'/>szerkesztés
-                    </Link>
-                    <Button
-                        color='red'
-                        icon='trash'
-                        content='törlés'
-                        labelPosition='left'
-                        floated='left'
-                        onClick={this.handleDelete}/>
+                        </Link>
+                        <Button
+                            color='red'
+                            icon='trash'
+                            content='törlés'
+                            labelPosition='left'
+                            floated='left'
+                            onClick={this.handleDelete}/>
                     </div> :
                     ''
                 }

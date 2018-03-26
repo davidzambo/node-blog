@@ -3,16 +3,17 @@ import {Button} from 'semantic-ui-react';
 
 export class Paginator extends Component {
     render() {
-    console.log(this.props);
-    const nextPage = this.props.current === undefined ? 'oldal/2' : Number(this.props.current) + 1;
+        console.log('paginator');
+        console.log(this.props);
+
         return (
             <div>
                 {
-                    (this.props.current == 1 || this.props.current === undefined) ?
+                    (this.props.current === 1 || this.props.current === undefined) ?
                         '' :
                         <Button
                             as='a'
-                            href={'./' + (Number(this.props.current) - 1)}
+                            href={'?oldal=' + ((Number(this.props.current) - 1))}
                             icon='angle left'
                             content='előző oldal'
                             labelPosition='left'
@@ -21,10 +22,10 @@ export class Paginator extends Component {
                         />
                 }
 
-                {this.props.listedPosts == 3 ?
+                {this.props.hasNext ?
                     <Button
                         as='a'
-                        href={'./' + nextPage}
+                        href={'?oldal=' + (Number(this.props.current) + 1)}
                         content='következő oldal'
                         icon='angle right'
                         floated='right'

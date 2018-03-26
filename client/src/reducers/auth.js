@@ -1,9 +1,7 @@
 const initialState = {
     isLoginModalOpen: false,
-    isAuthenticated: true,
-    authUser: {
-        email: '',
-    }
+    isAuthenticated: false,
+    token: ''
 }
 
 export const auth = (state = initialState, action) => {
@@ -12,8 +10,8 @@ export const auth = (state = initialState, action) => {
             return { ...state, isLoginModalOpen: action.payload};
         case 'IS_AUTHENTICATED':
             return { ...state, isAuthenticated: action.payload };
-        case 'SET_AUTH_USER':
-            return { ...state, authUser: action.payload };
+        case 'SET_AUTH_TOKEN':
+            return { ...state, token: action.payload };
         default:
             return state;
     }

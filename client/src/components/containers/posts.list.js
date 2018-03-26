@@ -3,7 +3,7 @@ import axios from 'axios';
 import Post from '../presentational/post';
 import Layout from '../presentational/layout';
 import ConfirmDeletePostModal from '../presentational/confirm-delete-post-modal';
-import Pagination from '../presentational/paginatior';
+import Paginatior from '../presentational/paginatior';
 
 
 class PostList extends Component {
@@ -12,6 +12,8 @@ class PostList extends Component {
         this.fetchPosts = this.fetchPosts.bind(this);
         this.state = {
             posts: [],
+            page: 1,
+            hasNext: true
         }
     }
 
@@ -24,22 +26,38 @@ class PostList extends Component {
     }
 
     fetchPosts(props) {
-        const page = '' || props.match.params.page;
-        let url = '/api/posts/page/' + page;
+        const queryArray = props.location.search.slice(1).split('&');
+        const queryObj = {};
+
+        queryArray.map( function(query) {
+            const splittedQuery = query.split('=');
+            queryObj[splittedQuery[0]] = splittedQuery[1];
+            return true;
+        });
+
+        const page = (queryObj.oldal === undefined || queryObj.oldal < 2 ) ? 1 : queryObj.oldal;
+
+        let url = '/api/posts/?page=' + page;
         if (props.match.params.category === 'kezilabda') {
-            url = '/api/category/handball/' + page;
+            url = '/api/posts/?category=handball&page=' + page;
         } else if (props.match.params.category === 'en-igy-gondolom') {
-            url = '/api/category/personal/' + page;
+            url = '/api/posts/?category=personal&page=' + page;
         }
 
         axios.get(url)
             .then(response => {
-                this.setState({page: 1, posts: response.data.posts,})
+                console.log(response.data);
+                const {count, page, limit} = response.data;
+                const hasNext = count > (page) * limit;
+                this.setState({
+                    posts: response.data.posts,
+                    page: page,
+                    hasNext: hasNext,
+                })
             });
     }
 
     render() {
-        console.log(this.props);
         const {posts} = this.state;
         return (
             <Layout>
@@ -47,9 +65,9 @@ class PostList extends Component {
                     return <Post post={post} key={post._id}/>
                 })}
                 <ConfirmDeletePostModal {...this.props}/>
-                <Pagination
-                    current={this.props.match.params.page}
-                    listedPosts={this.state.posts.length}/>
+                <Paginatior
+                    current={Number(this.state.page)}
+                    hasNext={this.state.hasNext}/>
             </Layout>
         );
     }

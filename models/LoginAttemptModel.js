@@ -7,6 +7,7 @@ const loginAttemptSchema = new Schema({
     email: { type: String },
     password: { type: String  },
     result: {type: Boolean, required: true},
+    token: {type: String },
     date: { type: Date, default: Date.now },
 });
 

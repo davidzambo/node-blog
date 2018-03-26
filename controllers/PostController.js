@@ -5,14 +5,22 @@ const fs = require('fs');
 module.exports = {
 
     index(req, res) {
-        const limit = 3;
-        Post.find()
+        const limit = 3,
+            page = req.query.page || 1,
+            category = req.query.category,
+            filter = (category === undefined) ? {} : {category: category};
+
+
+        Post.find(filter)
             .sort({date: -1})
-            .limit(limit)
-            .skip( limit * req.params.page)
             .exec((err, posts) => {
-            if (err) console.error(err);
-            res.status(200).json({posts});
+                if (err) console.error(err);
+                res.status(200).json({
+                    posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
+                    count: posts.length,
+                    page: page,
+                    limit: limit
+                });
         });
     },
 

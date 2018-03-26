@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { isAuthenticated, isLoginModalOpen } from "../../actions/auth";
+import {isAuthenticated, isLoginModalOpen, setAuthToken} from "../../actions/auth";
 import { Modal, Form, Button, Divider, Message } from 'semantic-ui-react';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 
 const inlineStyle = {
@@ -16,7 +17,8 @@ const inlineStyle = {
 const mapDispatchToProps = dispatch => {
     return {
         isAuthenticated: bool => dispatch(isAuthenticated(bool)),
-        setOpen: bool => dispatch(isLoginModalOpen(bool))
+        setOpen: bool => dispatch(isLoginModalOpen(bool)),
+        setAuthToken: token => dispatch(setAuthToken(token)),
     }
 }
 
@@ -48,7 +50,9 @@ export class LoginModal extends Component {
                     this.props.isAuthenticated(false);
                     this.setState({hasError: true, errorMessage: response.data.error})
                 } else {
+                    Cookies.set('token', response.data.token);
                     this.props.isAuthenticated(true);
+                    this.props.setAuthToken(response.data.token);
                     this.props.setOpen(false);
                     this.setState({isOpen: false, hasError: false, errorMessage: ''})
                 }

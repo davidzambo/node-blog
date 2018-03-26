@@ -1,21 +1,19 @@
 const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/trd');
+const Schema = mongoose.Schema;
 
-module.exports = {
-    Schema = mongoose.Schema,
 
-    matchSchema = new Schema({
-        team: { type: String, required: true },
-        date: { type: Date },
-        address: { type: String },
-        goals: {
-            shot: Number,
-            get: Number
-        },
+const matchSchema = new Schema({
+        team: {type: String, required: true},
+        vsTeam: {type: String, required: true},
+        matchDate: {type: Date },
+        city: {type: String, required: true},
+        address: {type: String},
         league: Number,
         ageGroup: String,
-    }),
+        createdAt: {type: Date, default: Date.now }
+    });
 
-    Match = mongoose.model('Match', matchSchema),
+module.exports = mongoose.model('Match', matchSchema);
 
 
-}

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Form, Button} from 'semantic-ui-react';
+import {Card, Form} from 'semantic-ui-react';
 
 export class NewsLetter extends Component {
     render(){

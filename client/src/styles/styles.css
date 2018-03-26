@@ -3,10 +3,25 @@
   padding: 0;
   font-family: sans-serif;
 } */
-.ql-editor{
-  min-height: 500px;
+.ql-editor {
+    min-height: 500px;
 }
-article img{
-  max-width: 100%;
-  height: auto;
+
+article img {
+    max-width: 100%;
+    height: auto;
+}
+
+.react-datepicker__time-container,
+.react-datepicker__time-box{
+    width: 100px;
+}
+.react-datepicker__time-list,
+.react-datepicker__time-list-item{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.no-margin{
+    margin: 0 !important;
 }
