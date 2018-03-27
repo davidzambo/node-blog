@@ -31,6 +31,7 @@ export class MatchEditor extends Component {
         } else {
             this.setState({matchDate: event});
         }
+        console.log(this.state);
     }
 
     handleSelect(event, select) {
@@ -126,9 +127,7 @@ export class MatchEditor extends Component {
                                     selected={matchDate}
                                     showTimeSelect={true}
                                     onChange={this.handleChange}
-                                    onSelect={this.handleChange}
-                                    className=''
-                                    dateFormat='YYYY. MMMM D. HH:II'
+                                    dateFormat='YYYY. MMMM D. HH:mm'
                                     timeFormat='HH:mm'
                                     minDate={moment()}
                                     maxDate={moment().add(1, 'year')}
