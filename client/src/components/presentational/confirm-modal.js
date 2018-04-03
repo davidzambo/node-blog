@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const inlineStyle = {
     modal: {
-        marginTop: '30%',
+        marginTop: 100,
         marginLeft: 'auto',
         marginRight: 'auto'
     }
@@ -20,7 +20,7 @@ const mapStateToProps = state => {
     }
 };
 
-export class ConfirmDeleteModal extends React.Component {
+export class ConfirmeModal extends React.Component {
     render() {
         return (
             <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal}>
@@ -39,4 +39,4 @@ export class ConfirmDeleteModal extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(ConfirmDeleteModal);
+export default connect(mapStateToProps)(ConfirmeModal);

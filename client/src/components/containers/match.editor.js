@@ -45,7 +45,7 @@ export class MatchEditor extends Component {
         }
     }
 
-    handleChange(event, value) {
+    handleChange(event) {
         if (event.hasOwnProperty('target')) {
             this.setState({[event.target.id]: event.target.value});
         } else {
@@ -57,7 +57,6 @@ export class MatchEditor extends Component {
         this.setState({
             [select.id]: select.value
         });
-        console.log(this.state);
     }
 
     handleSubmit(event) {
@@ -85,10 +84,7 @@ export class MatchEditor extends Component {
                 .then( response => {
                     console.log(response);
                 })
-            // console.log(this.state);
-            // console.log(isAllFilled);
         }
-
     }
 
     render() {
@@ -99,7 +95,7 @@ export class MatchEditor extends Component {
                     <Grid centered stackable>
                         <Grid.Row>
                             <Grid.Column mobile={16}>
-                                <Header content ='Új meccs rögzítése' width={16}/>
+                                <Header content='Új meccs rögzítése' width={16}/>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>

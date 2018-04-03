@@ -33,10 +33,13 @@ class Navbar extends React.Component {
             this.props.isLoggedIn ?
                 <Dropdown trigger={<div><Icon name='settings' size="large"/><h4 style={menuTitleStyle}> Adminisztráció</h4></div>} className='link item'>
                     <Dropdown.Menu>
-                        <Dropdown.Item as={NavLink} exact to='/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
+                        <Dropdown.Divider/>
+                        <Dropdown.Item as={NavLink} exact to='/statisztikak/uj'><Icon name='write' size="large"/> Új statisztika</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/statisztikak'><Icon name='write' size="large"/> Statisztikák kezelése</Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item as={NavLink} exact to='/meccsek/uj'>Új meccs</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} exact to='/meccsek/uj'>Meccsek kezelése</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/meccsek/'>Meccsek kezelése</Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item onClick={() => {
                             this.props.isAuthenticated(false);

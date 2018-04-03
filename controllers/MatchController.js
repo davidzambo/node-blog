@@ -2,24 +2,28 @@ const Match = require('../models/MatchModel');
 
 module.exports = {
 
-    index(req, res){
+    index(req, res) {
         Match.find()
             .sort({matchDate: 1})
-            .exec( (err, matches) => {
+            .exec((err, matches) => {
                 if (err) console.error(err);
                 res.status(200).json({matches});
             });
     },
 
-    create(req, res){
+    create(req, res) {
         const match = new Match(req.body);
         console.log(match);
-        match.save( err => {
-            if (err) {console.error(err);}
+        match.save(err => {
+            if (err) {
+                console.error(err);
+            }
             Match.find()
                 .sort({date: 1})
-                .exec( (err, matches) => {
-                    if (err) {console.error(err);}
+                .exec((err, matches) => {
+                    if (err) {
+                        console.error(err);
+                    }
                     res.status(200).json({matches});
                 })
         })
@@ -27,30 +31,37 @@ module.exports = {
 
     show(req, res) {
         Match.findOne({_id: req.params.id}).exec((err, match) => {
-            if (err) {console.error(err);}
+            if (err) {
+                console.error(err);
+            }
             res.status(200).json({match});
         })
     },
 
-    update(req, res){
+    update(req, res) {
         Match.findOneAndUpdate({_id: req.body.id}, req.body, (err, match) => {
-            if (err) {console.error(err);}
+            if (err) {
+                console.error(err);
+            }
             res.status(201).json({match});
         })
     },
 
-    destroy(req, res){
-        console.log(req.body.);
+    destroy(req, res) {
+        console.log(req.body);
         //
-        Match.findOneAndRemove({_id: req.body._id}, (err, match) => {
-            if (err) {console.error(err);}
+        Match.findOne({_id: req.body._id}, (err, match) => {
+            if (err) console.error(err);
             console.log(match);
-            Match.find()
-                .sort({matchDate: 1})
-                .exec( (err, matches) => {
-                    if (err) console.error(err);
-                    res.status(200).json({matches});
-                })
+            match.remove(err => {
+                if (err) console.error(err);
+                Match.find()
+                    .sort({matchDate: 1})
+                    .exec((err, matches) => {
+                        if (err) console.error(err);
+                        res.status(200).json({matches});
+                    })
+            });
         })
     }
 

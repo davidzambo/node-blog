@@ -10,6 +10,7 @@ import MatchList from './containers/match.list';
 import Cookies from 'js-cookie';
 import {isAuthenticated, setAuthToken} from "../actions/auth";
 import {fetchMatches} from "../actions/match";
+import {StatisticsEditor} from "./containers/statistics.editor";
 
 
 const mapStateToProps = state => {
@@ -48,7 +49,7 @@ class App extends React.Component{
                     <Route exact path="/:category(en-igy-gondolom|kezilabda)"
                            render={props => <PostList {...props}/>}/>
 
-                    <Route exact path="/uj" render={() => {
+                    <Route exact path="/bejegyzesek/uj" render={() => {
                         return props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
                     }}/>
                     <Route exact path="/bejegyzesek/:slug/szerkesztes"
@@ -65,6 +66,9 @@ class App extends React.Component{
 
                     <Route exact path={'/meccsek/:id/szerkesztes'}
                            render={props => <MatchEditor  {...props} update/>}/>
+
+                    <Route exact path={'/statisztikak/uj'}
+                           render={props => <StatisticsEditor{...props} /> } />
 
                 </div>
             </BrowserRouter>

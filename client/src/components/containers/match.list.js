@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../presentational/layout';
 import Match from "../presentational/match";
-import ConfirmDeleteModal from "../presentational/confirm-delete-modal";
+import ConfirmDeleteModal from "../presentational/confirm-modal";
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
