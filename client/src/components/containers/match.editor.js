@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Layout from '../presentational/layout';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import {Form, Header, Message, Grid, Dropdown} from 'semantic-ui-react';
+import {Form, Header, Message, Grid, Button} from 'semantic-ui-react';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -25,19 +25,39 @@ export class MatchEditor extends Component {
         }
     }
 
+    async componentWillMount(){
+        const id = this.props.match.params.id;
+        if (this.props.update){
+            const response = await axios.get(`/api/matches/${id}`);
+            const match = response.data.match;
+            match.matchDate = moment(match.matchDate);
+            console.log(match);
+            this.setState({
+                id: match._id,
+                matchDate: match.matchDate,
+                city: match.city,
+                address: match.address,
+                team: match.team,
+                vsTeam: match.vsTeam,
+                league: "" + match.league,
+                ageGroup: match.ageGroup
+            });
+        }
+    }
+
     handleChange(event, value) {
         if (event.hasOwnProperty('target')) {
             this.setState({[event.target.id]: event.target.value});
         } else {
             this.setState({matchDate: event});
         }
-        console.log(this.state);
     }
 
     handleSelect(event, select) {
         this.setState({
             [select.id]: select.value
-        })
+        });
+        console.log(this.state);
     }
 
     handleSubmit(event) {
@@ -56,7 +76,12 @@ export class MatchEditor extends Component {
         } else {
             const data = Object.assign({}, this.state);
             data.matchDate = this.state.matchDate._d;
-            axios.post('/api/matches', data)
+
+            axios({
+                url: '/api/matches',
+                method: this.props.update ? 'put' : 'post',
+                data: data,
+            })
                 .then( response => {
                     console.log(response);
                 })
@@ -119,25 +144,7 @@ export class MatchEditor extends Component {
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Grid.Column mobile={16} tablet={6} computer={6} className='field'>
-                                <div className='field'>
-                                <label htmlFor="date">Meccs időpontja:</label>
-                                <DatePicker
-                                    id='date'
-                                    selected={matchDate}
-                                    showTimeSelect={true}
-                                    onChange={this.handleChange}
-                                    dateFormat='YYYY. MMMM D. HH:mm'
-                                    timeFormat='HH:mm'
-                                    minDate={moment()}
-                                    maxDate={moment().add(1, 'year')}
-                                    showDisabledMonthNavigation
-                                    locale='hu-hu'
-                                    fixedHeigth
-                                />
-                                </div>
-                            </Grid.Column>
-                            <Grid.Column mobile={16} tablet={5} computer={5}>
+                            <Grid.Column width={8}>
                                 <Form.Select
                                     label='Korosztály:'
                                     id='ageGroup'
@@ -145,22 +152,43 @@ export class MatchEditor extends Component {
                                     selection
                                     value={ageGroup}
                                     onChange={this.handleSelect}
-                                    options={optionGenerator(21, 5, 'U')}
+                                    options={optionGenerator({key: 'felnőtt', value: 'felnőtt', text: 'felnőtt' }, 21, 5, 'U', )}
                                     fluid
                                     required
                                 />
                             </Grid.Column>
-                            <Grid.Column mobile={16} tablet={5} computer={5}>
+                            <Grid.Column width={8} >
                                 <Form.Select
                                     label='Liga:'
                                     id='league'
                                     placeholder='Liga'
                                     value={league}
                                     onChange={this.handleSelect}
-                                    options={optionGenerator(7, 1)}
+                                    options={optionGenerator(null, 1, 7)}
                                     fluid
                                     required
                                 />
+                            </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row>
+                            <Grid.Column mobile={16} className='field'>
+                                <div className='field'>
+                                    <label htmlFor="date">Meccs időpontja:</label>
+                                    <DatePicker
+                                        id='date'
+                                        selected={matchDate}
+                                        showTimeSelect={true}
+                                        onChange={this.handleChange}
+                                        dateFormat='YYYY. MMMM D. HH:mm'
+                                        timeFormat='HH:mm'
+                                        minDate={moment()}
+                                        maxDate={moment().add(1, 'year')}
+                                        showDisabledMonthNavigation
+                                        locale='hu-hu'
+                                        inline
+                                    />
+                                </div>
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
@@ -176,10 +204,13 @@ export class MatchEditor extends Component {
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
-                            <Form.Button
-                                type='submit'
-                                color='blue'
-                                content='mentés'/>
+                            <Grid.Column>
+                                <Button
+                                    type='submit'
+                                    color='blue'
+                                    content='mentés'
+                                    fluid/>
+                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Form>
@@ -188,21 +219,36 @@ export class MatchEditor extends Component {
     }
 }
 
-const optionGenerator = (from, to, prefix) => {
+const optionGenerator = (initial, from, to, prefix) => {
     const result = [{key: '', value: '', text: 'Kérem válasszon!'}];
+
+    if (initial !== null)
+        result.push(initial);
 
     let option = {};
 
     if (prefix === undefined)
         prefix = '';
 
-    for (let i = from; i >= to; i--) {
-        option = {
-            key: `${prefix}${i}`,
-            value: `${prefix}${i}`,
-            text: `${prefix}${i}`
-        };
-        result.push(option);
+    if (from > to) {
+        for (let i = from; i >= to; i--) {
+            option = {
+                key: `${prefix}${i}`,
+                value: `${prefix}${i}`,
+                text: `${prefix}${i}`
+            };
+            result.push(option);
+        }
+    } else {
+        for (let i = from; i <= to; i++) {
+            option = {
+                key: `${prefix}${i}`,
+                value: `${prefix}${i}`,
+                text: `${prefix}${i}`
+            };
+            result.push(option);
+        }
     }
+
     return result;
 }

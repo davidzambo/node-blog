@@ -10,6 +10,7 @@ module.exports = {
             .limit(limit)
             .sort({date: -1})
             .exec((err, loginAttempts) => {
+                if (err) console.error(err);
                 let canTryLogin = false;
                 if (loginAttempts[limit - 1] == undefined) {
                     canTryLogin = true;

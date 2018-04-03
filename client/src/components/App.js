@@ -8,8 +8,8 @@ import PostEditor from './containers/posts.editor';
 import {MatchEditor} from "./containers/match.editor";
 import MatchList from './containers/match.list';
 import Cookies from 'js-cookie';
-import axios from 'axios';
 import {isAuthenticated, setAuthToken} from "../actions/auth";
+import {fetchMatches} from "../actions/match";
 
 
 const mapStateToProps = state => {
@@ -22,17 +22,14 @@ const mapDispatchToProps = dispatch => {
     return {
         setAuthenticated: bool => dispatch(isAuthenticated(bool)),
         setAuthToken: token => dispatch(setAuthToken(token)),
+        fetchMatches: () => dispatch(fetchMatches())
     }
 }
 
 class App extends React.Component{
-    constructor(props){
-        super(props);
-    }
-
     componentWillMount(){
+        this.props.fetchMatches();
         const token = Cookies.get('token');
-        console.log(token);
         if (token !== undefined){
             this.props.setAuthenticated(true);
             this.props.setAuthToken(token);
@@ -44,7 +41,7 @@ class App extends React.Component{
 
         return(
             <BrowserRouter>
-                <div>
+                <div style={{minHeight: '100vh' }}>
                     <Route exact path='/'
                            render={props => <PostList {...props}/>}/>
 
@@ -65,6 +62,10 @@ class App extends React.Component{
 
                     <Route exact path={'/meccsek'}
                            render={props => <MatchList  {...props} />}/>
+
+                    <Route exact path={'/meccsek/:id/szerkesztes'}
+                           render={props => <MatchEditor  {...props} update/>}/>
+
                 </div>
             </BrowserRouter>
         );

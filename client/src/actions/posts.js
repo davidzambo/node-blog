@@ -1,6 +1,4 @@
 import axios from 'axios';
-import {setNavbar} from './navbar';
-
 
 export const postToHandle = (post) => {
   const POST_TO_HANDLE = "POST_TO_HANDLE";
@@ -93,7 +91,6 @@ export const createPost = (data) => {
       })
       .then((posts) => {
         dispatch(postsFetchDataSuccess(posts.data.posts));
-        dispatch(setNavbar('articles'))
       })
       .catch((e) => {
           console.log(e);
@@ -106,7 +103,6 @@ export const editPost = (post) => {
   return (dispatch) => {
     dispatch(postToHandle(post));
     dispatch(isEdit(true));
-    dispatch(setNavbar('new_article'));
   }
 }
 
@@ -124,7 +120,6 @@ export const updatePost = (post) => {
         dispatch(postsFetchDataSuccess(posts.data.posts));
         dispatch(postToHandle({}));
         dispatch(isEdit(false));
-        dispatch(setNavbar('articles'));
       })
       .catch( () => dispatch(postsHasErrored(true)));
   }

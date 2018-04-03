@@ -2,11 +2,24 @@ import React from 'react';
 import Navbar from './navbar';
 import LoginModal from './login-modal';
 import NewsLetter from '../containers/newsletter.js';
-import {Container, Grid, Header, Sidebar, Sticky, Button} from 'semantic-ui-react';
-import AdminNavbar from './admin-navbar';
+import {Container, Grid, Icon, Responsive, Sidebar} from 'semantic-ui-react';
+import {setNavbarOpen} from "../../actions/navbar";
+import {connect} from 'react-redux';
 
-export default class Layout extends React.Component{
-    constructor(props){
+const mapStateToProps = state => {
+    return {
+        isNavbarOpen: state.navbar.isNavbarOpen
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setNavbarOpen: bool => dispatch(setNavbarOpen(bool))
+    }
+};
+
+export class Layout extends React.Component {
+    constructor(props) {
         super(props);
         this.toggleMenu = this.toggleMenu.bind(this);
         this.state = {
@@ -14,50 +27,60 @@ export default class Layout extends React.Component{
         }
     }
 
-    toggleMenu(){
-        this.setState(prevState => {
-            return {isMenuOpen: !prevState.isMenuOpen}
-        });
+    toggleMenu() {
+        this.props.setNavbarOpen(!this.props.isNavbarOpen);
     }
 
-    render(){
-        const {isMenuOpen} = this.state;
+    render() {
+        const isNavbarOpen = this.props.isNavbarOpen;
         return (
-            <Container fluid>
-                <Sidebar.Pushable>
-                    <Sidebar animation='scale down' visible={isMenuOpen} direction={'left'}>
-                        <Grid.Row>
-                            <Grid.Column stretched>
-                                <Navbar/>
+            <div>
+                <Container fluid>
+                    <Grid style={{marginTop: 0}}>
+                        <Responsive as={Grid.Row} {...Responsive.onlyMobile}>
+                            <Grid.Column width={16}>
+                                <Icon name='sidebar' onClick={this.toggleMenu}/> TothRobertDavid.eu
                             </Grid.Column>
-                        </Grid.Row>
-                    </Sidebar>
+                        </Responsive>
+                    </Grid>
+                </Container>
+                <Sidebar.Pushable>
+                    <Responsive {...Responsive.onlyMobile}>
+                        <Sidebar animation='overlay' visible={isNavbarOpen} direction={'left'}
+                                 size='very wide'>
+                            <Navbar/>
+                        </Sidebar>
+                    </Responsive>
                     <Sidebar.Pusher>
-                        <Grid padded>
-                            <Grid.Row>
-                                <Grid.Column width={13}>
-                                    <Header as="h1" textAlign="center">
-                                        {' '} Tóth Róbert Dávid
-                                    </Header>
-                                </Grid.Column>
-                                <Grid.Column width={3}>
-                                    <Button icon={'content'} primary floated={'right'} onClick={this.toggleMenu}/>
-                                </Grid.Column>
-                            </Grid.Row>
-                            <Grid.Row>
-                                <Grid.Column width={11}>
-                                    {this.props.children}
-                                </Grid.Column>
-                                <Grid.Column width={5}>
-                                    <AdminNavbar/>
-                                    <NewsLetter/>
-                                </Grid.Column>
-                                <LoginModal/>
-                            </Grid.Row>
-                        </Grid>
+                        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
+                            <Container fluid>
+                                <Grid style={{paddingTop: 80}}>
+                                    <Grid.Row>
+                                        <Grid.Column>
+                                            <Navbar/>
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                </Grid>
+                            </Container>
+                        </Responsive>
+                        <Container fluid>
+                            <Grid centered>
+                                <Grid.Row columns={2}>
+                                    <Grid.Column mobile={16} tablet={10} computer={8}>
+                                        {this.props.children}
+                                        <LoginModal/>
+                                    </Grid.Column>
+                                    <Grid.Column mobile={16} tablet={5} computer={4}>
+                                        <NewsLetter/>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
+                        </Container>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
-            </Container>
+            </div>
         );
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

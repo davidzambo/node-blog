@@ -28,9 +28,9 @@ const mapDispatchToProps = dispatch => {
 }
 
 export class ConfirmDeletePostModal extends Component {
-    deletePost(){
-        axios.delete('/api/posts/'+this.props.post._id)
-            .then( response => {
+    deletePost() {
+        axios.delete('/api/posts/' + this.props.post._id)
+            .then(response => {
                 if (response.status !== 200) {
                     console.error(response.statusText);
                 } else {
@@ -38,25 +38,23 @@ export class ConfirmDeletePostModal extends Component {
                     this.props.cancelPostAction();
                 }
             })
-            .then( () => this.props.history.push('/'));
+            .then(() => this.props.history.push('/'));
     }
 
-    render(){
+    render() {
         return (
-            <div>
-                <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal}>
-                    <Modal.Header>
-                        Bejegyzés törlése
-                    </Modal.Header>
-                    <Modal.Content>
-                        <p>Biztosan törölni szeretné a(z) <strong>{this.props.post.title}</strong> című posztot?</p>
-                    </Modal.Content>
-                    <Modal.Actions>
-                        <Button positive content='mégsem' onClick={this.props.hideModal}/>
-                        <Button negative content='törlés' onClick={this.deletePost.bind(this)}/>
-                    </Modal.Actions>
-                </Modal>
-            </div>
+            <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal}>
+                <Modal.Header>
+                    Bejegyzés törlése
+                </Modal.Header>
+                <Modal.Content>
+                    <p>Biztosan törölni szeretné a(z) <strong>{this.props.post.title}</strong> című posztot?</p>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button positive content='mégsem' onClick={this.props.hideModal}/>
+                    <Button negative content='törlés' onClick={this.deletePost.bind(this)}/>
+                </Modal.Actions>
+            </Modal>
         )
     }
 }

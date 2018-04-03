@@ -21,6 +21,9 @@ app.delete('/api/posts/:id', PostController.destroy);
 
 app.get('/api/matches', MatchController.index);
 app.post('/api/matches', MatchController.create);
+app.get('/api/matches/:id', MatchController.show);
+app.put('/api/matches', MatchController.update);
+app.delete('/api/matches', MatchController.destroy);
 
 app.get('/api/category/:category', CategoryController.index);
 

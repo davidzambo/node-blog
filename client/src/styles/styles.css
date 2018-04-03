@@ -25,3 +25,15 @@ article img {
 .no-margin{
     margin: 0 !important;
 }
+
+d-inline{
+    display: inline;
+}
+
+d-block{
+    diplay: block;
+}
+
+d-flex{
+    display: flex;
+}
