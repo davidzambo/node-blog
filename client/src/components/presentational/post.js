@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import {editPost, isConfirmDeletePostModalOpen, postToHandle} from "../../actions/posts";
 import {Button, Divider, Header, Icon, Label, Segment} from "semantic-ui-react";
 import Parser from 'html-react-parser';
 import moment from 'moment';
 import 'moment/locale/hu';
-
+import {setEntity, resetConfirm, setHeader, setOnCancel, setOnConfirm, setOpen, setQuestion} from "../../actions/confirm";
+import axios from "axios";
 
 const mapStateToProps = state => {
     return {isAuthenticated: state.auth.isAuthenticated}
@@ -14,30 +14,42 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        postToHandle: (post) => dispatch(postToHandle(post)),
-        isConfirmDeletePostModalOpen: (bool) => dispatch(isConfirmDeletePostModalOpen(bool)),
-        editPost: (post) => dispatch(editPost(post))
+        setOpen: bool => dispatch(setOpen(bool)),
+        setEntity: obj => dispatch(setEntity(obj)),
+        setQuestion: question => dispatch(setQuestion(question)),
+        setHeader: header => dispatch(setHeader(header)),
+        setOnConfirm: func => dispatch(setOnConfirm(func)),
+        setOnCancel: func => dispatch(setOnCancel(func)),
+        resetConfirm: () => dispatch(resetConfirm()),
     };
-}
+};
 
-class Post extends Component {
-    constructor(props) {
-        super(props);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
-    }
-
+export class Post extends Component {
     handleDelete() {
-        this.props.postToHandle(this.props.post);
-        this.props.isConfirmDeletePostModalOpen(true);
-    }
-
-    handleEdit() {
-        this.props.editPost(this.props.post);
+        const post = this.props.details;
+        this.props.setEntity(post);
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${post.title} című posztot?`);
+        this.props.setHeader('Bejegyzés törlése');
+        this.props.setOnConfirm(() => {
+           axios({
+               url: '/api/matches/',
+               method: 'delete',
+               data: post
+           })
+               .then( response => {
+                   if (response.status === 200) {
+                       this.props.resetConfirm();
+                   }
+               });
+        });
+        this.props.setOnCancel(() => {
+            this.props.resetConfirm();
+        })
+        this.props.setOpen(true);
     }
 
     render() {
-        const {post} = this.props;
+        const post = this.props.details;
 
         return (
             <Segment as='article' key={post._id}>
@@ -54,7 +66,6 @@ class Post extends Component {
                         <Link
                             to={`/bejegyzesek/${post.slug}/szerkesztes`}
                             className='ui orange button'
-                            onClick={this.handleEdit}
                             floated='right'>
                         <Icon name='edit'/>szerkesztés
                         </Link>
@@ -64,7 +75,7 @@ class Post extends Component {
                             content='törlés'
                             labelPosition='left'
                             floated='left'
-                            onClick={this.handleDelete}/>
+                            onClick={() => this.handleDelete() }/>
                     </div> :
                     ''
                 }

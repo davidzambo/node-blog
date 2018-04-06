@@ -39,7 +39,7 @@ module.exports = {
     },
 
     update(req, res) {
-        Match.findOneAndUpdate({_id: req.body.id}, req.body, (err, match) => {
+        Match.findOneAndUpdate({_id: req.body._id}, req.body, (err, match) => {
             if (err) {
                 console.error(err);
             }
@@ -48,11 +48,8 @@ module.exports = {
     },
 
     destroy(req, res) {
-        console.log(req.body);
-        //
         Match.findOne({_id: req.body._id}, (err, match) => {
             if (err) console.error(err);
-            console.log(match);
             match.remove(err => {
                 if (err) console.error(err);
                 Match.find()

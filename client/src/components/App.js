@@ -11,6 +11,7 @@ import Cookies from 'js-cookie';
 import {isAuthenticated, setAuthToken} from "../actions/auth";
 import {fetchMatches} from "../actions/match";
 import {StatisticsEditor} from "./containers/statistics.editor";
+import {StatisticsList} from "./containers/statistics.list";
 
 
 const mapStateToProps = state => {
@@ -38,8 +39,6 @@ class App extends React.Component{
     }
 
     render() {
-        const props = this.props;
-
         return(
             <BrowserRouter>
                 <div style={{minHeight: '100vh' }}>
@@ -49,26 +48,44 @@ class App extends React.Component{
                     <Route exact path="/:category(en-igy-gondolom|kezilabda)"
                            render={props => <PostList {...props}/>}/>
 
-                    <Route exact path="/bejegyzesek/uj" render={() => {
-                        return props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
-                    }}/>
+                    <Route exact path="/bejegyzesek/uj"
+                           render={props => {
+                               return props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
+                           }}/>
+
                     <Route exact path="/bejegyzesek/:slug/szerkesztes"
-                           render={props => <PostEditor {...props} update/>}/>
+                           render={props => {
+                               return props.isAuthenticated ? <PostEditor {...props} update/> : <Redirect to='/'/>
+                           }}/>
 
                     <Route exact path={`/bejegyzesek/:slug`}
                            render={props => <PostShow {...props} />}/>
 
                     <Route exact path={'/meccsek/uj'}
-                           render={props => <MatchEditor {...props} />}/>
+                           render={props => {
+                               return props.isAuthenticated ? <MatchEditor {...props} /> : <Redirect to='/'/>
+                           }}/>
 
                     <Route exact path={'/meccsek'}
                            render={props => <MatchList  {...props} />}/>
 
                     <Route exact path={'/meccsek/:id/szerkesztes'}
-                           render={props => <MatchEditor  {...props} update/>}/>
+                           render={props => {
+                               return props.isAuthenticated ? <MatchEditor  {...props} update/> : <Redirect to='/'/>
+                           }}/>
 
                     <Route exact path={'/statisztikak/uj'}
-                           render={props => <StatisticsEditor{...props} /> } />
+                           render={props => {
+                               return props.isAuthenticated ? <StatisticsEditor {...props} /> : <Redirect to='/'/>
+                           }}/>
+
+                    <Route exact path={'/statisztikak/'}
+                           render={() => <StatisticsList/>}/>
+
+                    <Route exact path={'/statisztikak/:id/szerkesztes'}
+                           render={props => {
+                               return props.isAuthenticated ? <StatisticsEditor {...props} update/> : <Redirect to='/'/>
+                           }}/>
 
                 </div>
             </BrowserRouter>

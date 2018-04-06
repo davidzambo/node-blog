@@ -10,6 +10,12 @@ import {
 } from "../../actions/confirm";
 import {setMatches} from "../../actions/match";
 
+
+const mapStateToProps = state => {
+    return {isAuthenticated: state.auth.isAuthenticated}
+}
+
+
 const mapDispatchToProps = dispatch => {
     return {
         setOpen: bool => dispatch(setOpen(bool)),
@@ -27,15 +33,20 @@ export class Match extends React.Component {
 
     handleDelete(){
         const match = this.props.details;
-        console.log(match);
         this.props.setEntity(match);
-        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${this.props.details.team} vs. ${this.props.details.vsTeam} mérkőzést?`);
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${match.team} vs. ${match.vsTeam} mérkőzést?`);
         this.props.setHeader('Meccs törlése');
         this.props.setOnConfirm(() => {
-            axios.delete('/api/matches/', match)
+            axios({
+                url: '/api/matches/',
+                method: 'delete',
+                data: match,
+            })
                 .then( response => {
-                    this.props.setMatches(response.data.matches);
-
+                    if (response.status === 200) {
+                        this.props.setMatches(response.data.matches);
+                        this.props.resetConfirm();
+                    }
                 });
         });
         this.props.setOnCancel(() => {
@@ -62,19 +73,23 @@ export class Match extends React.Component {
                         <Header as='h2' className='no-margin d-inline'>{match.team} vs. {match.vsTeam}</Header><Header as='h4' className='no-margin d-inline'>({match.ageGroup}, {match.league}. liga)</Header>
                         <Header as='h3' className='no-margin'>{match.city}</Header>
                     </Grid.Column>
-                    <Grid.Column width={2}>
-                        <Link
-                            to={`/meccsek/${match._id}/szerkesztes`}
-                            className='ui orange button'>
-                            <Icon name='edit'/>
-                        </Link>
-                        <Divider horizontal/>
-                        <Button fluid color="red" icon="trash" title="törlés" onClick={this.handleDelete.bind(this)}/>
-                    </Grid.Column>
+                    {
+                        this.props.isAuthenticated &&
+                            <Grid.Column width={2}>
+                                <Link
+                                    to={`/meccsek/${match._id}/szerkesztes`}
+                                    className='ui orange button'>
+                                    <Icon name='edit'/>
+                                </Link>
+                                <Divider horizontal/>
+                                <Button fluid color="red" icon="trash" title="törlés" onClick={this.handleDelete.bind(this)}/>
+                            </Grid.Column>
+                    }
+
                 </Grid>
             </Segment>
         );
     }
 }
 
-export default connect(null, mapDispatchToProps)(Match);
+export default connect(mapStateToProps, mapDispatchToProps)(Match);

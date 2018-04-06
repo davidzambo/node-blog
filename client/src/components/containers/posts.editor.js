@@ -80,9 +80,18 @@ class ConnectedPostEditor extends Component {
         }
     }
 
-    componentDidMount() {
-        if (this.props.isEdit)
-            this.setState(this.props);
+    componentWillMount() {
+        if (this.props.update)
+            axios.get(`/api/posts/${this.props.match.params.slug}`)
+                .then( response => {
+                    const p = response.data.post;
+                    this.setState({
+                        title: p.title,
+                        tags: p.tags,
+                        body: p.body,
+                        category: p.category
+                    });
+                })
     }
 
     handleChange(e) {

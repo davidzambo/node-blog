@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import axios from 'axios';
 import Post from '../presentational/post';
 import Layout from '../presentational/layout';
-import ConfirmDeletePostModal from '../presentational/confirm-delete-post-modal';
 import Paginatior from '../presentational/paginatior';
+import ConfirmModal from "../presentational/confirm-modal";
+
 
 
 class PostList extends Component {
@@ -13,7 +14,7 @@ class PostList extends Component {
         this.state = {
             posts: [],
             page: 1,
-            hasNext: true
+            hasNext: false
         }
     }
 
@@ -46,7 +47,6 @@ class PostList extends Component {
 
         axios.get(url)
             .then(response => {
-                console.log(response.data);
                 const {count, page, limit} = response.data;
                 const hasNext = count > (page) * limit;
                 this.setState({
@@ -62,9 +62,9 @@ class PostList extends Component {
         return (
             <Layout>
                 {posts.map((post) => {
-                    return <Post post={post} key={post._id}/>
+                    return <Post details={post} key={post._id}/>
                 })}
-                <ConfirmDeletePostModal {...this.props}/>
+                <ConfirmModal/>
                 <Paginatior
                     current={Number(this.state.page)}
                     hasNext={this.state.hasNext}/>

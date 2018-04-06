@@ -31,7 +31,6 @@ export class MatchEditor extends Component {
             const response = await axios.get(`/api/matches/${id}`);
             const match = response.data.match;
             match.matchDate = moment(match.matchDate);
-            console.log(match);
             this.setState({
                 id: match._id,
                 matchDate: match.matchDate,
@@ -64,8 +63,10 @@ export class MatchEditor extends Component {
         let isAllFilled = true;
         for (let prop in this.state) {
             if (this.state.hasOwnProperty(prop)) {
-                if (prop !== 'address' && prop !== 'matchDate' && prop !== 'id' && this.state[prop] === '')
+                if (prop !== 'address' && prop !== 'matchDate' && prop !== 'id' && this.state[prop] === ''){
                     isAllFilled = false;
+                    break;
+                }
             }
         }
         if (!isAllFilled) {
@@ -82,7 +83,8 @@ export class MatchEditor extends Component {
                 data: data,
             })
                 .then( response => {
-                    console.log(response);
+                    if (response.status === 200)
+                        window.location.href = '/meccsek';
                 })
         }
     }

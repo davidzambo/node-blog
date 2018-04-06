@@ -10,6 +10,8 @@ export class StatisticsEditor extends React.Component{
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
+            _id: '',
+            team: 'ENUSE',
             season: '',
             league: '',
             ageGroup: '',
@@ -20,6 +22,27 @@ export class StatisticsEditor extends React.Component{
             hasError: false,
         };
 
+    }
+
+    componentWillMount(){
+        if (this.props.update) {
+            axios.get(`/api/statistics/${this.props.match.params.id}`)
+                .then( response => {
+                    const s = response.data.statistics;
+                    console.log(s);
+                    this.setState({
+                        _id: s._id,
+                        team: s.team,
+                        season: s.season,
+                        league: "" + s.league,
+                        ageGroup: s.ageGroup,
+                        win: s.win,
+                        draw: s.draw,
+                        loss: s.loss,
+                        finalPosition: s.finalPosition,
+                    });
+                })
+        }
     }
 
     handleChange(event) {
@@ -37,8 +60,11 @@ export class StatisticsEditor extends React.Component{
         let isAllFilled = true;
         for (let prop in this.state) {
             if (this.state.hasOwnProperty(prop)) {
-                if (prop !== 'address' && prop !== 'matchDate' && prop !== 'id' && this.state[prop] === '')
+                if (prop !== 'hasError' && prop !== 'id' && this.state[prop] === ''){
                     isAllFilled = false;
+                    break;
+                }
+
             }
         }
         if (!isAllFilled) {
@@ -47,28 +73,41 @@ export class StatisticsEditor extends React.Component{
             });
         } else {
             const data = Object.assign({}, this.state);
-            data.matchDate = this.state.matchDate._d;
+            delete data.hasError;
 
             axios({
-                url: '/api/matches',
+                url: '/api/statistics',
                 method: this.props.update ? 'put' : 'post',
                 data: data,
             })
                 .then( response => {
                     console.log(response);
-                })
+                    if (response.status === 200)
+                        window.location.href = '/statisztikak';
+                });
         }
     }
 
     render(){
-        const {season, league, ageGroup, win, draw, loss, finalPosition, hasError } = this.state;
+        const {team, season, league, ageGroup, win, draw, loss, finalPosition, hasError } = this.state;
         return (
             <Layout>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Grid centered stackable>
                         <Grid.Row>
                             <Grid.Column mobile={16}>
                                 <Header content="Új statisztika rögzítése" width={16} />
+                            </Grid.Column>
+                        </Grid.Row>
+                        <Grid.Row>
+                            <Grid.Column width={16}>
+                                <Form.Input
+                                    label="Csapat neve:"
+                                    placeholder="pl. ENUSE"
+                                    id="team"
+                                    value={team}
+                                    onChange={this.handleChange}
+                                    required />
                             </Grid.Column>
                         </Grid.Row>
                         <Grid.Row>
@@ -80,7 +119,7 @@ export class StatisticsEditor extends React.Component{
                                     selection
                                     value={season}
                                     onChange={this.handleSelect}
-                                    options={optionGenerator(null, 2018, 1990)}
+                                    options={optionGenerator(null, Number(new Date().getFullYear()), 1990, 'seasons')}
                                     fluid
                                     required />
                             </Grid.Column>
@@ -167,7 +206,7 @@ export class StatisticsEditor extends React.Component{
                                     type='submit'
                                     color='blue'
                                     content='mentés'
-                                    fluid/>
+                                    floated="right"/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
@@ -190,11 +229,19 @@ const optionGenerator = (initial, from, to, prefix) => {
 
     if (from > to) {
         for (let i = from; i >= to; i--) {
-            option = {
-                key: `${prefix}${i}`,
-                value: `${prefix}${i}`,
-                text: `${prefix}${i}`
-            };
+            if (prefix === 'seasons'){
+                option = {
+                    key: `${i}/${i+1}`,
+                    value: `${i}/${i+1}`,
+                    text: `${i}/${i+1}`
+                };
+            } else {
+                option = {
+                    key: `${prefix}${i}`,
+                    value: `${prefix}${i}`,
+                    text: `${prefix}${i}`
+                };
+            }
             result.push(option);
         }
     } else {
