@@ -14,21 +14,18 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setNavbarOpen: bool => dispatch(setNavbarOpen(bool))
+        setNavbar: bool => dispatch(setNavbarOpen(bool))
     }
 };
 
-export class Layout extends React.Component {
-    constructor(props) {
+class Layout extends React.Component {
+    constructor(props){
         super(props);
-        this.toggleMenu = this.toggleMenu.bind(this);
-        this.state = {
-            isMenuOpen: false
-        }
+        this.toggleNavbar = this.toggleNavbar.bind(this);
     }
 
-    toggleMenu() {
-        this.props.setNavbarOpen(!this.props.isNavbarOpen);
+    toggleNavbar(){
+        this.props.setNavbar(!this.props.isNavbarOpen);
     }
 
     render() {
@@ -37,9 +34,9 @@ export class Layout extends React.Component {
             <div>
                 <Container fluid>
                     <Grid style={{marginTop: 0}}>
-                        <Responsive as={Grid.Row} {...Responsive.onlyMobile}>
+                        <Responsive as={Grid.Row} color="teal" {...Responsive.onlyMobile}>
                             <Grid.Column width={16}>
-                                <Icon name='sidebar' onClick={this.toggleMenu}/> TothRobertDavid.eu
+                                <h4><Icon name='sidebar' size="large" onClick={this.toggleNavbar}/> TothRobertDavid.eu</h4>
                             </Grid.Column>
                         </Responsive>
                     </Grid>
@@ -64,13 +61,13 @@ export class Layout extends React.Component {
                             </Container>
                         </Responsive>
                         <Container fluid>
-                            <Grid centered>
+                            <Grid centered padded>
                                 <Grid.Row columns={2}>
-                                    <Grid.Column mobile={16} tablet={10} computer={8}>
+                                    <Grid.Column mobile={16} tablet={12} computer={12}>
                                         {this.props.children}
                                         <LoginModal/>
                                     </Grid.Column>
-                                    <Grid.Column mobile={16} tablet={5} computer={4}>
+                                    <Grid.Column mobile={16} tablet={4} computer={4}>
                                         <NewsLetter/>
                                     </Grid.Column>
                                 </Grid.Row>

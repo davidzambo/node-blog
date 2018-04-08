@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/trd');
+mongoose.connect(process.env.DB_ADDRESS);
 const Schema = mongoose.Schema;
 const slug = require('slug');
 const moment = require('moment');

@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch => {
 
 const menuTitleStyle={
     display: 'inline',
-    marginTop: 5,
+    marginTop: 3,
 }
 
 class Navbar extends React.Component {
@@ -43,15 +43,15 @@ class Navbar extends React.Component {
                         <Dropdown.Divider/>
                         <Dropdown.Item onClick={() => {
                             this.props.isAuthenticated(false);
-                            Cookies.remove('token');
+                            Cookies.remove('trbToken');
                         }}><i className="white sign out alternate icon large"/>Kilépés</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown> :
-                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='white sign in alternate large' />Belépés</Menu.Item>;
+                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='sign in alternate icon large' /><h4 style={menuTitleStyle}>Belépés</h4></Menu.Item>;
 
         return (
 
-            <Menu stackable fluid inverted borderless color="teal" fixed="top" pointing style={{marginTop: 14}}>
+            <Menu stackable fluid inverted borderless color="teal" fixed="top" style={{marginTop: 14}}>
                 <Divider horizontal/>
                 <Menu.Item as={NavLink} exact to='/'><Icon name='home' size="large"/><h4 style={menuTitleStyle}>Kezdőlap</h4></Menu.Item>
                 <Menu.Item as={NavLink} exact to='/en-igy-gondolom/'><Icon name='idea' size="large"/><h4 style={menuTitleStyle}>Én így gondolom</h4></Menu.Item>

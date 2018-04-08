@@ -2,7 +2,7 @@
   "name": "personal-blog",
   "version": "0.1.0",
   "author": "David Zambo",
-  "proxy": "http://localhost:5000/",
+  "proxy": "http://localhost:3033/",
   "private": true,
   "dependencies": {
     "moment": "^2.21.0",

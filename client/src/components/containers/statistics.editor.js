@@ -1,5 +1,5 @@
 import React from 'react';
-import {Layout} from "../presentational/layout";
+import Layout from "../presentational/layout";
 import {Form, Grid, Header, Button, Message} from 'semantic-ui-react';
 import axios from "axios/index";
 
@@ -57,10 +57,11 @@ export class StatisticsEditor extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(this.state);
         let isAllFilled = true;
         for (let prop in this.state) {
             if (this.state.hasOwnProperty(prop)) {
-                if (prop !== 'hasError' && prop !== 'id' && this.state[prop] === ''){
+                if (prop !== 'hasError' && prop !== '_id' && this.state[prop] === ''){
                     isAllFilled = false;
                     break;
                 }
@@ -203,10 +204,12 @@ export class StatisticsEditor extends React.Component{
                         <Grid.Row>
                             <Grid.Column>
                                 <Button
+                                    icon='save'
+                                    labelPosition='left'
                                     type='submit'
                                     color='blue'
                                     content='mentés'
-                                    floated="right"/>
+                                    floated="left"/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

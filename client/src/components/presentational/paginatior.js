@@ -3,9 +3,6 @@ import {Button} from 'semantic-ui-react';
 
 export class Paginator extends Component {
     render() {
-        console.log('paginator');
-        console.log(this.props);
-
         return (
             <div>
                 {

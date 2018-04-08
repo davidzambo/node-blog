@@ -50,7 +50,7 @@ export class LoginModal extends Component {
                     this.props.isAuthenticated(false);
                     this.setState({hasError: true, errorMessage: response.data.error})
                 } else {
-                    Cookies.set('token', response.data.token);
+                    Cookies.set('trdToken', response.data.token);
                     this.props.isAuthenticated(true);
                     this.props.setAuthToken(response.data.token);
                     this.props.setOpen(false);

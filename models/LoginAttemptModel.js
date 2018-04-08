@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/trd');
+mongoose.connect(process.env.DB_ADDRESS);
 const Schema = mongoose.Schema;
 
 const loginAttemptSchema = new Schema({
@@ -8,6 +8,7 @@ const loginAttemptSchema = new Schema({
     password: { type: String  },
     result: {type: Boolean, required: true},
     token: {type: String },
+    worker: {type: String, required: true},
     date: { type: Date, default: Date.now },
 });
 

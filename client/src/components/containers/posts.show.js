@@ -1,23 +1,13 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import axios from 'axios';
-import { postToHandle, isConfirmDeletePostModalOpen, editPost } from "../../actions/posts";
 import Layout from '../presentational/layout';
 import Post from '../presentational/post';
+import ConfirmModal from "../presentational/confirm-modal";
 
-const mapDispatchToProps = dispatch => {
-    return {
-        postToHandle: (post) => dispatch(postToHandle(post)),
-        isConfirmDeletePostModalOpen: (bool) => dispatch(isConfirmDeletePostModalOpen(bool)),
-        editPost: (post) => dispatch(editPost(post))
-    };
-}
 
-class ConnectedArticle extends Component {
+export class PostShow extends Component {
     constructor(props) {
         super(props);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
         this.state = {
             post: {
                 _id: '',
@@ -30,7 +20,7 @@ class ConnectedArticle extends Component {
     }
 
 
-    componentWillMount() {
+    componentDidMount() {
         console.log(this.props);
         axios.get('/api/posts/' + this.props.match.params.slug)
             .then(response => {
@@ -46,25 +36,17 @@ class ConnectedArticle extends Component {
             });
     }
 
-    handleDelete() {
-        this.props.postToHandle(this.props.post);
-        this.props.isConfirmDeletePostModalOpen(true);
-    }
-
-    handleEdit() {
-        this.props.editPost(this.props.post);
-    }
-
     render() {
         const { post } = this.state;
 
         return (
             <Layout>
-                <Post post={post} />
+                <Post details={post} />
+                <ConfirmModal/>
             </Layout>
         );
     }
 }
 
 
-export default connect(null, mapDispatchToProps)(ConnectedArticle);
+export default PostShow;

@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {Grid, Header, Segment, Button, Divider, Icon} from 'semantic-ui-react';
+import {Grid, Header, Segment, Button, Divider} from 'semantic-ui-react';
 import moment from 'moment';
 import {
     setEntity, setQuestion, setHeader, setOnConfirm, setOpen, setOnCancel,
     resetConfirm
 } from "../../actions/confirm";
 import {setMatches} from "../../actions/match";
+import {Link} from "react-router-dom";
 
 
 const mapStateToProps = state => {
@@ -76,11 +76,7 @@ export class Match extends React.Component {
                     {
                         this.props.isAuthenticated &&
                             <Grid.Column width={2}>
-                                <Link
-                                    to={`/meccsek/${match._id}/szerkesztes`}
-                                    className='ui orange button'>
-                                    <Icon name='edit'/>
-                                </Link>
+                                <Button as={Link} fluid color="orange" icon="edit" title="szerkesztés" to={`/meccsek/${match._id}/szerkesztes`}/>
                                 <Divider horizontal/>
                                 <Button fluid color="red" icon="trash" title="törlés" onClick={this.handleDelete.bind(this)}/>
                             </Grid.Column>

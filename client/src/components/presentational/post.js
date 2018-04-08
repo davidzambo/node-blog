@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link} from 'react-router-dom';
-import {Button, Divider, Header, Icon, Label, Segment} from "semantic-ui-react";
+import {Button, Divider, Header, Label, Segment} from "semantic-ui-react";
 import Parser from 'html-react-parser';
 import moment from 'moment';
 import 'moment/locale/hu';
@@ -28,7 +28,7 @@ export class Post extends Component {
     handleDelete() {
         const post = this.props.details;
         this.props.setEntity(post);
-        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${post.title} című posztot?`);
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) <h3>${post.title}</h3> című posztot?`);
         this.props.setHeader('Bejegyzés törlése');
         this.props.setOnConfirm(() => {
            axios({
@@ -63,18 +63,18 @@ export class Post extends Component {
                 <Divider horizontal/>
                 {this.props.isAuthenticated ?
                     <div>
-                        <Link
+                        <Button
+                            as={Link}
                             to={`/bejegyzesek/${post.slug}/szerkesztes`}
-                            className='ui orange button'
-                            floated='right'>
-                        <Icon name='edit'/>szerkesztés
-                        </Link>
+                            color='orange'
+                            icon='edit'
+                            content='szerkesztés'
+                            labelPosition='left'/>
                         <Button
                             color='red'
                             icon='trash'
                             content='törlés'
                             labelPosition='left'
-                            floated='left'
                             onClick={() => this.handleDelete() }/>
                     </div> :
                     ''

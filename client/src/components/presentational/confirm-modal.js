@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, Modal} from 'semantic-ui-react';
 import {connect} from 'react-redux';
+import Parser from 'html-react-parser';
 
 const inlineStyle = {
     modal: {
@@ -20,7 +21,7 @@ const mapStateToProps = state => {
     }
 };
 
-export class ConfirmeModal extends React.Component {
+class ConfirmModal extends React.Component {
     render() {
         return (
             <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal}>
@@ -28,15 +29,15 @@ export class ConfirmeModal extends React.Component {
                     {this.props.header}
                 </Modal.Header>
                 <Modal.Content>
-                    <p>{this.props.question}</p>
+                    {Parser(this.props.question)}
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button positive content='mégsem' onClick={ () => this.props._handleCancel() }/>
-                    <Button negative content='törlés' onClick={ () => this.props._handleConfirm() } />
+                    <Button positive labelPosition='left' icon='cancel' content='mégsem' onClick={ () => this.props._handleCancel() }/>
+                    <Button negative labelPosition='left' icon='trash' content='törlés' onClick={ () => this.props._handleConfirm() } />
                 </Modal.Actions>
             </Modal>
         );
     }
 }
 
-export default connect(mapStateToProps)(ConfirmeModal);
+export default connect(mapStateToProps)(ConfirmModal);

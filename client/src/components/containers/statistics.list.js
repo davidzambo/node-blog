@@ -1,8 +1,8 @@
 import React from 'react';
-import {Layout} from "../presentational/layout";
+import Layout from "../presentational/layout";
 import axios from "axios";
 import {Header, Table, Button} from "semantic-ui-react";
-import {Statistics} from "../presentational/statistics";
+import Statistics from "../presentational/statistics";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
     }
 }
 
-export class StatisticsList extends React.Component {
+class StatisticsList extends React.Component {
     constructor(props){
         super(props);
         this.state = {

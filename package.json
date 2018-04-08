@@ -16,6 +16,8 @@
     "axios": "^0.18.0",
     "base64-img": "^1.0.4",
     "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "history": "^4.7.2",
     "html-react-parser": "^0.4.2",

@@ -51,6 +51,7 @@ module.exports = {
 
                                 loginAttempt.token = token;
                                 loginAttempt.result = true;
+                                loginAttempt.worker = req.headers['user-agent'];
                                 loginAttempt.save();
                                 res.status(202).json({token});
                             } else {

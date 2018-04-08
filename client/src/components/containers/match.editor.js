@@ -205,9 +205,11 @@ export class MatchEditor extends Component {
                             <Grid.Column>
                                 <Button
                                     type='submit'
-                                    color='blue'
-                                    content='mentés'
-                                    fluid/>
+                                    positive
+                                    icon='save'
+                                    labelPosition='left'
+                                    floated='right'
+                                    content='mentés'/>
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>

@@ -1,32 +1,11 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import { cancelPostAction } from "../../actions/posts";
 import { Form, Button, Divider, Header } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 import Layout from '../presentational/layout';
 Quill.register('modules/ImageResize', ImageResize);
-
-const mapStateToProps = state => {
-    if (state.posts.postToHandle.title === undefined)
-        return { title: '', tags: '', category: '', body: '' }
-    return {
-        _id: state.posts.postToHandle._id,
-        title: state.posts.postToHandle.title,
-        tags: state.posts.postToHandle.tags.join('+'),
-        category: state.posts.postToHandle.category,
-        body: state.posts.postToHandle.body,
-        isEdit: state.posts.isEdit,
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        cancelPostAction: () => dispatch(cancelPostAction())
-    };
-}
 
 const modules = {
     toolbar: [
@@ -86,8 +65,9 @@ class ConnectedPostEditor extends Component {
                 .then( response => {
                     const p = response.data.post;
                     this.setState({
+                        _id: p._id,
                         title: p.title,
-                        tags: p.tags,
+                        tags: p.tags.join('+'),
                         body: p.body,
                         category: p.category
                     });
@@ -106,31 +86,22 @@ class ConnectedPostEditor extends Component {
         e.preventDefault();
 
         const { title, tags, body, category } = this.state;
-        if (validator('title', title) &&
-            validator('tags', tags) &&
-            validator('body', body) &&
-            validator('category', category)) {
-            if (this.props.isEdit){
-                axios.put('/api/posts/'+this.state._id, this.state)
-                    .then( response => {
-                       if (response.status !== 200) {
-                           console.error(response.statusText);
-                       } else {
-                           this.props.cancelPostAction();
-                       }
-                    })
-                    .then( () => this.props.history.push('/'));
-            } else {
-                axios.post('/api/posts', this.state)
-                    .then( response => {
-                        if (response.status !== 200) {
-                            console.error(response.statusText);
-                        } else {
-                            this.props.cancelPostAction();
-                        }
-                    })
-                    .then( () => this.props.history.push('/'));
-            }
+        const valid = validator('title', title) && validator('tags', tags) && validator('body', body) && validator('category', category);
+        if (valid) {
+            axios({
+                url: '/api/posts/',
+                method: this.props.update ? 'put' : 'post',
+                data: this.state,
+                options: {
+                    withCredentials: true
+                }
+            }).then( response => {
+                if (response.status !== 200){
+                    console.error(response.statusText);
+                } else {
+                    this.props.history.push('/');
+                }
+            })
         } else {
             alert('Kérem ellenőrizze a megadott adatokat. Minden mezőt kitöltött?');
         }
@@ -184,4 +155,4 @@ class ConnectedPostEditor extends Component {
     }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConnectedPostEditor));
+export default withRouter(ConnectedPostEditor);

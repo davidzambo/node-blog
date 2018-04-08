@@ -11,7 +11,7 @@ import Cookies from 'js-cookie';
 import {isAuthenticated, setAuthToken} from "../actions/auth";
 import {fetchMatches} from "../actions/match";
 import {StatisticsEditor} from "./containers/statistics.editor";
-import {StatisticsList} from "./containers/statistics.list";
+import StatisticsList from "./containers/statistics.list";
 
 
 const mapStateToProps = state => {
@@ -31,7 +31,7 @@ const mapDispatchToProps = dispatch => {
 class App extends React.Component{
     componentWillMount(){
         this.props.fetchMatches();
-        const token = Cookies.get('token');
+        const token = Cookies.get('trdToken');
         if (token !== undefined){
             this.props.setAuthenticated(true);
             this.props.setAuthToken(token);
@@ -49,21 +49,21 @@ class App extends React.Component{
                            render={props => <PostList {...props}/>}/>
 
                     <Route exact path="/bejegyzesek/uj"
-                           render={props => {
-                               return props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
+                           render={() => {
+                               return this.props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
                            }}/>
 
                     <Route exact path="/bejegyzesek/:slug/szerkesztes"
                            render={props => {
-                               return props.isAuthenticated ? <PostEditor {...props} update/> : <Redirect to='/'/>
+                               return this.props.isAuthenticated ? <PostEditor {...props} update/> : <Redirect to='/'/>
                            }}/>
 
-                    <Route exact path={`/bejegyzesek/:slug`}
+                    <Route exact path={`/bejegyzesek/:slug(^uj)`}
                            render={props => <PostShow {...props} />}/>
 
                     <Route exact path={'/meccsek/uj'}
                            render={props => {
-                               return props.isAuthenticated ? <MatchEditor {...props} /> : <Redirect to='/'/>
+                               return this.props.isAuthenticated ? <MatchEditor {...props} /> : <Redirect to='/'/>
                            }}/>
 
                     <Route exact path={'/meccsek'}
@@ -71,12 +71,12 @@ class App extends React.Component{
 
                     <Route exact path={'/meccsek/:id/szerkesztes'}
                            render={props => {
-                               return props.isAuthenticated ? <MatchEditor  {...props} update/> : <Redirect to='/'/>
+                               return this.props.isAuthenticated ? <MatchEditor  {...props} update/> : <Redirect to='/'/>
                            }}/>
 
                     <Route exact path={'/statisztikak/uj'}
                            render={props => {
-                               return props.isAuthenticated ? <StatisticsEditor {...props} /> : <Redirect to='/'/>
+                               return this.props.isAuthenticated ? <StatisticsEditor {...props} /> : <Redirect to='/'/>
                            }}/>
 
                     <Route exact path={'/statisztikak/'}
@@ -84,7 +84,7 @@ class App extends React.Component{
 
                     <Route exact path={'/statisztikak/:id/szerkesztes'}
                            render={props => {
-                               return props.isAuthenticated ? <StatisticsEditor {...props} update/> : <Redirect to='/'/>
+                               return this.props.isAuthenticated ? <StatisticsEditor {...props} update/> : <Redirect to='/'/>
                            }}/>
 
                 </div>

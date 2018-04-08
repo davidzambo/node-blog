@@ -1,6 +1,5 @@
 const base64img = require('base64-img');
 
-
 module.exports = {
 
     twoDigitNumber(nmb){
