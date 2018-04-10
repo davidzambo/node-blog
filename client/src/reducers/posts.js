@@ -1,36 +1,28 @@
 const initialState = {
-  posts: [],
-  hasErrored: false,
-  isLoading: false,
-  isConfirmDeletePostModalOpen: false,
-  postToHandle: {},
-  isEdit: false,
+    posts: [],
+    hasErrored: false,
+    isLoading: false,
+    archives: []
 }
 
 
 export const posts = (state = initialState, action) => {
-  switch (action.type) {
-    case 'POSTS_HAS_ERRORED':
-      return { ...state, hasErrored: action.payload };
+    switch (action.type) {
+        case 'POSTS_HAS_ERRORED':
+            return {...state, hasErrored: action.payload};
 
-    case 'POSTS_ARE_LOADING':
-      return { ...state, isLoading: action.payload };
+        case 'POSTS_ARE_LOADING':
+            return {...state, isLoading: action.payload};
 
-    case 'POSTS_FETCH_DATA_SUCCESS':
-      return { ...state, posts: action.payload };
+        case 'POSTS_FETCH_DATA_SUCCESS':
+            return {...state, posts: action.payload};
 
-    case 'IS_CONFIRM_DELETE_POST_MODAL_OPEN': 
-      return { ...state, isConfirmDeletePostModalOpen: action.payload };
+        case 'SET_ARCHIVES':
+            return {...state, archives: [...action.payload]};
 
-    case 'POST_TO_HANDLE':
-      return { ...state, postToHandle: action.payload };
-
-    case 'IS_EDIT':
-      return { ...state, isEdit: action.payload};
-
-    default:
-      return state;
-  }
+        default:
+            return state;
+    }
 }
 
 // const posts = (state = initialState, action) => {
@@ -86,7 +78,7 @@ export const posts = (state = initialState, action) => {
 //   switch (action.type){
 //     case 'CONFIRM_DELETE_POST':
 //       return action.postToDelete;
-    
+
 //     default:
 //       return state;
 //   }

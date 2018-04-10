@@ -46,6 +46,12 @@ async@2.1.4:
   dependencies:
     lodash "^4.14.0"
 
+async@^2.0.0-rc.5:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
+  dependencies:
+    lodash "^4.14.0"
+
 atob@~1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/atob/-/atob-1.1.3.tgz#95f13629b12c3a51a5d215abdce2aa9f32f80773"
@@ -63,6 +69,10 @@ base64-img@^1.0.4:
   dependencies:
     ajax-request "^1.2.0"
     file-system "^2.1.0"
+
+bindings@^1.2.1:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.3.0.tgz#b346f6ecf6a95f5a815c5839fc7cdb22502f1ed7"
 
 bluebird@3.5.0:
   version "3.5.0"
@@ -192,6 +202,12 @@ debug@^3.1.0:
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
   dependencies:
     ms "2.0.0"
+
+decree@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/decree/-/decree-0.0.6.tgz#47efef0ed600d726ea8640345dc4961d0fa54cdd"
+  dependencies:
+    lodash-node "^2.4.1"
 
 depd@1.1.1:
   version "1.1.1"
@@ -478,6 +494,10 @@ kareem@2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/kareem/-/kareem-2.0.5.tgz#437e1e40f1be304ee21b3e4790eb3a05418b35ca"
 
+lodash-node@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/lodash-node/-/lodash-node-2.4.1.tgz#ea82f7b100c733d1a42af76801e506105e2a80ec"
+
 lodash.get@4.4.2:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
@@ -491,6 +511,15 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.3.1.tgz#d1a8ad33fa9ce0e713d65fdd0ac8b748d478c848"
   dependencies:
     js-tokens "^3.0.0"
+
+lwip@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/lwip/-/lwip-0.0.9.tgz#28b4169835d27ca29325e75fd1b883ae37b50fcc"
+  dependencies:
+    async "^2.0.0-rc.5"
+    bindings "^1.2.1"
+    decree "0.0.6"
+    nan "^2.3.2"
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -594,6 +623,10 @@ multer@^1.3.0:
     on-finished "^2.3.0"
     type-is "^1.6.4"
     xtend "^4.0.0"
+
+nan@^2.3.2:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
 
 negotiator@0.6.1:
   version "0.6.1"

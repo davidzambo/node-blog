@@ -4,7 +4,7 @@ import {Card, Form} from 'semantic-ui-react';
 export class NewsLetter extends Component {
     render(){
         return(
-            <Card>
+            <Card fluid >
                 <Card.Content header='Hírlevél' textAlign='center'/>
                 <Card.Content>
                     <Form>

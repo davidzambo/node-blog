@@ -37,6 +37,9 @@ app.post('/api/statistics', AuthMiddleware.isAuthenticated, StatisticsController
 app.put('/api/statistics', AuthMiddleware.isAuthenticated, StatisticsController.update);
 app.delete('/api/statistics', AuthMiddleware.isAuthenticated, StatisticsController.destroy);
 
+app.get('/api/archives', PostController.archives.listMonths);
+app.get('/api/archives/:year/:month', PostController.archives.show);
+
 app.get('/api/category/:category', CategoryController.index);
 
 

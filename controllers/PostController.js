@@ -1,5 +1,6 @@
 const Post = require('../models/PostModel');
 const Helper = require('../helpers');
+const moment = require('moment');
 const fs = require('fs');
 
 module.exports = {
@@ -132,5 +133,49 @@ module.exports = {
                 })
             });
         })
+    },
+
+    archives: {
+        listMonths(req, res){
+            Post.aggregate([
+                {
+                    $project: {
+                        "year": {"$year": "$date"},
+                        "month": {"$month": "$date"}
+                    }
+                },
+                {
+                    $group: {
+                        _id: null,
+                        distinctDate: {
+                            "$addToSet": {
+                                year: "$year",
+                                month: "$month",
+                            },
+                        },
+                    }
+                }
+            ], (err, result) =>{
+                if (err) console.error(err);
+                res.status(200).json({result: result[0].distinctDate});
+            });
+        },
+
+        show(req, res) {
+            // const from = new Date(req.params.year + '-' + req.params.month);
+            const from = moment().year(req.params.year).month(req.params.month-1).date(1).format(),
+                to = moment().year(req.params.year).month(req.params.month).date(1).format(),
+                limit = 3,
+                page = req.query.page || 1;
+            Post.find({date: {$gte: from, $lt: to}}, (err, posts) => {
+                if (err) console.error(err);
+                res.status(200).json({
+                    posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
+                    count: posts.length,
+                    page: page,
+                    limit: limit
+                })
+            })
+        }
     }
 }

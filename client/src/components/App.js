@@ -12,11 +12,12 @@ import {isAuthenticated, setAuthToken} from "../actions/auth";
 import {fetchMatches} from "../actions/match";
 import {StatisticsEditor} from "./containers/statistics.editor";
 import StatisticsList from "./containers/statistics.list";
-
+import {fetchArchives} from "../actions/posts";
 
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.isAuthenticated,
+        archive: state.posts.archives
     }
 }
 
@@ -24,18 +25,20 @@ const mapDispatchToProps = dispatch => {
     return {
         setAuthenticated: bool => dispatch(isAuthenticated(bool)),
         setAuthToken: token => dispatch(setAuthToken(token)),
-        fetchMatches: () => dispatch(fetchMatches())
+        fetchMatches: () => dispatch(fetchMatches()),
+        fetchArchives: () => dispatch(fetchArchives())
     }
 }
 
 class App extends React.Component{
-    componentWillMount(){
+    async componentWillMount(){
         this.props.fetchMatches();
         const token = Cookies.get('trdToken');
         if (token !== undefined){
             this.props.setAuthenticated(true);
             this.props.setAuthToken(token);
         }
+        await this.props.fetchArchives();
     }
 
     render() {
@@ -74,18 +77,21 @@ class App extends React.Component{
                                return this.props.isAuthenticated ? <MatchEditor  {...props} update/> : <Redirect to='/'/>
                            }}/>
 
-                    <Route exact path={'/statisztikak/uj'}
+                    <Route exact path={'/statisztika/uj'}
                            render={props => {
                                return this.props.isAuthenticated ? <StatisticsEditor {...props} /> : <Redirect to='/'/>
                            }}/>
 
-                    <Route exact path={'/statisztikak/'}
+                    <Route exact path={'/statisztika/'}
                            render={() => <StatisticsList/>}/>
 
-                    <Route exact path={'/statisztikak/:id/szerkesztes'}
+                    <Route exact path={'/statisztika/:id/szerkesztes'}
                            render={props => {
                                return this.props.isAuthenticated ? <StatisticsEditor {...props} update/> : <Redirect to='/'/>
                            }}/>
+
+                    <Route exact path={'/archivum/:year/:month'}
+                           render={props => <PostList {...props} archive/>}/>
 
                 </div>
             </BrowserRouter>

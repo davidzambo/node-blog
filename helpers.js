@@ -1,4 +1,5 @@
 const base64img = require('base64-img');
+const lwip = require('lwip');
 
 module.exports = {
 
@@ -29,14 +30,17 @@ module.exports = {
     base64ToFileStorer(body, destination = '/public/images'){
         // get all base64 from the post's body
         // console.log('start base64' + body.length);
-        let base64Images = body.match(/data:image[^"]+/g);
+        let base64Images = body.match(/data:image[^"]+/g),
+            binaryImage;
         // console.log(base64Images.length);
         // store all base64 image and gather the new filenames
         if (base64Images !== null) {
             // console.log('we have base64 images')
             base64Images.map((img) => {
                 // console.log('mapping body');
-                body = body.replace(img, '/'+base64img.imgSync(img, destination, this.randomFilename()));
+                binaryImage = '/'+base64img.imgSync(img, destination, this.randomFilename())
+                this.imgResizer(__dirname+binaryImage);
+                body = body.replace(img, binaryImage);
     
             });
         }
@@ -57,5 +61,25 @@ module.exports = {
                 uniqueTags.push(tag);
             return uniqueTags;
         }, []);
+    },
+
+    imgResizer(img, maxWidth = 1350) {
+        try {
+            lwip.open(img, (err, image) => {
+                if (err) throw err;
+                if (image.width() > maxWidth) {
+                    image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
+                            if (err) throw err;
+                            resized.writeFile(img, err => {
+                                if (err) throw err;
+                            });
+                        });
+                }
+                return img;
+            });
+        } catch (e){
+            console.log(e);
+            return img;
+        }
     },
 }

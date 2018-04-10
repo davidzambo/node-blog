@@ -39,10 +39,15 @@ class PostList extends Component {
         const page = (queryObj.oldal === undefined || queryObj.oldal < 2 ) ? 1 : queryObj.oldal;
 
         let url = '/api/posts/?page=' + page;
-        if (props.match.params.category === 'kezilabda') {
-            url = '/api/posts/?category=handball&page=' + page;
-        } else if (props.match.params.category === 'en-igy-gondolom') {
-            url = '/api/posts/?category=personal&page=' + page;
+
+        if (!this.props.archive){
+            if (props.match.params.category === 'kezilabda') {
+                url = '/api/posts/?category=handball&page=' + page;
+            } else if (props.match.params.category === 'en-igy-gondolom') {
+                url = '/api/posts/?category=personal&page=' + page;
+            }
+        } else {
+            url = `/api/archives/${props.match.params.year}/${props.match.params.month}/?page=${page}`;
         }
 
         axios.get(url)

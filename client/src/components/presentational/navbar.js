@@ -35,8 +35,8 @@ class Navbar extends React.Component {
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
                         <Dropdown.Divider/>
-                        <Dropdown.Item as={NavLink} exact to='/statisztikak/uj'><Icon name='write' size="large"/> Új statisztika</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} exact to='/statisztikak'><Icon name='write' size="large"/> Statisztikák kezelése</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/statisztika/uj'><Icon name='write' size="large"/> Új statisztika</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/statisztika'><Icon name='write' size="large"/> Statisztikák kezelése</Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item as={NavLink} exact to='/meccsek/uj'>Új meccs</Dropdown.Item>
                         <Dropdown.Item as={NavLink} exact to='/meccsek/'>Meccsek kezelése</Dropdown.Item>
@@ -57,8 +57,6 @@ class Navbar extends React.Component {
                 <Menu.Item as={NavLink} exact to='/en-igy-gondolom/'><Icon name='idea' size="large"/><h4 style={menuTitleStyle}>Én így gondolom</h4></Menu.Item>
                 <Menu.Item as={NavLink} exact to='/kezilabda/'><i className="futbol outline icon large" /><h4 style={menuTitleStyle}> Kézilabda</h4></Menu.Item>
                 <Menu.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar" size="large"/><h4 style={menuTitleStyle}> Meccsek</h4></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/statisztikak'><Icon name='line chart' size="large"/><h4 style={menuTitleStyle}> Statisztikáim</h4></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/rolam'><Icon name='user circle' size="large"/><h4 style={menuTitleStyle}> Rólam</h4></Menu.Item>
                 <Menu.Menu position='right'>
                     { authMenuItem }
                 </Menu.Menu>
