@@ -7,6 +7,7 @@ import {Container, Grid, Icon, Responsive, Sidebar} from 'semantic-ui-react';
 import {setNavbarOpen} from "../../actions/navbar";
 import {connect} from 'react-redux';
 import Infobox from "./infobox";
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 const mapStateToProps = state => {
     return {
