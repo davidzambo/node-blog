@@ -7,7 +7,7 @@ import {Container, Grid, Icon, Responsive, Sidebar} from 'semantic-ui-react';
 import {setNavbarOpen} from "../../actions/navbar";
 import {connect} from 'react-redux';
 import Infobox from "./infobox";
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import Calendar from './calendar';
 
 const mapStateToProps = state => {
     return {
@@ -66,14 +66,15 @@ class Layout extends React.Component {
                         <Container fluid>
                             <Grid centered padded>
                                 <Grid.Row columns={2}>
-                                    <Responsive as={Grid.Column} computer={4} largeScreen={3} minWidth={Responsive.onlyComputer.minWidth}>
+                                    <Responsive as={Grid.Column} computer={4} largeScreen={3} widescreen={3} minWidth={Responsive.onlyComputer.minWidth}>
                                         <Infobox/>
                                     </Responsive>
-                                    <Grid.Column mobile={16} tablet={12} computer={8} largeScreen={7} widescreen={3}>
+                                    <Grid.Column mobile={16} tablet={12} computer={8} largeScreen={7} widescreen={6}>
                                         {this.props.children}
                                         <LoginModal/>
                                     </Grid.Column>
-                                    <Grid.Column mobile={16} tablet={4} computer={4} largeScreen={3}>
+                                    <Grid.Column mobile={16} tablet={4} computer={4} largeScreen={3} widescreen={3}>
+                                        <Calendar/>
                                         <NewsLetter/>
                                         <Archive/>
                                     </Grid.Column>

@@ -71,7 +71,7 @@ export class Match extends React.Component {
                     </Grid.Column>
                     <Grid.Column mobile={9} tablet={11} computer={12}>
                         <Header as='h2' className='no-margin d-inline'>{match.team} vs. {match.vsTeam}</Header><Header as='h4' className='no-margin d-inline'>({match.ageGroup}, {match.league}. liga)</Header>
-                        <Header as='h3' className='no-margin'>{match.city}</Header>
+                        <Header as='h3' className='no-margin'>{`${match.city}, ${match.address}`}</Header>
                     </Grid.Column>
                     {
                         this.props.isAuthenticated &&

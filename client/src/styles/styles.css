@@ -37,3 +37,114 @@ d-block{
 d-flex{
     display: flex;
 }
+
+
+.flexContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexColumn:nth-child(7n+1):not(.inactive){
+    color: red;
+}
+
+.month-switcher{
+    display: flex;
+    min-width: 100%;
+    color: red;
+    justify-content: space-around;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+
+.month-switcher-button{
+    cursor: pointer;
+}
+
+.today>.inner-grid{
+    background-color: #56CAF4!important;
+    color: white!important;
+    border-radius: 50%;
+}
+
+.flexColumn{
+    min-width: 14.2%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+}
+
+
+.day{
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    max-width: 25px;
+    max-height: 25px;
+    z-index: 10;
+    font-weight: normal;
+}
+
+.inner-grid:hover {
+    background-color: #EFEFEF;
+    border-radius: 50%;
+    max-width: 25px;
+    max-height: 25px;
+    transition: all 0.1s;
+}
+.date {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    font-size: 0.7rem;
+}
+
+.inactive {
+    color: #DDD;
+}
+
+.inner-grid{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.date+.matchEvent{
+    background-color: #F0F0F0;
+    border-radius: 50%;
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    color: black;
+    z-index: -1;
+}
+
+.event-title{
+
+}
+
+.half-padded{
+    padding: 0.25rem 0.5rem!important;
+}
+
+.calendar-match-container{
+    margin: 1.2rem 0.6rem 0.6rem 0.6rem;
+    display: block;
+}
+
+.match-info{
+    color: #333;
+    line-height: 1rem;
+}

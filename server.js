@@ -10,6 +10,7 @@ const CategoryController = require('./controllers/CategoryController');
 const UsersController = require('./controllers/UserController');
 const MatchController = require('./controllers/MatchController');
 const StatisticsController = require('./controllers/StatisticsController');
+const NewsletterController = require('./controllers/NewsletterController');
 const AuthMiddleware = require('./middlewares/Auth');
 
 // Middlewares
@@ -40,10 +41,13 @@ app.delete('/api/statistics', AuthMiddleware.isAuthenticated, StatisticsControll
 app.get('/api/archives', PostController.archives.listMonths);
 app.get('/api/archives/:year/:month', PostController.archives.show);
 
+app.post('/api/newsletter', NewsletterController.subscribe);
+app.put('/api/newsletter', NewsletterController.send);
+
 app.get('/api/category/:category', CategoryController.index);
 
-
 app.post('/api/login', UsersController.checkUser);
+
 app.listen(port, (err) => {
     if (err) console.error(err);
     console.log(`Listening on port ${port}`);

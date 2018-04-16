@@ -42,8 +42,8 @@ class Navbar extends React.Component {
                         <Dropdown.Item as={NavLink} exact to='/meccsek/'>Meccsek kezelése</Dropdown.Item>
                         <Dropdown.Divider/>
                         <Dropdown.Item onClick={() => {
+                            Cookies.remove('trdToken');
                             this.props.isAuthenticated(false);
-                            Cookies.remove('trbToken');
                         }}><i className="white sign out alternate icon large"/>Kilépés</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown> :

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from "../presentational/layout";
 import axios from "axios";
-import {Header, Table, Button} from "semantic-ui-react";
+import {Header, Table, Button, Container} from "semantic-ui-react";
 import Statistics from "../presentational/statistics";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
@@ -32,26 +32,28 @@ class StatisticsList extends React.Component {
         const { statistics } = this.state;
         return (
             <Layout>
+                <Container>
                 <Header content='Statisztikáim' />
-                <Table size="small" color="red">
+                <Table size="small" color="green" inverted compact celled textAlign="center">
                     <Table.Header>
                         <Table.Row>
-                            <td>szezon</td>
-                            <td>csapat</td>
-                            <td>Meccsek</td>
-                            <td>Győzelem</td>
-                            <td>Döntetlen</td>
-                            <td>Vereség</td>
-                            <td>Helyezés</td>
-                            <td></td>
-                            <td></td>
+                            <Table.HeaderCell><em>szezon</em></Table.HeaderCell>
+                            <Table.HeaderCell><em>csapat</em></Table.HeaderCell>
+                            <Table.HeaderCell><em>liga</em></Table.HeaderCell>
+                            <Table.HeaderCell><em>korosztály</em></Table.HeaderCell>
+                            <Table.HeaderCell><em>meccsek</em></Table.HeaderCell>
+                            <Table.HeaderCell title="győzelem/döntetlen/vereség"><em>eredmény</em></Table.HeaderCell>
+                            <Table.HeaderCell><em>helyezés</em></Table.HeaderCell>
+                            {this.props.isAuthenticated && <Table.HeaderCell> </Table.HeaderCell>}
+                            {this.props.isAuthenticated && <Table.HeaderCell> </Table.HeaderCell>}
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
                         {statistics.map( (statistic, i) => <Statistics key={i} details={statistic}/> )}
                     </Table.Body>
                 </Table>
-                { this.props.isAuthenticated && <Button as={Link} floated="right" to="/statisztikak/uj" color="blue" content="Új statisztika"/>}
+                { this.props.isAuthenticated && <Button as={Link} floated="right" to="/statisztika/uj" color="blue" content="Új statisztika"/>}
+                </Container>
             </Layout>
         );
     }
