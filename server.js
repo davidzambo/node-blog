@@ -2,7 +2,10 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
 require('dotenv').config();
+const uuidv4 = require('uuidv4');
+const path = require('path');
 const port = process.env.PORT;
 
 const PostController = require('./controllers/PostController');
@@ -11,7 +14,21 @@ const UsersController = require('./controllers/UserController');
 const MatchController = require('./controllers/MatchController');
 const StatisticsController = require('./controllers/StatisticsController');
 const NewsletterController = require('./controllers/NewsletterController');
+const ImageController = require('./controllers/ImageController');
 const AuthMiddleware = require('./middlewares/Auth');
+
+const storage = multer.diskStorage({
+    destination(req, file, callback){
+        console.log('destination');
+        callback(null, './public/images');
+    },
+    filename(req, file, callback){
+        console.log(file);
+        callback(null, Date.now()+uuidv4()+'.'+file.mimetype.split('/')[1]);
+    }
+});
+
+const upload = multer({storage:storage});
 
 // Middlewares
 app.use(bodyParser.json({limit: '50mb'}));
@@ -45,6 +62,8 @@ app.post('/api/newsletter', NewsletterController.subscribe);
 app.put('/api/newsletter', NewsletterController.send);
 
 app.get('/api/category/:category', CategoryController.index);
+
+app.post('/api/gallery/', upload.array('files'), ImageController.create);
 
 app.post('/api/login', UsersController.checkUser);
 

@@ -63,19 +63,28 @@ module.exports = {
         }, []);
     },
 
-    imgResizer(img, maxWidth = 1350) {
+    imgResizer(img, maxWidth = 1350, suffix = '') {
         try {
-            lwip.open(img, (err, image) => {
+            const imgNameParts = img.split('.');
+            imgNameParts[imgNameParts-2] += `_${suffix}`;
+            const newFileName = imgNameParts.join('.');
+
+                lwip.open(img, (err, image) => {
                 if (err) throw err;
                 if (image.width() > maxWidth) {
                     image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
                             if (err) throw err;
-                            resized.writeFile(img, err => {
+                            resized.writeFile(newFileName, err => {
                                 if (err) throw err;
+                                return newFileName;
                             });
                         });
+                } else {
+                    img.writeFile(newFileName, err => {
+                        if (err) throw err;
+                        return newFileName;
+                    })
                 }
-                return img;
             });
         } catch (e){
             console.log(e);
