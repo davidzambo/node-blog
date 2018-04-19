@@ -19,11 +19,9 @@ const AuthMiddleware = require('./middlewares/Auth');
 
 const storage = multer.diskStorage({
     destination(req, file, callback){
-        console.log('destination');
         callback(null, './public/images');
     },
     filename(req, file, callback){
-        console.log(file);
         callback(null, Date.now()+uuidv4()+'.'+file.mimetype.split('/')[1]);
     }
 });
@@ -63,7 +61,7 @@ app.put('/api/newsletter', NewsletterController.send);
 
 app.get('/api/category/:category', CategoryController.index);
 
-app.post('/api/gallery/', upload.array('files'), ImageController.create);
+app.post('/api/gallery/', upload.array('files'), ImageController.createMultipleImages);
 
 app.post('/api/login', UsersController.checkUser);
 

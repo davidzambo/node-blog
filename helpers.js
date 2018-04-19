@@ -1,5 +1,6 @@
 const base64img = require('base64-img');
 const lwip = require('lwip');
+const path = require('path');
 
 module.exports = {
 
@@ -64,31 +65,33 @@ module.exports = {
     },
 
     imgResizer(img, maxWidth = 1350, suffix = '') {
-        try {
-            const imgNameParts = img.split('.');
-            imgNameParts[imgNameParts-2] += `_${suffix}`;
-            const newFileName = imgNameParts.join('.');
+        return new Promise((resolve, reject) => {
+            try {
+                const imgNameParts = img.split('.');
+                imgNameParts[imgNameParts.length-2] += `_${suffix}`;
+                const newFileName = imgNameParts.join('.');
 
                 lwip.open(img, (err, image) => {
-                if (err) throw err;
-                if (image.width() > maxWidth) {
-                    image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
-                            if (err) throw err;
-                            resized.writeFile(newFileName, err => {
+                    if (err) console.error(err);
+                    if (image.width() > maxWidth) {
+                        image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
                                 if (err) throw err;
-                                return newFileName;
+                                resized.writeFile(newFileName, err => {
+                                    if (err) throw err;
+                                    resolve(path.basename(newFileName));
+                                });
                             });
-                        });
-                } else {
-                    img.writeFile(newFileName, err => {
-                        if (err) throw err;
-                        return newFileName;
-                    })
-                }
-            });
-        } catch (e){
-            console.log(e);
-            return img;
-        }
-    },
+                    } else {
+                        image.writeFile(newFileName, err => {
+                            if (err) throw err;
+                            resolve(path.basename(newFileName));
+                        })
+                    }
+                });
+            } catch (e) {
+                console.log(e);
+                reject(img);
+            }
+        });
+    }
 }
