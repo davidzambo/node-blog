@@ -1,36 +1,64 @@
-const Image = require('../models/ImageModel');
+const mongoose = require('mongoose');
+const imageSchema = require('../models/ImageModel');
+const Image = mongoose.model('Image', imageSchema);
 const Helper = require('../helpers');
 const path = require('path');
 const fs = require('fs');
 
 module.exports = {
-    async create(req, index = 0, next = module.exports.create) {
-        const baseFile = path.resolve(__dirname, '../', req.files[index].path);
-        const thumbnail = await Helper.imgResizer(baseFile, 200, 'thumbnail');
-        const display = await Helper.imgResizer(baseFile, 1350, 'display');
-        const image = new Image({
-            album: req.body.album,
-            thumbnail: './public/images/'+thumbnail,
-            display: './public/images/'+display
+     async create(req, index = 0, stored = [], next = module.exports.create) {
+        return new Promise(async (resolve, reject) => {
+            try{
+
+                const baseFile = path.resolve(__dirname, '../', req.files[index].path);
+                const [thumbnail, display] = await Promise.all([
+                    Helper.imageUploadResizer(baseFile, 200, 'thumbnail'),
+                    Helper.imageUploadResizer(baseFile, 1350, 'display')
+                ]);
+
+                const image = new Image({
+                    thumbnail: './public/images/'+thumbnail,
+                    display: './public/images/'+display
+                });
+
+                image.save((err, img) => {
+                    if (err) console.error(err);
+                    stored.push(img);
+                    console.log('image saved');
+                    fs.unlink(baseFile, err => {
+                        if (err) console.error(err);
+                    });
+
+                    resolve(stored);
+                    // if (index < req.files.length - 1) {
+                    //     console.log(stored.length);
+                    //     resolve(next(req, ++index, stored, next));
+                    // } else {
+                    //     console.log('iteration is ready');
+                    //     console.log(stored.length);
+                    //     console.log(stored);
+                    //     resolve(stored);
+                    //     reject(console.log('para'));
+                    // }
+                })
+            } catch (e){
+                console.log(e);
+                reject(e);
+            }
+
         });
-        image.save(err => {
-            if (err) console.error(err);
-            fs.unlink(baseFile, err => {
-                if (err) console.error(err);
-                if (index < req.files.length - 1) {
-                    next(req, ++index, next);
-                }
-            })
-        })
-        // if (index < arr.length - 1)
-        // next(arr, ++index, next);
-        // const display = await Helper.imgResizer(__dirname+'/'+req.files[0].path, 200, 'display');
-        // console.log(display);
-        return true;
     },
 
-    createMultipleImages(req, res) {
-        module.exports.create(req, 0, module.exports.create);
-    }
+    async createMultipleImages(req, res) {
+        return new Promise(async (resolve, reject) => {
+            console.log('IMAGE FACTORY START');
+            const images = await module.exports.create(req, 0, [], module.exports.create);
+            console.log('IMAGE FACTORY STOP');
+            console.log(images);
+            resolve(images);
+            reject(console.log('create para'));
+            });
+        ;
+    },
 
 };

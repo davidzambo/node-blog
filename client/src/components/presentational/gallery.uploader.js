@@ -8,7 +8,7 @@ export default class GalleryUploader extends React.Component {
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            album: '',
+            gallery: '',
             files: []
         }
     }
@@ -29,12 +29,12 @@ export default class GalleryUploader extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const data = new FormData(),
-            {files, album} = this.state;
+            {files, gallery} = this.state;
         for (let i = 0; i < files.length; i++) {
             data.append('files', files[i]);
         }
 
-        data.append('album', album);
+        data.append('gallery', gallery);
         console.log(data);
         axios({
             url: '/api/gallery',
@@ -52,7 +52,7 @@ export default class GalleryUploader extends React.Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Form.Input label="Album neve" id="album" value={this.state.value} onChange={this.handleOnChange}/>
+                <Form.Input label="Album neve" id="gallery" value={this.state.value} onChange={this.handleOnChange}/>
                 <Form.Input label="Fájl kiválasztása" type="file" id="files" multiple={true}
                             onChange={this.handleOnChange}/>
                 <Form.Button type="submit" content="Feltöltés"/>

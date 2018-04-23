@@ -1,23 +1,12 @@
 const base64img = require('base64-img');
 const lwip = require('lwip');
 const path = require('path');
+const uuidv4 = require('uuidv4');
 
 module.exports = {
 
     twoDigitNumber(nmb){
         return (nmb < 10) ? '0' + nmb : nmb;
-    },
-    
-    /**
-     * Generates a random filename
-     */
-    randomFilename(len = 8){
-        let filename = new Date().getFullYear().toString().substr(-2)
-                    + this.twoDigitNumber(new Date().getMonth() + 1)
-                    + this.twoDigitNumber(new Date().getDate());
-        for (let i = 0; i < len; i++)
-            filename += String.fromCharCode(Math.ceil(Math.random() * 24) + 97);
-        return filename;
     },
     
     /**
@@ -39,8 +28,8 @@ module.exports = {
             // console.log('we have base64 images')
             base64Images.map((img) => {
                 // console.log('mapping body');
-                binaryImage = '/'+base64img.imgSync(img, destination, this.randomFilename())
-                this.imgResizer(__dirname+binaryImage);
+                binaryImage = '/'+base64img.imgSync(img, destination, uuidv4())
+                this.imageResizer(__dirname+binaryImage);
                 body = body.replace(img, binaryImage);
     
             });
@@ -64,7 +53,35 @@ module.exports = {
         }, []);
     },
 
-    imgResizer(img, maxWidth = 1350, suffix = '') {
+    imageResizer(img, maxWidth = 1350, suffix = "") {
+        try {
+            const createdFile = suffix === '' ? img : img.replace('original', suffix);
+            console.log(createdFile, maxWidth);
+            lwip.open(img, (err, image) => {
+                if (err) console.error(err);
+                if (image.width() > maxWidth) {
+                    image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
+                            if (err) throw err;
+                            resized.writeFile(createdFile, err => {
+                                if (err) throw err;
+                                console.log('saved');
+                                return createdFile;
+                            });
+                        });
+                } else {
+                    image.writeFile(createdFile, err => {
+                        if (err) throw err;
+                        console.log('saved-renamed');
+                        return createdFile;
+                    })
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    },
+
+    imageUploadResizer(img, maxWidth = 1350, suffix = '') {
         return new Promise((resolve, reject) => {
             try {
                 const imgNameParts = img.split('.');
@@ -75,12 +92,12 @@ module.exports = {
                     if (err) console.error(err);
                     if (image.width() > maxWidth) {
                         image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
+                            if (err) throw err;
+                            resized.writeFile(newFileName, err => {
                                 if (err) throw err;
-                                resized.writeFile(newFileName, err => {
-                                    if (err) throw err;
-                                    resolve(path.basename(newFileName));
-                                });
+                                resolve(path.basename(newFileName));
                             });
+                        });
                     } else {
                         image.writeFile(newFileName, err => {
                             if (err) throw err;

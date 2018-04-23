@@ -23,3 +23,4 @@ yarn-error.log*
 
 /public/images
 /.idea/
+/.idea/*

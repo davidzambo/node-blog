@@ -17,7 +17,6 @@ const postSchema = new Schema({
 });
 
 postSchema.pre('save', function (next) {
-
     this.slug = slug(moment().format('YYMMDD') + '-' + this.title);
     next();
 });

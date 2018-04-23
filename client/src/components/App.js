@@ -13,7 +13,8 @@ import {fetchMatches} from "../actions/match";
 import {StatisticsEditor} from "./containers/statistics.editor";
 import StatisticsList from "./containers/statistics.list";
 import {fetchArchives} from "../actions/posts";
-import Gallery from "./containers/gallery";
+import GalleryList from "./containers/gallery.list";
+import {GalleryEditor} from "./containers/gallery.editor";
 
 const mapStateToProps = state => {
     return {
@@ -95,7 +96,10 @@ class App extends React.Component{
                            render={props => <PostList {...props} archive/>}/>
 
                     <Route exact path={'/galeria/'}
-                           render={() => <Gallery />} />
+                           render={() => <GalleryList />} />
+
+                    <Route exact path={'/galeria/:slug/szerkesztes'}
+                           render={props => <GalleryEditor {...props} />} />
 
                 </div>
             </BrowserRouter>

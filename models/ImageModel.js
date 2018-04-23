@@ -2,12 +2,9 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.DB_ADDRESS);
 const Schema = mongoose.Schema;
 
-const imageSchema = new Schema({
-    album: {type: String, default: 'egyéb', required: true},
-    thumbnail: {type: String, required: true, unique: true},
-    display: {type: String, required: true, unique: true},
-    isCover: {type: Boolean, required: true, default: false},
+module.exports = new Schema({
+    filename: {type: String, required: true},
+    thumbnail: {type: String, required: true},
+    display: {type: String, required: true},
     createdAt: {type: Date, default: Date.now}
 });
-
-module.exports = mongoose.model('Image', imageSchema);
