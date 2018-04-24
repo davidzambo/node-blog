@@ -63,9 +63,11 @@ app.get('/api/category/:category', CategoryController.index);
 
 app.get('/api/gallery/', GalleryController.show);
 app.post('/api/gallery/',
+    AuthMiddleware.isAuthenticated,
     upload.array('files'),
     ImageResizerMiddleware.optimalize,
     GalleryController.create);
+app.delete('/api/gallery/', AuthMiddleware.isAuthenticated, GalleryController.destroy);
 
 app.post('/api/login', UsersController.checkUser);
 

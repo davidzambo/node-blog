@@ -26,16 +26,23 @@ article img {
     margin: 0 !important;
 }
 
-d-inline{
+.d-inline{
     display: inline;
 }
 
-d-block{
+.d-block{
     diplay: block;
 }
 
-d-flex{
+.d-flex{
     display: flex;
+}
+
+.d-none{
+    display: none;
+}
+.pointer{
+    cursor: pointer;
 }
 
 
@@ -147,4 +154,20 @@ d-flex{
 .match-info{
     color: #333;
     line-height: 1rem;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.top{
+    top: 5px;
+}
+
+.left{
+    left: 5px;
+}
+
+.right{
+    right: 5px;
 }

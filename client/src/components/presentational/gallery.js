@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Image} from 'semantic-ui-react';
+import {Card, Image, Icon} from 'semantic-ui-react';
 import Lightbox from 'react-images';
 
 
@@ -48,10 +48,10 @@ export class Gallery extends React.Component{
                 caption: (gallery.description) ? gallery.title + ' - ' + gallery.description : gallery.title,
             };
         });
-        console.log(images);
+
         return(
-            <Card onClick={this.toggleLightbox}>
-                <Image src={`/public/images/${gallery.images[0].thumbnail}`} />
+            <Card>
+                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox}/>
                 <Lightbox isOpen={this.state.isOpen}
                           images={images}
                           enableKeyboardInput
@@ -66,7 +66,10 @@ export class Gallery extends React.Component{
                           onClickPrev={() => this.changeCurrentImage(-1)}
                           onClickNext={() => this.changeCurrentImage(1)}
                           onClose={this.toggleLightbox}/>
-                <Card.Header>{gallery.title}</Card.Header>
+                <Card.Header textAlign="center" as="h4" className="no-margin">
+                    {gallery.title}
+                </Card.Header>
+                <a href={`/galeria/${gallery.slug}/szerkesztes`} className="absolute top right"><Icon color="orange"  name="edit"/></a>
             </Card>
         )
     }

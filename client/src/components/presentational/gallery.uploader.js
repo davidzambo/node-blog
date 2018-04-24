@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from 'semantic-ui-react';
+import {Form, Button} from 'semantic-ui-react';
 import axios from 'axios';
 
 export default class GalleryUploader extends React.Component {
@@ -9,20 +9,18 @@ export default class GalleryUploader extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             gallery: '',
+            description: '',
             files: []
         }
     }
 
     handleOnChange(e) {
         if (e.target.id === 'files') {
-            console.log('ez egy file');
             let data = Array.from(e.target.files);
             this.setState({files: data}, () => console.log(this.state));
         } else {
             this.setState({[e.target.id]: e.target.value});
         }
-        console.log('if után');
-        console.log(this.state);
     }
 
 
@@ -35,7 +33,6 @@ export default class GalleryUploader extends React.Component {
         }
 
         data.append('gallery', gallery);
-        console.log(data);
         axios({
             url: '/api/gallery',
             data: data,
@@ -52,10 +49,17 @@ export default class GalleryUploader extends React.Component {
     render() {
         return (
             <Form onSubmit={this.handleSubmit}>
-                <Form.Input label="Album neve" id="gallery" value={this.state.value} onChange={this.handleOnChange}/>
-                <Form.Input label="Fájl kiválasztása" type="file" id="files" multiple={true}
-                            onChange={this.handleOnChange}/>
-                <Form.Button type="submit" content="Feltöltés"/>
+                <Form.Input label="Album neve"
+                            id="gallery"
+                            value={this.state.value}
+                            onChange={this.handleOnChange}
+                            error={!/\w{1,}/.test(this.state.gallery)}/>
+                <Form.Input label="Album leírása" id="description" value={this.state.value} onChange={this.handleOnChange}/>
+                <Form.Field>
+                    <Button icon="search" type="button" color="blue" className="d-inline-block" content="Képek kiválasztása" htmlFor="files" as="label" style={{color: 'white', display: 'inline-block', marginRight: '1rem', height: 37}}/>
+                        <input type="file" multi id="files" className="d-none" onChange={this.handleOnChange}/>
+                    <Button positive icon="upload" type="submit" content="Feltöltés" className="d-inline"/>
+                </Form.Field>
             </Form>
         );
     }

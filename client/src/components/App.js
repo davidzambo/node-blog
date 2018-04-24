@@ -14,7 +14,7 @@ import {StatisticsEditor} from "./containers/statistics.editor";
 import StatisticsList from "./containers/statistics.list";
 import {fetchArchives} from "../actions/posts";
 import GalleryList from "./containers/gallery.list";
-import {GalleryEditor} from "./containers/gallery.editor";
+import GalleryEditor from "./containers/gallery.editor";
 
 const mapStateToProps = state => {
     return {
