@@ -63,11 +63,11 @@ module.exports = {
                         console.log('deleted');
                         fs.unlinkSync(path.resolve(__dirname, '../',  'public/images', req.body.image.display));
                         console.log('deleted');
-                        Gallery.find()
-                            .exec((err, galleries) => {
+                        Gallery.findOne({_id: req.body._id})
+                            .exec((err, gallery) => {
                                 if (err) console.error(err);
                                 res.status(200)
-                                    .json({galleries});
+                                    .json({gallery});
                             });
                     } catch (e){
                         console.log(e);

@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Card, Image, Icon, Button} from 'semantic-ui-react';
+import {Card, Image, Icon} from 'semantic-ui-react';
 import Layout from "../presentational/layout";
 import ConfirmModal from "../presentational/confirm-modal";
 import {connect} from "react-redux";
@@ -54,16 +54,18 @@ class GalleryEditor extends React.Component{
         };
 
         this.props.setEntity(this.props.details);
-        this.props.setQuestion('Biztosan törölni szereté a képet?');
-        this.props.setHeader('Kép törlése');
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${this.state.gallery.title} galériát a benne lévő összes képpel?`);
+        this.props.setHeader('Galéria törlése');
         this.props.setOnConfirm(() => axios({
             url: '/api/gallery',
             method: 'delete',
             data: image,
         })
             .then( response => {
-                if (response.status === 200)
+                if (response.status === 200){
                     this.props.resetConfirm();
+                    this.setState({gallery: response.data.gallery});
+                }
             }));
         this.props.setOnCancel(() => this.props.resetConfirm());
         this.props.setOpen(true);

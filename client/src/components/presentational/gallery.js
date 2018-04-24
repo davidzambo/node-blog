@@ -1,9 +1,24 @@
 import React from 'react';
 import {Card, Image, Icon} from 'semantic-ui-react';
 import Lightbox from 'react-images';
+import axios from "axios/index";
+import {connect} from "react-redux";
+import {resetConfirm, setHeader, setOnCancel, setOnConfirm, setOpen, setQuestion, setEntity} from "../../actions/confirm";
 
 
-export class Gallery extends React.Component{
+const mapDispatchToProps = dispatch => {
+    return {
+        setOpen: bool => dispatch(setOpen(bool)),
+        setEntity: obj => dispatch(setEntity(obj)),
+        setQuestion: question => dispatch(setQuestion(question)),
+        setHeader: header => dispatch(setHeader(header)),
+        setOnConfirm: func => dispatch(setOnConfirm(func)),
+        setOnCancel: func => dispatch(setOnCancel(func)),
+        resetConfirm: () => dispatch(resetConfirm()),
+    };
+};
+
+class Gallery extends React.Component{
     constructor(props){
         super(props);
         this.toggleLightbox = this.toggleLightbox.bind(this);
@@ -39,6 +54,25 @@ export class Gallery extends React.Component{
         this.setState({currentImage: index});
     }
 
+    handleDelete(gallery){
+        this.props.setEntity(gallery);
+        this.props.setQuestion('Biztosan törölni szereté a képet?');
+        this.props.setHeader('Kép törlése');
+        this.props.setOnConfirm(() => axios({
+            url: '/api/gallery',
+            method: 'delete',
+            data: gallery,
+        })
+            .then( response => {
+                if (response.status === 200){
+                    this.props.resetConfirm();
+
+                }
+            }));
+        this.props.setOnCancel(() => this.props.resetConfirm());
+        this.props.setOpen(true);
+    }
+
     render(){
         const gallery = this.props.details;
         const images = gallery.images.map(img => {
@@ -69,8 +103,15 @@ export class Gallery extends React.Component{
                 <Card.Header textAlign="center" as="h4" className="no-margin">
                     {gallery.title}
                 </Card.Header>
-                <a href={`/galeria/${gallery.slug}/szerkesztes`} className="absolute top right"><Icon color="orange"  name="edit"/></a>
+                <Card.Meta>
+                    <a href={`/galeria/${gallery.slug}/szerkesztes`}><Icon color="orange"  name="edit"/> Szerkesztés</a>
+                </Card.Meta>
+                <Card.Meta onClick={() => this.handleDelete(gallery)} className="pointer">
+                    <Icon color="red" name="trash"/> Törlés
+                </Card.Meta>
             </Card>
         )
     }
 }
+
+export default connect(null, mapDispatchToProps)(Gallery);
