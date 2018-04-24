@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import { NavbarReducer } from './navbar';
+import { navbar } from './navbar';
 import { posts } from './posts';
 import { auth } from './auth';
-import { ConfirmReducer } from './confirm';
-import { MatchReducer } from "./match";
+import { confirm } from './confirm';
+import { match } from "./match";
+import { gallery } from "./gallery";
 
 export default combineReducers({
     auth,
-    navbar: NavbarReducer,
+    navbar,
     posts,
-    confirm: ConfirmReducer,
-    match: MatchReducer
+    confirm,
+    match,
+    gallery
 })

@@ -6,7 +6,7 @@ const initialState = {
     question: '',
     entity: {},
 };
-export const ConfirmReducer = (state = initialState, action) => {
+export const confirm = (state = initialState, action) => {
     switch (action.type) {
         case 'SET_CONFIRM_OPEN':
             return { ...state, isOpen: action.payload};

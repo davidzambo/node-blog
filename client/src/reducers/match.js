@@ -2,7 +2,7 @@ const initialState = {
     matches: [],
 };
 
-export const MatchReducer = (state = initialState, action) => {
+export const match = (state = initialState, action) => {
     switch (action.type) {
         case 'FETCH_MATCHES':
             return {...state, matches: action.payload};
