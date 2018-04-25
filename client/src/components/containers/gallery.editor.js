@@ -4,6 +4,7 @@ import {Card, Image, Icon} from 'semantic-ui-react';
 import Layout from "../presentational/layout";
 import ConfirmModal from "../presentational/confirm-modal";
 import {connect} from "react-redux";
+import GalleryUploader from "../presentational/gallery.uploader";
 import {resetConfirm, setHeader, setOnCancel, setOnConfirm, setOpen, setEntity, setQuestion} from "../../actions/confirm";
 
 const mapStateToProps = state => {
@@ -54,8 +55,8 @@ class GalleryEditor extends React.Component{
         };
 
         this.props.setEntity(this.props.details);
-        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${this.state.gallery.title} galériát a benne lévő összes képpel?`);
-        this.props.setHeader('Galéria törlése');
+        this.props.setQuestion(`Biztosan törölni szeretné ezt a képet?`);
+        this.props.setHeader('Kép törlése');
         this.props.setOnConfirm(() => axios({
             url: '/api/gallery',
             method: 'delete',
@@ -86,6 +87,7 @@ class GalleryEditor extends React.Component{
                             })
                     }
                 </Card.Group>
+                <GalleryUploader update details={this.state.gallery}/>
                 <ConfirmModal/>
             </Layout>
         );

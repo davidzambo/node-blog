@@ -5,6 +5,7 @@ import { Form, Button, Divider, Header } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 import Layout from '../presentational/layout';
+import "../../styles/quill.snow.css";
 Quill.register('modules/ImageResize', ImageResize);
 
 const modules = {

@@ -58,6 +58,13 @@ export const confirm = (action, entity) => {
     }
 };
 
+export const setLoading = (bool) => {
+    return {
+        type: 'SET_LOADING',
+        payload: bool,
+    }
+};
+
 export const cancel = (action, entity) => {
     return dispatch => {
         action(entity);

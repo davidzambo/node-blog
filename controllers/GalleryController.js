@@ -18,11 +18,11 @@ module.exports = {
     },
 
     create(req, res){
-        Gallery.findOne({title: req.body.gallery}, (err, gallery) => {
+        Gallery.findOne({title: req.body.title}, (err, gallery) => {
             if (err) console.error(err);
             if (!gallery) {
                 gallery = new Gallery({
-                    title: req.body.gallery,
+                    title: req.body.title,
                     description: req.body.description,
                 });
             }
@@ -38,10 +38,42 @@ module.exports = {
 
             gallery.save(err => {
                 if (err) console.error(err);
-                res.status(201)
-                    .json({message: 'Gallery saved successfully!'});
+                Gallery.find()
+                    .exec((err, galleries) => {
+                        if (err) console.error(err);
+                        res.status(201)
+                            .json({galleries});
+                    });
             })
         });
+    },
+
+    update(req, res){
+        Gallery.findOne({_id: req.body._id})
+            .exec((err, gallery) => {
+                if (err) console.log(err);
+                gallery.title = req.body.title;
+                gallery.description = req.body.description;
+                for (let file of req.files){
+                    const filename = file.filename;
+                    const img = {
+                        filename,
+                        thumbnail: filename.replace('original', 'thumbnail'),
+                        display: filename.replace('original', 'display')
+                    };
+                    gallery.images.push(img);
+                }
+
+                gallery.save(err => {
+                   if (err) console.error(err);
+                   Gallery.find()
+                       .exec((err, galleries) => {
+                           if (err) console.error(err);
+                           res.status(201)
+                               .json({galleries});
+                       })
+                });
+            })
     },
 
     destroy(req, res){
@@ -58,11 +90,8 @@ module.exports = {
                     if (err) console.error(err);
                     try {
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', req.body.image.filename));
-                        console.log('deleted');
                         fs.unlinkSync(path.resolve(__dirname, '../',  'public/images', req.body.image.thumbnail));
-                        console.log('deleted');
                         fs.unlinkSync(path.resolve(__dirname, '../',  'public/images', req.body.image.display));
-                        console.log('deleted');
                         Gallery.findOne({_id: req.body._id})
                             .exec((err, gallery) => {
                                 if (err) console.error(err);
@@ -78,24 +107,22 @@ module.exports = {
                 gallery.images.forEach(img => {
                     try {
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.filename));
-                        console.log('deleted');
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.thumbnail));
-                        console.log('deleted');
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.display));
-                        console.log('deleted');
                     } catch (e){
                         console.log(e);
                     }
                 });
-                gallery.remove();
-                Gallery.find()
-                    .exec((err, galleries) => {
-                        if (err) console.error(err);
-                        res.status(200)
-                            .json({galleries});
-                    });
+                gallery.remove(err => {
+                    if (err) console.error(err);
+                    Gallery.find()
+                        .exec((err, galleries) => {
+                            if (err) console.error(err);
+                            res.status(200)
+                                .json({galleries});
+                        });
+                });
             }
-
 
         })
     }

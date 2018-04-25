@@ -1,16 +1,45 @@
 import React from 'react';
-import {Form, Button} from 'semantic-ui-react';
+import {Form, Button, Segment, Header} from 'semantic-ui-react';
 import axios from 'axios';
+import Validator from "../../libs/validators";
+import {connect} from "react-redux";
+import {setGalleries} from "../../actions/gallery";
+const validator = new Validator();
 
-export default class GalleryUploader extends React.Component {
+const mapDispatchToProps = dispatch => {
+    return {
+        setGalleries: galleries => dispatch(setGalleries(galleries)),
+    }
+};
+
+class GalleryUploader extends React.Component {
     constructor(props) {
         super(props);
         this.handleOnChange = this.handleOnChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            gallery: '',
+            title: '',
             description: '',
             files: []
+        }
+    }
+
+    componentDidMount(){
+        console.log(this.props);
+        if (this.props.update) {
+            this.setState({
+                title: this.props.details.title
+            })
+        }
+    }
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.update){
+            this.setState({
+                _id: nextProps._id,
+                title: nextProps.details.title,
+                description: nextProps.details.description
+            });
         }
     }
 
@@ -26,41 +55,71 @@ export default class GalleryUploader extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const data = new FormData(),
-            {files, gallery} = this.state;
-        for (let i = 0; i < files.length; i++) {
-            data.append('files', files[i]);
-        }
+        if (validator.isTitle(this.state.title && this.state.files > 0)) {
+            this.setState({isLoading: true});
+            const data = new FormData(),
+                {files, description, title} = this.state;
+            for (let i = 0; i < files.length; i++) {
+                data.append('files', files[i]);
+            }
 
-        data.append('gallery', gallery);
-        axios({
-            url: '/api/gallery',
-            data: data,
-            method: 'post',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            withCredentials: true,
-        }).then(response => {
-            console.log(response.data);
-        })
+            data.append('title', title);
+            data.append('description', description);
+            axios({
+                url: '/api/gallery',
+                data: data,
+                method: this.props.update ? 'put' : 'post',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                withCredentials: true,
+            }).then(response => {
+                this.props.setGalleries(response.data.galleries);
+                this.setState({
+                    title: '',
+                    description: '',
+                    files: [],
+                    isLoading: false});
+            })
+        }
     }
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Input label="Album neve"
-                            id="gallery"
-                            value={this.state.value}
-                            onChange={this.handleOnChange}
-                            error={!/\w{1,}/.test(this.state.gallery)}/>
-                <Form.Input label="Album leírása" id="description" value={this.state.value} onChange={this.handleOnChange}/>
-                <Form.Field>
-                    <Button icon="search" type="button" color="blue" className="d-inline-block" content="Képek kiválasztása" htmlFor="files" as="label" style={{color: 'white', display: 'inline-block', marginRight: '1rem', height: 37}}/>
-                        <input type="file" multi id="files" className="d-none" onChange={this.handleOnChange}/>
-                    <Button positive icon="upload" type="submit" content="Feltöltés" className="d-inline"/>
-                </Form.Field>
-            </Form>
+            <Segment secondary>
+                <Header as="h3" content="Új galéria feltöltése"/>
+                <Form onSubmit={this.handleSubmit} error>
+                    <Form.Input label="Album neve"
+                                id="title"
+                                value={this.state.title}
+                                onChange={this.handleOnChange}
+                                error={(this.state.title !== '' && !validator.isTitle((this.state.title)))}/>
+                    <Form.Input label="Album leírása"
+                                id="description"
+                                value={this.state.description}
+                                onChange={this.handleOnChange}/>
+                    <Form.Field>
+                        <Button icon="search"
+                                type="button"
+                                color="blue"
+                                className="d-inline-block"
+                                content={this.state.files.length > 0 ? `${this.state.files.length} kép kiválasztva` : "Képek kiválasztása"}
+                                htmlFor="files"
+                                as="label"
+                                style={{color: 'white', display: 'inline-block', marginRight: '1rem', height: 37}}/>
+                        <input type="file" multiple id="files" className="d-none" onChange={this.handleOnChange}/>
+
+                        {(this.state.files[0] || this.props.update) && <Button positive
+                                                        icon="upload"
+                                                        type="submit"
+                                                        content={this.props.update ? "Frissítés" : "Feltöltés"}
+                                                        loading={this.state.isLoading}
+                                                        className="d-inline"/>}
+                    </Form.Field>
+                </Form>
+            </Segment>
         );
     }
 }
+
+export default connect(null, mapDispatchToProps)(GalleryUploader);

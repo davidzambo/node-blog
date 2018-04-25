@@ -13,6 +13,7 @@ const inlineStyle = {
 
 const mapStateToProps = state => {
     return {
+        isLoading: state.confirm.isLoading,
         isOpen: state.confirm.isOpen,
         question: state.confirm.question,
         header: state.confirm.header,
@@ -24,7 +25,7 @@ const mapStateToProps = state => {
 class ConfirmModal extends React.Component {
     render() {
         return (
-            <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal}>
+            <Modal size='mini' open={this.props.isOpen} style={inlineStyle.modal} dimmer="blurring" closeOnDimmerClick closeOnDocumentClick>
                 <Modal.Header>
                     {this.props.header}
                 </Modal.Header>
@@ -33,7 +34,7 @@ class ConfirmModal extends React.Component {
                 </Modal.Content>
                 <Modal.Actions>
                     <Button positive labelPosition='left' icon='cancel' content='mégsem' onClick={ () => this.props._handleCancel() }/>
-                    <Button negative labelPosition='left' icon='trash' content='törlés' onClick={ () => this.props._handleConfirm() } />
+                    <Button negative labelPosition='left' icon='trash' content='törlés' loading={this.props.isLoading} onClick={ () => this.props._handleConfirm() } />
                 </Modal.Actions>
             </Modal>
         );

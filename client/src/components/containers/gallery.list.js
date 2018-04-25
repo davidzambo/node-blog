@@ -18,17 +18,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setGalleries: galleries => dispatch(setGalleries(galleries))
+
     }
 };
 
 class GalleryList extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            galleries: [],
-        }
-    }
-
     async componentDidMount(){
         try{
             const response = await axios.get('/api/gallery');
@@ -47,8 +41,10 @@ class GalleryList extends React.Component{
                         return <Gallery details={gallery} key={gallery._id}/>
                     })}
                 </Card.Group>
-                <GalleryUploader/>
-                <ConfirmModal />
+                {this.props.isAuthenticated && <div>
+                    <GalleryUploader/>
+                    <ConfirmModal />
+                </div>}
             </Layout>
         );
     }

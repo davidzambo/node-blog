@@ -1,5 +1,6 @@
 const initialState = {
     isOpen: false,
+    isLoading: false,
     onConfirm(){ console.log('confirm'); return true},
     onCancel(){ console.log('cancel'); return true},
     header: '',
@@ -8,6 +9,8 @@ const initialState = {
 };
 export const confirm = (state = initialState, action) => {
     switch (action.type) {
+        case 'SET_LOADING':
+            return {...state, isLoading: action.payload};
         case 'SET_CONFIRM_OPEN':
             return { ...state, isOpen: action.payload};
         case 'SET_CONFIRM_ACTION':

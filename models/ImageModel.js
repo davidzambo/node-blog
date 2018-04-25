@@ -6,5 +6,6 @@ module.exports = new Schema({
     filename: {type: String, required: true},
     thumbnail: {type: String, required: true},
     display: {type: String, required: true},
+    cover: {type: Boolean, default: false},
     createdAt: {type: Date, default: Date.now}
 });

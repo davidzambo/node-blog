@@ -4,7 +4,13 @@ import Lightbox from 'react-images';
 import axios from "axios/index";
 import {connect} from "react-redux";
 import {resetConfirm, setHeader, setOnCancel, setOnConfirm, setOpen, setQuestion, setEntity} from "../../actions/confirm";
+import {setGalleries} from "../../actions/gallery";
 
+const mapStateToProps = state => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated,
+    }
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -15,6 +21,7 @@ const mapDispatchToProps = dispatch => {
         setOnConfirm: func => dispatch(setOnConfirm(func)),
         setOnCancel: func => dispatch(setOnCancel(func)),
         resetConfirm: () => dispatch(resetConfirm()),
+        setGalleries: galleries => dispatch(setGalleries(galleries)),
     };
 };
 
@@ -56,8 +63,8 @@ class Gallery extends React.Component{
 
     handleDelete(gallery){
         this.props.setEntity(gallery);
-        this.props.setQuestion('Biztosan törölni szereté a képet?');
-        this.props.setHeader('Kép törlése');
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${gallery.title} című galériát a benne lévő képekkel együtt?`);
+        this.props.setHeader('Galéria törlése');
         this.props.setOnConfirm(() => axios({
             url: '/api/gallery',
             method: 'delete',
@@ -66,7 +73,7 @@ class Gallery extends React.Component{
             .then( response => {
                 if (response.status === 200){
                     this.props.resetConfirm();
-
+                    this.props.setGalleries(response.data.galleries)
                 }
             }));
         this.props.setOnCancel(() => this.props.resetConfirm());
@@ -84,8 +91,8 @@ class Gallery extends React.Component{
         });
 
         return(
-            <Card>
-                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox}/>
+            <Card style={{justifyContent: 'space-between'}}>
+                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox} style={{maxHeight: 200, width: 'auto'}}/>
                 <Lightbox isOpen={this.state.isOpen}
                           images={images}
                           enableKeyboardInput
@@ -101,17 +108,19 @@ class Gallery extends React.Component{
                           onClickNext={() => this.changeCurrentImage(1)}
                           onClose={this.toggleLightbox}/>
                 <Card.Header textAlign="center" as="h4" className="no-margin">
-                    {gallery.title}
+                    {gallery.title} <small>({gallery.images.length})</small>
                 </Card.Header>
-                <Card.Meta>
-                    <a href={`/galeria/${gallery.slug}/szerkesztes`}><Icon color="orange"  name="edit"/> Szerkesztés</a>
-                </Card.Meta>
-                <Card.Meta onClick={() => this.handleDelete(gallery)} className="pointer">
-                    <Icon color="red" name="trash"/> Törlés
-                </Card.Meta>
+                {this.props.isAuthenticated && <div>
+                        <Card.Meta>
+                            <a href={`/galeria/${gallery.slug}/szerkesztes`}><Icon color="orange"  name="edit"/> Szerkesztés</a>
+                        </Card.Meta>
+                        <Card.Meta onClick={() => this.handleDelete(gallery)} className="pointer">
+                            <Icon color="red" name="trash"/> Törlés
+                        </Card.Meta>
+                    </div>}
             </Card>
         )
     }
 }
 
-export default connect(null, mapDispatchToProps)(Gallery);
+export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
