@@ -31,8 +31,6 @@ class Calendar extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextState) {
-        console.log('componentWillReceiveProps');
-        console.log(nextProps.events);
         this.setState({events: nextProps.events});
     }
 
@@ -57,13 +55,11 @@ class Calendar extends React.Component {
             let dateString = `${day.year}-${this.nice(day.month + 1)}-${this.nice(day.day)}`;
             return event.matchDate.slice(0, 10) === dateString;
         });
-        console.log(target, day);
         const today = {
             year: day.year,
             month: day.month,
             day: day.day,
         }
-        console.log(today);
         this.setState({dayEvents, today});
     }
 
@@ -84,7 +80,6 @@ class Calendar extends React.Component {
     }
 
     render() {
-        console.log(this.state.today);
         const matches = this.state.events.map(match => {
             return {
                 start: moment(match.matchDate).format('YYYY-MM-D'),
@@ -121,21 +116,3 @@ class Calendar extends React.Component {
 }
 
 export default connect(mapStateToProps)(Calendar)
-
-/*EVENT SAMPLE
-* const events = [
-    {
-        start: '2018-04-02',
-        end: '2018-04-02',
-        eventClasses: 'matchEvent',
-        title: 'test event',
-        description: 'This is a test description of an event',
-    },
-    {
-        start: '2015-07-19',
-        end: '2015-07-25',
-        title: 'test event',
-        description: 'This is a test description of an event',
-        data: 'you can add what ever random data you may want to use later',
-    },
-];*/

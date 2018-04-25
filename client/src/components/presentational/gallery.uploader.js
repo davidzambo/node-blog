@@ -36,7 +36,7 @@ class GalleryUploader extends React.Component {
     componentWillReceiveProps(nextProps){
         if (nextProps.update){
             this.setState({
-                _id: nextProps._id,
+                _id: nextProps.details._id,
                 title: nextProps.details.title,
                 description: nextProps.details.description
             });
@@ -65,6 +65,11 @@ class GalleryUploader extends React.Component {
 
             data.append('title', title);
             data.append('description', description);
+
+            if (this.props.update){
+                data.append('_id', this.state._id);
+            }
+
             axios({
                 url: '/api/gallery',
                 data: data,
@@ -74,12 +79,16 @@ class GalleryUploader extends React.Component {
                 },
                 withCredentials: true,
             }).then(response => {
-                this.props.setGalleries(response.data.galleries);
-                this.setState({
-                    title: '',
-                    description: '',
-                    files: [],
-                    isLoading: false});
+                if (this.props.update){
+                    window.history.back();
+                } else {
+                    this.props.setGalleries(response.data.galleries);
+                    this.setState({
+                        title: '',
+                        description: '',
+                        files: [],
+                        isLoading: false});
+                }
             })
         }
     }

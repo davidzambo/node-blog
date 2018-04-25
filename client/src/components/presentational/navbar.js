@@ -31,7 +31,7 @@ class Navbar extends React.Component {
     render() {
         const authMenuItem =
             this.props.isLoggedIn ?
-                <Dropdown trigger={<div><Icon name='settings' size="large"/><h4 style={menuTitleStyle}> Adminisztráció</h4></div>} className='link item'>
+                <Dropdown trigger={<div><Icon name='settings' size="large"/><h5 style={menuTitleStyle}> Adminisztráció</h5></div>} className='link item'>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
                         <Dropdown.Divider/>
@@ -47,16 +47,16 @@ class Navbar extends React.Component {
                         }}><i className="white sign out alternate icon large"/>Kilépés</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown> :
-                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='sign in alternate icon large' /><h4 style={menuTitleStyle}>Belépés</h4></Menu.Item>;
+                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='sign in alternate icon large' /><h5 style={menuTitleStyle}>Belépés</h5></Menu.Item>;
 
         return (
 
-            <Menu stackable fluid inverted borderless color="teal" fixed="top" style={{marginTop: 14}}>
+            <Menu stackable fluid inverted borderless fixed="top" style={{marginTop: 14}}>
                 <Divider horizontal/>
-                <Menu.Item as={NavLink} exact to='/'><Icon name='home' size="large"/><h4 style={menuTitleStyle}>Kezdőlap</h4></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/en-igy-gondolom/'><Icon name='idea' size="large"/><h4 style={menuTitleStyle}>Én így gondolom</h4></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/kezilabda/'><i className="futbol outline icon large" /><h4 style={menuTitleStyle}> Kézilabda</h4></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar" size="large"/><h4 style={menuTitleStyle}> Meccsek</h4></Menu.Item>
+                <Menu.Item as={NavLink} exact to='/'><Icon name='home' size="small"/><h5 style={menuTitleStyle}>Kezdőlap</h5></Menu.Item>
+                <Menu.Item as={NavLink} exact to='/en-igy-gondolom/'><Icon name='idea' size="large"/><h5 style={menuTitleStyle}>Én így gondolom</h5></Menu.Item>
+                <Menu.Item as={NavLink} exact to='/kezilabda/'><i className="futbol outline icon large" /><h5 style={menuTitleStyle}> Kézilabda</h5></Menu.Item>
+                <Menu.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar" size="large"/><h5 style={menuTitleStyle}> Meccsek</h5></Menu.Item>
                 <Menu.Menu position='right'>
                     { authMenuItem }
                 </Menu.Menu>

@@ -21,6 +21,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
+    "gulp": "^3.9.1",
     "history": "^4.7.2",
     "html-react-parser": "^0.4.2",
     "js-cookie": "^2.2.0",

@@ -34,7 +34,7 @@ class Layout extends React.Component {
     render() {
         const isNavbarOpen = this.props.isNavbarOpen;
         return (
-            <div>
+            <div style={{minHeight: '100%'}} className="page-content">
                 <Container fluid>
                     <Grid style={{marginTop: 0}}>
                         <Responsive as={Grid.Row} color="teal" {...Responsive.onlyMobile}>
@@ -83,6 +83,7 @@ class Layout extends React.Component {
                         </Container>
                     </Sidebar.Pusher>
                 </Sidebar.Pushable>
+                <div className="page-background"/>
             </div>
         );
     }

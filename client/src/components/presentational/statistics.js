@@ -12,7 +12,6 @@ const mapStateToProps = state => {
 class Statistics extends React.Component {
     render() {
         const s = this.props.details;
-        console.log(this.props);
         return (
             <Table.Row>
                 <Table.Cell>{s.season}</Table.Cell>

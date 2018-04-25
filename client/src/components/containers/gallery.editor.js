@@ -41,6 +41,8 @@ class GalleryEditor extends React.Component{
                     slug: this.props.match.params.slug
                 }
             });
+            console.log('response');
+            console.log(response);
             this.setState({gallery: response.data.galleries[0]});
         } catch (e){
             console.log('Error: ' + e);

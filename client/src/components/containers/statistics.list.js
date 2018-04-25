@@ -34,7 +34,7 @@ class StatisticsList extends React.Component {
             <Layout>
                 <Container>
                 <Header content='Statisztikáim' />
-                <Table size="small" color="green" inverted compact celled textAlign="center">
+                <Table size="small" compact celled textAlign="center">
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell><em>szezon</em></Table.HeaderCell>

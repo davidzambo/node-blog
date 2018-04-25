@@ -171,3 +171,24 @@ article img {
 .right{
     right: 5px;
 }
+
+.page-content:before {
+    content: "";
+    position: fixed;
+    left: -20px;
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    display: block;
+    background-image: url("../images/handball_wallpaper.jpg");
+    background-size: contain;
+    filter: blur(25px) sepia(0.7);
+    min-height: 110vh;
+    min-width: 110vw;
+    z-index: -1;
+}
+.page-content{
+    position: relative;
+    left: 0;
+    right: 0;
+}
