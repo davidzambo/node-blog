@@ -79,3 +79,30 @@ module.exports = {
             }
 
         });*/
+
+/**    subscribe(req, res) {
+        Validator.validate(req.body.email, (err, body) => {
+           if (err) console.error(err);
+
+           if (body.is_valid) {
+               const newSubscriber = {
+                   subscribed: true,
+                   name: req.body.firstName,
+                   address: req.body.email
+               };
+
+               List.members().create( newSubscriber, (err, data) => {
+                   if (err) console.error(err);
+                   console.log(data);
+                   if (data.member){
+                       res.status(201).json({message: 'Sikeresen feliratkozott a hírlevelemre'});
+                   } else {
+                       res.status(400).json({message: 'Már regisztrált email cím'});
+                   }
+               });
+           } else {
+               res.status(400).json({message: 'Érvénytelen email cím!'});
+           }
+        });
+    },
+ */

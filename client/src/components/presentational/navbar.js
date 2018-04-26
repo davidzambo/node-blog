@@ -47,16 +47,19 @@ class Navbar extends React.Component {
                         }}><i className="white sign out alternate icon large"/>Kilépés</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown> :
-                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='sign in alternate icon large' /><h5 style={menuTitleStyle}>Belépés</h5></Menu.Item>;
+                <Menu.Item onClick={() => this.props.setOpen(true)}><i className='sign in alternate icon' />Belépés</Menu.Item>;
 
         return (
 
-            <Menu stackable fluid inverted borderless fixed="top" style={{marginTop: 14}}>
+            <Menu stackable fluid inverted borderless color="orange" fixed="top" style={{marginTop: 14}}>
                 <Divider horizontal/>
-                <Menu.Item as={NavLink} exact to='/'><Icon name='home' size="small"/><h5 style={menuTitleStyle}>Kezdőlap</h5></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/en-igy-gondolom/'><Icon name='idea' size="large"/><h5 style={menuTitleStyle}>Én így gondolom</h5></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/kezilabda/'><i className="futbol outline icon large" /><h5 style={menuTitleStyle}> Kézilabda</h5></Menu.Item>
-                <Menu.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar" size="large"/><h5 style={menuTitleStyle}> Meccsek</h5></Menu.Item>
+                <Menu.Item as={NavLink} exact to='/'><Icon name='home'/>Kezdőlap</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/rolam'><Icon name="id badge"/>Rólam</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/en-igy-gondolom'><Icon name='idea'/>Én így gondolom</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/kezilabda'><i className="futbol outline icon"/>Kézilabda</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/meccsek'><Icon name="checked calendar"/>Meccsek</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/statisztika'><Icon name="line chart"/>Statisztika</Menu.Item>
+                <Menu.Item as={NavLink} exact to='/galeria'><Icon name="file image outline"/>Galéria</Menu.Item>
                 <Menu.Menu position='right'>
                     { authMenuItem }
                 </Menu.Menu>

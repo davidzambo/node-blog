@@ -87,7 +87,6 @@ article img {
 
 .day{
     border-radius: 50%;
-    background-color: white;
     cursor: pointer;
     transition: all 0.2s;
     max-width: 25px;
@@ -97,7 +96,7 @@ article img {
 }
 
 .inner-grid:hover {
-    background-color: #EFEFEF;
+    background-color: #56CAF4;
     border-radius: 50%;
     max-width: 25px;
     max-height: 25px;
@@ -127,7 +126,7 @@ article img {
 }
 
 .date+.matchEvent{
-    background-color: #F0F0F0;
+    background-color: rgba(255,0,0,0.2);
     border-radius: 50%;
     position: absolute;
     top:0;
@@ -180,9 +179,9 @@ article img {
     right: -20px;
     bottom: -20px;
     display: block;
-    background-image: url("../images/handball_wallpaper.jpg");
+    background-image: url("../images/handball_wallpaper_3.png");
     background-size: contain;
-    filter: blur(25px) sepia(0.7);
+    filter: blur(15px) sepia(0.4);
     min-height: 110vh;
     min-width: 110vw;
     z-index: -1;
@@ -191,4 +190,8 @@ article img {
     position: relative;
     left: 0;
     right: 0;
+}
+
+.ui .segment{
+    background: rgba(255, 255, 255, 0.8)!important;
 }

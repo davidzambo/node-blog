@@ -15,6 +15,9 @@ import StatisticsList from "./containers/statistics.list";
 import {fetchArchives} from "../actions/posts";
 import GalleryList from "./containers/gallery.list";
 import GalleryEditor from "./containers/gallery.editor";
+import LegalNotice from "./presentational/legal-notice";
+import AboutMe from "./presentational/about-me";
+import Impressum from "./presentational/impressum";
 
 const mapStateToProps = state => {
     return {
@@ -100,6 +103,10 @@ class App extends React.Component{
 
                     <Route exact path={'/galeria/:slug/szerkesztes'}
                            render={props => <GalleryEditor {...props} />} />
+
+                    <Route exact path={'/adatvedelmi-nyilatkozat'} component={LegalNotice}/>
+                    <Route exact path={'/impresszum'} component={Impressum}/>
+                    <Route exact path={'/rolam'} component={AboutMe}/>
 
                 </div>
             </BrowserRouter>

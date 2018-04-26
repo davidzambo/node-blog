@@ -1,18 +1,28 @@
 import React from 'react';
-import {Menu, Icon} from 'semantic-ui-react';
+import {Segment, Icon, List, Label} from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 
 class Infobox extends React.Component {
     render() {
         console.log(this.props.dates);
         return (
-            <Menu fluid borderless vertical>
-                <Menu.Item as={NavLink} to="/"><Icon name="home"/>Kezdőlap</Menu.Item>
-                <Menu.Item as={NavLink} to="/rolam" icon="home" content="Rólam"/>
-                <Menu.Item as={NavLink} to="/statisztika" icon="line chart" content="Statisztika"/>
-                <Menu.Item as={NavLink} to="/galeria" icon="line chart" content="Galéria"/>
-                <Menu.Item as={NavLink} to="/impresszum" icon="home" content="Impresszum"/>
-            </Menu>
+            <Segment>
+                <Label color='red' ribbon size="large">
+                    <Icon name="info"/>Információk
+                </Label>
+                <List>
+                    <List.Item>
+                        <NavLink to="/adatvedelmi-nyilatkozat">
+                            <Icon name="paragraph"/>Adatvédelmi nyilatkozat
+                        </NavLink>
+                    </List.Item>
+                    <List.Item>
+                        <NavLink to="/impresszum">
+                            <Icon name="info"/>Impresszum
+                        </NavLink>
+                    </List.Item>
+                </List>
+            </Segment>
         );
     }
 }

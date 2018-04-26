@@ -4,7 +4,7 @@ import Layout from '../presentational/layout';
 import GalleryUploader from "../presentational/gallery.uploader";
 import axios from 'axios';
 import Gallery from "../presentational/gallery";
-import {Card} from "semantic-ui-react";
+import {Card, Segment, Divider, Header, Icon} from "semantic-ui-react";
 import {setGalleries} from "../../actions/gallery";
 import ConfirmModal from "../presentational/confirm-modal";
 
@@ -35,16 +35,24 @@ class GalleryList extends React.Component{
     render(){
         return (
             <Layout>
-                <h1>Galéria</h1>
-                <Card.Group itemsPerRow={3}>
-                    {this.props.galleries.map(gallery => {
-                        return <Gallery details={gallery} key={gallery._id}/>
-                    })}
-                </Card.Group>
-                {this.props.isAuthenticated && <div>
-                    <GalleryUploader/>
-                    <ConfirmModal />
-                </div>}
+                <Segment raised padded>
+                    <Header as="h1">
+                        <Icon name="file image outline"/>
+                        <Header.Content>
+                            Galéria
+                        </Header.Content>
+                    </Header>
+                    <Divider horizontal/>
+                    <Card.Group itemsPerRow={3}>
+                        {this.props.galleries.map(gallery => {
+                            return <Gallery details={gallery} key={gallery._id}/>
+                        })}
+                    </Card.Group>
+                    {this.props.isAuthenticated && <div>
+                        <GalleryUploader/>
+                        <ConfirmModal />
+                    </div>}
+                </Segment>
             </Layout>
         );
     }

@@ -92,7 +92,7 @@ class Gallery extends React.Component{
 
         return(
             <Card style={{justifyContent: 'space-between'}}>
-                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox} style={{maxHeight: 200, width: 'auto'}}/>
+                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox} className="pointer"/>
                 <Lightbox isOpen={this.state.isOpen}
                           images={images}
                           enableKeyboardInput

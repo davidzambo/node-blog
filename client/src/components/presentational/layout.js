@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from './navbar';
-import LoginModal from './login-modal';
+import LoginModal from './login.modal';
 import Archive from '../containers/archive';
 import NewsLetter from '../containers/newsletter.js';
 import {Container, Grid, Icon, Responsive, Sidebar} from 'semantic-ui-react';
 import {setNavbarOpen} from "../../actions/navbar";
 import {connect} from 'react-redux';
-import Infobox from "./infobox";
 import Calendar from './calendar';
+import Infobox from "./infobox";
 
 const mapStateToProps = state => {
     return {
@@ -66,17 +66,15 @@ class Layout extends React.Component {
                         <Container fluid>
                             <Grid centered padded>
                                 <Grid.Row columns={2}>
-                                    <Responsive as={Grid.Column} computer={4} largeScreen={3} widescreen={3} minWidth={Responsive.onlyComputer.minWidth}>
-                                        <Infobox/>
-                                    </Responsive>
-                                    <Grid.Column mobile={16} tablet={12} computer={8} largeScreen={7} widescreen={6}>
+                                    <Grid.Column mobile={16} tablet={12} computer={12} largeScreen={10} widescreen={10}>
                                         {this.props.children}
                                         <LoginModal/>
                                     </Grid.Column>
-                                    <Grid.Column mobile={16} tablet={4} computer={4} largeScreen={3} widescreen={3}>
+                                    <Grid.Column mobile={16} tablet={4} computer={4} largeScreen={3} widescreen={2}>
                                         <Calendar/>
                                         <NewsLetter/>
                                         <Archive/>
+                                        <Infobox/>
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>

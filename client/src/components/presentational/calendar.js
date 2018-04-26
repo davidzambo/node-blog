@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import EventCalendar from '../containers/event-calendar';
-import {Icon, Card} from 'semantic-ui-react';
+import {Icon, Card, Segment, Label} from 'semantic-ui-react';
 import moment from 'moment';
 import CalendarMatch from "./calendar.match";
 
@@ -90,29 +90,29 @@ class Calendar extends React.Component {
             }
         });
         return (
-            <Card fluid color="yellow">
-                <Card.Content header="Meccs naptár" textAlign="center"/>
-                <Card.Content>
-                    <EventCalendar
-                        daysOfTheWeek={["H","K", "Sz", "Cs", "P", "Sz", "V"]}
-                        day={this.state.today.day}
-                        month={this.state.today.month}
-                        year={this.state.today.year}
-                        events={matches}
-                        maxEventSlots={1}
-                        leftChangeButton={<Icon name="chevron left"/>}
-                        rightChangeButton={<Icon name="chevron right"/>}
-                        onDayClick={this.handleClickOnDay}
-                        switchMonth={this.handleSwitchMonth}/>
-                </Card.Content>
-                    {
-                        this.state.dayEvents.map((match, i) => <Card.Content className="calendar-match-container" key={i}>
-                            <CalendarMatch details={match} key={match._id}/>
-                        </Card.Content>)
-                    }
-            </Card>
+            <Segment>
+                <Label color='teal' size="large" ribbon>
+                    <Icon name="soccer"/>Meccs naptár
+                </Label>
+                <EventCalendar
+                    daysOfTheWeek={["H","K", "Sz", "Cs", "P", "Sz", "V"]}
+                    day={this.state.today.day}
+                    month={this.state.today.month}
+                    year={this.state.today.year}
+                    events={matches}
+                    maxEventSlots={1}
+                    leftChangeButton={<Icon name="chevron left"/>}
+                    rightChangeButton={<Icon name="chevron right"/>}
+                    onDayClick={this.handleClickOnDay}
+                    switchMonth={this.handleSwitchMonth}/>
+                {
+                    this.state.dayEvents.map((match, i) => <Card.Content className="calendar-match-container" key={i}>
+                        <CalendarMatch details={match} key={match._id}/>
+                    </Card.Content>)
+                }
+            </Segment>
         );
     }
 }
 
-export default connect(mapStateToProps)(Calendar)
+export default connect(mapStateToProps)(Calendar);

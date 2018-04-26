@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {List, Segment, Header} from 'semantic-ui-react';
+import {List, Segment, Label, Icon} from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
 import moment from 'moment';
 
@@ -13,9 +13,11 @@ const mapStateToProps = state => {
 class Archive extends React.Component {
     render() {
         return (
-            <Segment raised padded divided size="large">
-                <Header content='Archívum' textAlign='center'/>
-                <List animated relaxed celled>
+            <Segment raised>
+                <Label color='brown' size="large" ribbon>
+                    <Icon name="archive"/>Archívum
+                </Label>
+                <List animated relaxed>
                     {this.props.dates.map((date, i) => {
                         let dateFormat = moment().year(date.year).month(date.month-1).date(1);
                         return <List.Item
