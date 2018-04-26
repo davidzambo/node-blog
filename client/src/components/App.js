@@ -18,6 +18,7 @@ import GalleryEditor from "./containers/gallery.editor";
 import LegalNotice from "./presentational/legal-notice";
 import AboutMe from "./presentational/about-me";
 import Impressum from "./presentational/impressum";
+import NewsLetterConfirm from "./presentational/NewsLetter/confirm";
 
 const mapStateToProps = state => {
     return {
@@ -107,6 +108,8 @@ class App extends React.Component{
                     <Route exact path={'/adatvedelmi-nyilatkozat'} component={LegalNotice}/>
                     <Route exact path={'/impresszum'} component={Impressum}/>
                     <Route exact path={'/rolam'} component={AboutMe}/>
+                    <Route exact path={'/feliratkozas'}
+                           render={props => <NewsLetterConfirm {...props}/>}/>
 
                 </div>
             </BrowserRouter>

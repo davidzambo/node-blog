@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Icon, Form, Label} from 'semantic-ui-react';
+import {Segment, Icon, Form, Label, Message} from 'semantic-ui-react';
 import axios from 'axios';
 
 export class NewsLetter extends Component {
@@ -9,7 +9,10 @@ export class NewsLetter extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             email: '',
-            firstName: ''
+            firstName: '',
+            message: '',
+            isLoading: false,
+            isSuccess: false,
         }
     }
 
@@ -18,8 +21,24 @@ export class NewsLetter extends Component {
     }
 
     handleSubmit(){
+        this.setState({ isLoading: true });
         axios.post('/api/newsletter', this.state)
-            .then(response => console.log(response.data));
+            .then(response => {
+                this.setState({
+                    isLoading: false,
+                    message: "A feliratkozás véglegesítéséhez szükséges email kiküldtük az email címedre!",
+                    email: '',
+                    firstName: '',
+                    isSuccess: true
+                })
+            })
+            .catch( e => {
+                this.setState({
+                    isLoading: false,
+                    message: "Ez az emailcím már szerepel a regisztrált hírlevél olvasók között!",
+                    isSuccess: false
+                })
+            });
     }
 
     render(){
@@ -33,7 +52,22 @@ export class NewsLetter extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Input placeholder='Az Ön keresztneve' id="firstName" icon='font' iconPosition='left' required onChange={this.handleChange} value={this.state.firstName}/>
                     <Form.Input type='email' id="email" placeholder='Az Ön email címe' icon='mail' iconPosition='left' required onChange={this.handleChange} value={this.state.email}/>
-                    <Form.Button type="submit" basic fluid color='green' content='Feliratkozás' />
+                    {
+                        this.state.message !== '' ?
+                            <Message color={this.state.isSuccess ? "green" : "red"}>
+                                {this.state.message}
+                            </Message>
+                            : ''
+                    }
+                    <Form.Button
+                        type="submit"
+                        loading={this.state.isLoading}
+                        disabled={this.state.isSuccess}
+                        inverted
+                        fluid
+                        color='green'
+                        icon="signup"
+                        content='Feliratkozás' />
                 </Form>
             </Segment>
         );
