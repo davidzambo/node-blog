@@ -38,6 +38,9 @@ module.exports = {
             .exec((err, newsLetter) => {
                 if (err) console.error(err);
                 if (newsLetter){
+                    if (newsLetter.approved){
+                        return res.status(200).json({message: 'Ön már megerősítette az emailcímét!'});
+                    }
                     newsLetter.approved = true;
                     newsLetter.save(err => {
                        if (err) console.error(err);
@@ -46,7 +49,18 @@ module.exports = {
                 } else {
                     return res.status(304).json({error: "Valami hiba történt!"});
                 }
-            })
+            });
+    },
+
+    remove(req, res){
+        NewsLetter.findOne({
+            _id: req.query.token,
+            email: req.query.email
+        })
+        .exec((err, newsLetter) => {
+            if (err) console.error(err);
+            newsLetter.remove(err => res.status(200));
+        });
     },
 
     send(req, res){
