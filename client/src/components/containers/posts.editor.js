@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import { Form, Button, Divider, Header } from 'semantic-ui-react';
+import { Form, Button, Divider, Header, Segment } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize-module';
 import Layout from '../presentational/layout';
@@ -119,38 +119,42 @@ class ConnectedPostEditor extends Component {
         }
         return (
             <Layout>
-                <Header content='Új bejegyzés szerkesztése' />
-                <Form onSubmit={this.handleSubmit}>
-                    <Form.Group>
-                        <Form.Input label="Cím:"
-                            id="title"
-                            value={title}
-                            onChange={this.handleChange}
-                            width={16} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Input label="Cimkék:"
-                            id="tags"
-                            value={tags}
-                            onChange={this.handleChange}
-                            width={10} />
-                        <Form.Select label='Kategória'
-                            id='category'
-                            value={category}
-                            options={categories}
-                            onChange={(e, { value }) => this.setState({ category: value })}
-                            placeholder="Kategória"
-                            width={6} />
-                    </Form.Group>
-                    <ReactQuill label="Cikk:"
-                        id="body"
-                        value={body}
-                        modules={modules}
-                        formats={formats}
-                        onChange={this.handleChange} />
-                    <Divider horizontal />
-                    {button}
-                </Form>
+                <Segment>
+                    <Header content='Új bejegyzés szerkesztése' />
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Group>
+                            <Form.Input label="Cím:"
+                                id="title"
+                                value={title}
+                                onChange={this.handleChange}
+                                width={16} />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Input label="Cimkék:"
+                                id="tags"
+                                value={tags}
+                                onChange={this.handleChange}
+                                width={10} />
+                            <Form.Select label='Kategória'
+                                id='category'
+                                value={category}
+                                options={categories}
+                                onChange={(e, { value }) => this.setState({ category: value })}
+                                placeholder="Kategória"
+                                width={6} />
+                        </Form.Group>
+                        <ReactQuill
+                            label="Cikk:"
+                            id="body"
+                            value={body}
+                            modules={modules}
+                            formats={formats}
+                            style={{backgroundColor: 'white'}}
+                            onChange={this.handleChange} />
+                        <Divider horizontal />
+                        {button}
+                    </Form>
+                </Segment>
             </Layout>
         );
     }

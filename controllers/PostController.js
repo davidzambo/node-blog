@@ -2,6 +2,7 @@ const Post = require('../models/PostModel');
 const Helper = require('../helpers');
 const moment = require('moment');
 const fs = require('fs');
+const NewsLetter = require('./NewsletterController');
 
 module.exports = {
 
@@ -39,6 +40,7 @@ module.exports = {
         post.tags = Helper.tagsHandler(req.body.tags);
         post.save((err) => {
             if (err) console.error(err);
+            NewsLetter.sendNotification(post);
             Post.find().sort({date: -1}).exec((err, posts) => {
                 if (err) console.error(err);
                 res.status(200).json({posts});

@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom';
 
 class Infobox extends React.Component {
     render() {
-        console.log(this.props.dates);
         return (
             <Segment>
                 <Label color='red' ribbon size="large">

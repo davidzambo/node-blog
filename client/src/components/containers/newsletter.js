@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Segment, Icon, Form, Label, Message} from 'semantic-ui-react';
+import {Segment, Form, Label, Message} from 'semantic-ui-react';
 import axios from 'axios';
 
 export class NewsLetter extends Component {
@@ -44,9 +44,7 @@ export class NewsLetter extends Component {
     render(){
         return(
             <Segment>
-                <Label color='green' size="large" ribbon>
-                    <Icon name="mail"/>Hírlevél
-                </Label>
+                <Label color='green' size="large" ribbon icon="mail" content="Hírlevél"/>
                 <br/>
                 <br/>
                 <Form onSubmit={this.handleSubmit}>
@@ -54,9 +52,11 @@ export class NewsLetter extends Component {
                     <Form.Input type='email' id="email" placeholder='Az Ön email címe' icon='mail' iconPosition='left' required onChange={this.handleChange} value={this.state.email}/>
                     {
                         this.state.message !== '' ?
-                            <Message color={this.state.isSuccess ? "green" : "red"}>
-                                {this.state.message}
-                            </Message>
+                            <Message
+                                icon={this.state.isSuccess ? "check" : "exclamation circle"}
+                                color={this.state.isSuccess ? "green" : "red"}
+                                size="tiny"
+                                content={this.state.message}/>
                             : ''
                     }
                     <Form.Button

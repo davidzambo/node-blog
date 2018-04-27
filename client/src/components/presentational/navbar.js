@@ -34,13 +34,9 @@ class Navbar extends React.Component {
                 <Dropdown trigger={<div><Icon name='settings' size="large"/><h5 style={menuTitleStyle}> Adminisztráció</h5></div>} className='link item'>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
-                        <Dropdown.Divider/>
-                        <Dropdown.Item as={NavLink} exact to='/statisztika/uj'><Icon name='write' size="large"/> Új statisztika</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} exact to='/statisztika'><Icon name='write' size="large"/> Statisztikák kezelése</Dropdown.Item>
-                        <Dropdown.Divider/>
-                        <Dropdown.Item as={NavLink} exact to='/meccsek/uj'>Új meccs</Dropdown.Item>
-                        <Dropdown.Item as={NavLink} exact to='/meccsek/'>Meccsek kezelése</Dropdown.Item>
-                        <Dropdown.Divider/>
+                        <Dropdown.Item as={NavLink} exact to='/statisztika'><Icon name='line chart' size="large"/> Statisztikák kezelése</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar"/> Meccsek kezelése</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/galeria/'><Icon name="image"/> Galériák kezelése</Dropdown.Item>
                         <Dropdown.Item onClick={() => {
                             Cookies.remove('trdToken');
                             this.props.isAuthenticated(false);

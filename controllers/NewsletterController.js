@@ -1,10 +1,10 @@
 const NewsLetter = require('../models/NewsletterModel');
 const api_key = process.env.MAILGUN_API_KEY;
-const validation_key = process.env.MAILGUN_VALIDATION_KEY;
 const domain = process.env.MAILGUN_DOMAIN;
 const Mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-const Validator = require('mailgun-js')({apiKey: validation_key, domain: domain});
-const List = Mailgun.lists('trd@www.dcmf.hu');
+const SENDER = process.env.SENDER;
+const MAILLIST = process.env.MAILLIST;
+const List = Mailgun.lists(MAILLIST);
 
 module.exports = {
     subscribe(req, res) {
@@ -22,8 +22,6 @@ module.exports = {
 
             Mailgun.messages().send(messages.optIn(req.body.email, newsLetter._id), (err, body) => {
                 if (err) console.error(err);
-                console.log(body);
-
                 res.status(201)
                     .json({message: "Ok"});
             });
@@ -44,7 +42,19 @@ module.exports = {
                     newsLetter.approved = true;
                     newsLetter.save(err => {
                        if (err) console.error(err);
-                       return res.status(201).json({message: 'A feliratkozás megerősítését rögzítettük!'});
+
+                        const newSubscriber = {
+                            subscribed: true,
+                            name: newsLetter.firstName,
+                            address: newsLetter.email
+                        };
+
+                        List.members().create( newSubscriber, (err, data) => {
+                            if (err) console.error(err);
+                            console.log(data);
+                            return res.status(201).json({message: 'A feliratkozás megerősítését rögzítettük!'});
+                        });
+
                     });
                 } else {
                     return res.status(304).json({error: "Valami hiba történt!"});
@@ -63,23 +73,37 @@ module.exports = {
         });
     },
 
-    send(req, res){
-        const data = {
-            from: "Tóth Róbert Dávid <a@dcmf.hu>",
-            to: req.body.to,
-            subject: req.body.subject,
-            html: req.body.message
+    send(data, next){
+        const message = {
+            from: SENDER,
+            to: data.email,
+            subject: data.subject,
+            html: data.message
         };
 
-        Mailgun.messages().send(data, (err, body) => {
+        Mailgun.messages().send(message, (err, body) => {
+            if (err) console.error(err);
+            console.log(body);
+            next()
+        })
+    },
+
+    sendNotification(data){
+        const message = {
+            from: SENDER,
+            to: MAILLIST,
+            subject: `Új bejegyzést írtam az oldalamra ${data.title} címmel`,
+            html: messages.newPost(data)
+        };
+
+        Mailgun.messages().send(message, (err, body) => {
             if (err) console.error(err);
             console.log(body);
         })
+    },
 
-    }
 };
 
-const SENDER = "Tóth Róbert Dávid <info@tothrobertdavid.eu>"
 
 const messages = {
     optIn(email, token){
@@ -94,6 +118,16 @@ const messages = {
             subject: 'Hírlevél feliratkozás megerősítése',
             html: message
         }
+    },
+
+    newPost(post){
+        let message = '';
+        message += `<h2>Új bejegyzés: ${post.title}</h2>`;
+        message += post.body.slice(0,400)+'...';
+        message += `<p>A teljes cikket <a href="https://www.tothrobertdavid.eu/bejegyzesek/${post.slug}">ide</a> kattintva tudod elolvasni!</p>`;
+        message += '<p>Üdvözlettel:<br/>Tóth Róbert Dávid</p>';
+
+        return message;
     }
 }
 /*
