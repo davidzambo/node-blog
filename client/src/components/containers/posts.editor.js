@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router';
 import axios from 'axios';
-import { Form, Button, Divider, Header, Segment } from 'semantic-ui-react';
+import { Form, Button, Divider, Header, Segment, Icon } from 'semantic-ui-react';
 import ReactQuill, { Quill } from 'react-quill';
+import Validator from "../../libs/validators";
 import ImageResize from 'quill-image-resize-module';
 import Layout from '../presentational/layout';
 import "../../styles/quill.snow.css";
@@ -29,23 +30,7 @@ const formats = [
 const categories = [
     { key: 'personal', text: 'Én így gondolom', value: 'personal' },
     { key: 'handball', text: 'Kézilabda', value: 'handball' }
-]
-
-
-/**
- *  check validation rules
- */
-const validator = (rule, inputToTest) => {
-
-    const rules = {
-        title: /^[\W\w]{2,}$/gi,
-        tags: /^[\W\w]{2,}$/gi,
-        category: /(personal|handball)/,
-        body: /^[\W\w]{10,}$/gi,
-    }
-
-    return rules[rule].test(inputToTest);
-}
+];
 
 class ConnectedPostEditor extends Component {
     constructor(props) {
@@ -87,7 +72,7 @@ class ConnectedPostEditor extends Component {
         e.preventDefault();
 
         const { title, tags, body, category } = this.state;
-        const valid = validator('title', title) && validator('tags', tags) && validator('body', body) && validator('category', category);
+        const valid = Validator.isPostTitle(title) && Validator.isTags(tags) && Validator.isPostBody(body) && Validator.isCategory(category);
         if (valid) {
             axios({
                 url: '/api/posts/',
@@ -113,31 +98,41 @@ class ConnectedPostEditor extends Component {
         let button = <Button type="submit" color="blue">mentés</Button>
         if (this.props.update) {
             button = <div>
-                <Button type="button" color='blue' onClick={this.props.cancelPostAction}>mégsem</Button>'
-                <Button type="submit" color="orange">frissítés</Button>
+                <Button type="button" color='blue' icon labelPosition="left" onClick={this.props.cancelPostAction}>
+                    <Icon name="angle left"/> mégsem
+                </Button>'
+                <Button type="submit" color="orange" icon labelPosition="left">
+                    <Icon name="refresh" />frissítés
+                </Button>
               </div>
         }
         return (
             <Layout>
                 <Segment>
                     <Header content='Új bejegyzés szerkesztése' />
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} error>
                         <Form.Group>
-                            <Form.Input label="Cím:"
+                            <Form.Input
+                                label="Cím:"
                                 id="title"
                                 value={title}
+                                error={title !== '' && !Validator.isPostTitle(title)}
                                 onChange={this.handleChange}
                                 width={16} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Input label="Cimkék:"
+                            <Form.Input
+                                label="Cimkék:"
                                 id="tags"
                                 value={tags}
+                                error={tags !== '' && !Validator.isTags(tags)}
                                 onChange={this.handleChange}
                                 width={10} />
-                            <Form.Select label='Kategória'
+                            <Form.Select
+                                label='Kategória'
                                 id='category'
                                 value={category}
+                                error={!Validator.isCategory(category)}
                                 options={categories}
                                 onChange={(e, { value }) => this.setState({ category: value })}
                                 placeholder="Kategória"
@@ -147,6 +142,7 @@ class ConnectedPostEditor extends Component {
                             label="Cikk:"
                             id="body"
                             value={body}
+                            error={body !== '' && !Validator.isPostBody(body)}
                             modules={modules}
                             formats={formats}
                             style={{backgroundColor: 'white'}}

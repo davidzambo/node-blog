@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Image, Icon} from 'semantic-ui-react';
+import {Image, Label} from 'semantic-ui-react';
 import Lightbox from 'react-images';
 import axios from "axios/index";
 import {connect} from "react-redux";
@@ -91,8 +91,16 @@ class Gallery extends React.Component{
         });
 
         return(
-            <Card style={{justifyContent: 'space-between'}}>
-                <Image src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"} onClick={this.toggleLightbox} className="pointer"/>
+            <div style={{textAlign: 'center', margin: '1rem'}}>
+                <Label basic size="large">
+                    {gallery.title} <small>({gallery.images.length})</small>
+                </Label>
+                <Image
+                    circular
+                    src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"}
+                    onClick={this.toggleLightbox}
+                    className="pointer"
+                    style={{objectFit: 'cover', width: 200, height: 200}}/>
                 <Lightbox isOpen={this.state.isOpen}
                           images={images}
                           enableKeyboardInput
@@ -107,20 +115,23 @@ class Gallery extends React.Component{
                           onClickPrev={() => this.changeCurrentImage(-1)}
                           onClickNext={() => this.changeCurrentImage(1)}
                           onClose={this.toggleLightbox}/>
-                <Card.Header textAlign="center" as="h4" className="no-margin">
-                    {gallery.title} <small>({gallery.images.length})</small>
-                </Card.Header>
-                {this.props.isAuthenticated && <div>
-                        <Card.Meta>
-                            <a href={`/galeria/${gallery.slug}/szerkesztes`}><Icon color="orange"  name="edit"/> Szerkesztés</a>
-                        </Card.Meta>
-                        <Card.Meta onClick={() => this.handleDelete(gallery)} className="pointer">
-                            <Icon color="red" name="trash"/> Törlés
-                        </Card.Meta>
-                    </div>}
-            </Card>
+            </div>
         )
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+
+/**
+ * <Card.Header textAlign="center" as="h4" className="no-margin">
+ {gallery.title} <small>({gallery.images.length})</small>
+ </Card.Header>
+ {this.props.isAuthenticated && <div>
+         <Card.Meta>
+             <a href={`/galeria/${gallery.slug}/szerkesztes`}><Icon color="orange"  name="edit"/> Szerkesztés</a>
+         </Card.Meta>
+         <Card.Meta onClick={() => this.handleDelete(gallery)} className="pointer">
+             <Icon color="red" name="trash"/> Törlés
+         </Card.Meta>
+     </div>}
+ */

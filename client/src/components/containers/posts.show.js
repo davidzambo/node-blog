@@ -19,6 +19,9 @@ export class PostShow extends Component {
         }
     }
 
+    componentWillMount(){
+        console.log('postshow');
+    }
 
     componentDidMount() {
         console.log(this.props);

@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from "../presentational/layout";
 import {Form, Grid, Header, Button, Message, Segment} from 'semantic-ui-react';
 import axios from "axios/index";
+import Validator from "../../libs/validators";
 
 export class StatisticsEditor extends React.Component{
     constructor(props){
@@ -76,6 +77,11 @@ export class StatisticsEditor extends React.Component{
             const data = Object.assign({}, this.state);
             delete data.hasError;
 
+            if (!this.props.update){
+                delete data._id;
+            }
+            console.log(data);
+
             axios({
                 url: '/api/statistics',
                 method: this.props.update ? 'put' : 'post',
@@ -84,7 +90,7 @@ export class StatisticsEditor extends React.Component{
                 .then( response => {
                     console.log(response);
                     if (response.status === 200)
-                        window.location.href = '/statisztikak';
+                        window.history.back();
                 });
         }
     }
@@ -94,11 +100,11 @@ export class StatisticsEditor extends React.Component{
         return (
             <Layout>
                 <Segment>
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit} error>
                         <Grid centered stackable>
                             <Grid.Row>
                                 <Grid.Column mobile={16}>
-                                    <Header content="Új statisztika rögzítése" width={16} />
+                                    <Header content={this.props.update ? "Statisztika frissítése" : "Új statisztika rögzítése"} width={16} />
                                 </Grid.Column>
                             </Grid.Row>
                             <Grid.Row>
@@ -108,6 +114,7 @@ export class StatisticsEditor extends React.Component{
                                         placeholder="pl. ENUSE"
                                         id="team"
                                         value={team}
+                                        error={!Validator.isPostTitle(team)}
                                         onChange={this.handleChange}
                                         required />
                                 </Grid.Column>
@@ -117,9 +124,10 @@ export class StatisticsEditor extends React.Component{
                                     <Form.Select
                                         label="Szezon:"
                                         id="season"
-                                        placeholder='Szezon'
+                                        placeholder='Kérem válasszon!'
                                         selection
                                         value={season}
+                                        error={season === ''}
                                         onChange={this.handleSelect}
                                         options={optionGenerator(null, Number(new Date().getFullYear()), 1990, 'seasons')}
                                         fluid
@@ -129,9 +137,10 @@ export class StatisticsEditor extends React.Component{
                                     <Form.Select
                                         label='Korosztály:'
                                         id='ageGroup'
-                                        placeholder='Korosztály'
+                                        placeholder='Kérem válasszon!'
                                         selection
                                         value={ageGroup}
+                                        error={ageGroup === ''}
                                         onChange={this.handleSelect}
                                         options={optionGenerator({key: 'felnőtt', value: 'felnőtt', text: 'felnőtt' }, 21, 5, 'U', )}
                                         fluid
@@ -142,9 +151,10 @@ export class StatisticsEditor extends React.Component{
                                     <Form.Select
                                         label='Liga:'
                                         id='league'
-                                        placeholder='Liga'
+                                        placeholder='Kérem válasszon!'
                                         selection
                                         value={league}
+                                        error={league === ''}
                                         onChange={this.handleSelect}
                                         options={optionGenerator(null, 1, 7)}
                                         fluid
@@ -159,6 +169,7 @@ export class StatisticsEditor extends React.Component{
                                         id='win'
                                         placeholder='győzelem'
                                         value={win}
+                                        error={!Validator.isNumber(win)}
                                         onChange={this.handleChange}
                                         required/>
                                 </Grid.Column>
@@ -168,6 +179,7 @@ export class StatisticsEditor extends React.Component{
                                         id='draw'
                                         placeholder='döntetlen'
                                         value={draw}
+                                        error={!Validator.isNumber(draw)}
                                         onChange={this.handleChange}
                                         required/>
                                 </Grid.Column>
@@ -177,6 +189,7 @@ export class StatisticsEditor extends React.Component{
                                         id='loss'
                                         placeholder='vereség'
                                         value={loss}
+                                        error={!Validator.isNumber(loss)}
                                         onChange={this.handleChange}
                                         required/>
                                 </Grid.Column>
@@ -186,6 +199,7 @@ export class StatisticsEditor extends React.Component{
                                         id='finalPosition'
                                         placeholder='helyezés'
                                         value={finalPosition}
+                                        error={!Validator.isNumber(finalPosition)}
                                         onChange={this.handleChange}
                                         required/>
                                 </Grid.Column>
@@ -209,7 +223,7 @@ export class StatisticsEditor extends React.Component{
                                         labelPosition='left'
                                         type='submit'
                                         color='blue'
-                                        content='mentés'
+                                        content={this.props.update ? 'frissítés' : 'mentés'}
                                         floated="left"/>
                                 </Grid.Column>
                             </Grid.Row>

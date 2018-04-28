@@ -22,7 +22,7 @@ class Statistics extends React.Component {
                 <Table.Cell title="győzelem/döntetlen/vereség">{`${s.win} / ${s.draw} / ${s.loss}`}</Table.Cell>
                 <Table.Cell>{s.finalPosition}.</Table.Cell>
 
-                {this.props.isAuthenticated && <Table.Cell><Button as={Link} to={`/statisztikak/${s._id}/szerkesztes`} icon="edit" color="orange"/></Table.Cell>}
+                {this.props.isAuthenticated && <Table.Cell><Button as={Link} to={`/statisztika/${s._id}/szerkesztes`} icon="edit" color="orange"/></Table.Cell>}
                 {this.props.isAuthenticated && <Table.Cell><Button icon="trash" color="red"/></Table.Cell>}
             </Table.Row>
         );

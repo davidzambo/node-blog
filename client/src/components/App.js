@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter, Redirect, Route} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import PostList from './containers/posts.list';
 import PostShow from './containers/posts.show';
@@ -19,6 +19,7 @@ import LegalNotice from "./presentational/legal-notice";
 import AboutMe from "./presentational/about-me";
 import Impressum from "./presentational/impressum";
 import NewsLetterConfirm from "./presentational/NewsLetter/confirm";
+import NotFound from "./presentational/not-found";
 
 const mapStateToProps = state => {
     return {
@@ -51,6 +52,7 @@ class App extends React.Component{
         return(
             <BrowserRouter>
                 <div style={{minHeight: '100vh' }}>
+                    <Switch>
                     <Route exact path='/'
                            render={props => <PostList {...props}/>}/>
 
@@ -67,7 +69,7 @@ class App extends React.Component{
                                return this.props.isAuthenticated ? <PostEditor {...props} update/> : <Redirect to='/'/>
                            }}/>
 
-                    <Route exact path={`/bejegyzesek/:slug(^uj)`}
+                    <Route exact path={`/bejegyzesek/:slug`}
                            render={props => <PostShow {...props} />}/>
 
                     <Route exact path={'/meccsek/uj'}
@@ -111,6 +113,8 @@ class App extends React.Component{
                     <Route exact path={'/feliratkozas'}
                            render={props => <NewsLetterConfirm {...props}/>}/>
 
+                    <Route component={NotFound} />
+                    </Switch>
                 </div>
             </BrowserRouter>
         );

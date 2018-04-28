@@ -57,7 +57,9 @@ class StatisticsList extends React.Component {
                             {statistics.map( (statistic, i) => <Statistics key={i} details={statistic}/> )}
                         </Table.Body>
                     </Table>
-                    { this.props.isAuthenticated && <Button as={Link} to="/statisztika/uj" color="blue" content="Új statisztika"/>}
+                    { this.props.isAuthenticated && <Button as={Link} to="/statisztika/uj" color="blue" icon labelPosition="left">
+                        <Icon name="add"/> Új statisztika rögzítése</Button>
+                        }
                 </Segment>
             </Layout>
         );
