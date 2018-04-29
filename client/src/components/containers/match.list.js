@@ -29,11 +29,14 @@ class MatchList extends React.Component{
                     {matches.filter(match => {
                         const matchDate = new Date(match.matchDate).getTime();
                         const today = new Date().getTime();
+                        if (this.props.isAuthenticated) {
+                            return true;
+                        }
                         return matchDate > today;
                     } ).map(match => {
                         return <Match details={match} key={match._id} />
                     })}
-                    {this.props.isAuthenticated && <Button as={Link} floated="right" to="/meccsek/uj" color="blue" content="Új meccs"/>}
+                    {this.props.isAuthenticated && <Button as={Link} to="/meccsek/uj" color="blue" icon labelPosition="left"><Icon name="add"/>Új meccs</Button>}
                 </Segment>
                 <ConfirmModal/>
             </Layout>

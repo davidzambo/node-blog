@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, Label} from 'semantic-ui-react';
+import {Image, Label, Segment, Dropdown} from 'semantic-ui-react';
 import Lightbox from 'react-images';
 import axios from "axios/index";
 import {connect} from "react-redux";
@@ -63,7 +63,7 @@ class Gallery extends React.Component{
 
     handleDelete(gallery){
         this.props.setEntity(gallery);
-        this.props.setQuestion(`Biztosan törölni szeretné a(z) ${gallery.title} című galériát a benne lévő képekkel együtt?`);
+        this.props.setQuestion(`Biztosan törölni szeretné a(z) <strong>${gallery.title}</strong> című galériát a benne lévő képekkel együtt?`);
         this.props.setHeader('Galéria törlése');
         this.props.setOnConfirm(() => axios({
             url: '/api/gallery',
@@ -90,17 +90,31 @@ class Gallery extends React.Component{
             };
         });
 
+        const options = [
+            {
+                key: 'edit',
+                text: '',
+                value: 'edit',
+                content: <a className="text-like-link" href={`/galeria/${gallery.slug}/szerkesztes`}>Szerkesztés</a>
+            },
+            {
+                key: 'delete',
+                text: '',
+                value: '',
+                content: <span onClick={() => this.handleDelete(gallery)}> Törlés</span>
+            }
+        ];
+
         return(
-            <div style={{textAlign: 'center', margin: '1rem'}}>
-                <Label basic size="large">
-                    {gallery.title} <small>({gallery.images.length})</small>
-                </Label>
+            <Segment compact className="gallery-item-container">
                 <Image
-                    circular
                     src={gallery.images[0] ? `/public/images/${gallery.images[0].thumbnail}` : "https://www.jainsusa.com/images/store/landscape/not-available.jpg"}
-                    onClick={this.toggleLightbox}
-                    className="pointer"
-                    style={{objectFit: 'cover', width: 200, height: 200}}/>
+                    className="pointer gallery-cover-image"
+                    onClick={this.toggleLightbox}/>
+                <Label color="orange" pointing>
+                    <span>{gallery.title} <small>({gallery.images.length})</small></span>
+                    {this.props.isAuthenticated && <Dropdown inline options={options}/>}
+                </Label>
                 <Lightbox isOpen={this.state.isOpen}
                           images={images}
                           enableKeyboardInput
@@ -115,12 +129,15 @@ class Gallery extends React.Component{
                           onClickPrev={() => this.changeCurrentImage(-1)}
                           onClickNext={() => this.changeCurrentImage(1)}
                           onClose={this.toggleLightbox}/>
-            </div>
+            </Segment>
         )
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Gallery);
+
+
+
 
 /**
  * <Card.Header textAlign="center" as="h4" className="no-margin">

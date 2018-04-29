@@ -1,4 +1,6 @@
 const Match = require('../models/MatchModel');
+const Post = require('../models/PostModel');
+const moment = require('moment');
 
 module.exports = {
 
@@ -13,19 +15,32 @@ module.exports = {
 
     create(req, res) {
         const match = new Match(req.body);
-        console.log(match);
         match.save(err => {
             if (err) {
                 console.error(err);
             }
-            Match.find()
-                .sort({date: 1})
-                .exec((err, matches) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                    res.status(200).json({matches});
-                })
+            const post = new Post({
+                title: `${moment(req.body.matchDate).locale('hu').format('YYYY. MMMM Do')} ${req.body.team} - ${req.body.vsTeam} mérkőzés!`,
+                tags: 'meccs',
+                category: 'handball',
+                body: '',
+            });
+            post.body += `<p>Ellenfél: ${req.body.vsTeam}</p>`;
+            post.body += `<p>Időpont: ${moment(req.body.matchDate).locale('hu').format('YYYY. MMMM Do HH:mm')}</p>`;
+            post.body += `<p>Helyszín: ${req.body.city} ${req.body.address}</p>`;
+            post.body += `<p>Korosztály: ${req.body.ageGroup}</p>`;
+            post.body += `<p>Liga: ${req.body.league}</p>`;
+            post.save(err => {
+                if (err) console.error(err);
+                Match.find()
+                    .sort({date: 1})
+                    .exec((err, matches) => {
+                        if (err) {
+                            console.error(err);
+                        }
+                        res.status(200).json({matches});
+                    })
+            });
         })
     },
 

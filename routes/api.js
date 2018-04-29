@@ -47,8 +47,8 @@ module.exports = (function(){
     api.get('/archives/:year/:month', PostController.archives.show);
 
     api.post('/newsletter', NewsletterController.subscribe);
-    // api.put('/newsletter', NewsletterController.send);
     api.put('/newsletter', NewsletterController.approve);
+    api.delete('/newsletter', NewsletterController.unsubscribe);
 
     api.get('/category/:category', CategoryController.index);
 
@@ -66,6 +66,7 @@ module.exports = (function(){
     api.delete('/gallery/', AuthMiddleware.isAuthenticated, GalleryController.destroy);
 
     api.post('/login', UsersController.checkUser);
+    api.put('/user', UsersController.update);
 
     return api;
 })();

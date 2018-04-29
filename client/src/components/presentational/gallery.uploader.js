@@ -4,7 +4,6 @@ import axios from 'axios';
 import Validator from "../../libs/validators";
 import {connect} from "react-redux";
 import {setGalleries} from "../../actions/gallery";
-const validator = new Validator();
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -55,7 +54,7 @@ class GalleryUploader extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (validator.isTitle(this.state.title && this.state.files > 0)) {
+        if (Validator.isTitle(this.state.title) && this.state.files > 0) {
             this.setState({isLoading: true});
             const data = new FormData(),
                 {files, description, title} = this.state;
@@ -94,15 +93,17 @@ class GalleryUploader extends React.Component {
     }
 
     render() {
+        const {update} = this.props;
         return (
-            <Segment secondary>
-                <Header as="h3" content="Új galéria feltöltése"/>
+            <Segment>
+                <Header as="h3" content={ update ? "Galéria frissítése" :  "Új galéria feltöltése"}/>
                 <Form onSubmit={this.handleSubmit} error>
                     <Form.Input label="Album neve"
                                 id="title"
                                 value={this.state.title}
                                 onChange={this.handleOnChange}
-                                error={(this.state.title !== '' && !validator.isTitle((this.state.title)))}/>
+                                error={(this.state.title !== '' && !Validator.isTitle((this.state.title)))}
+                                required/>
                     <Form.Input label="Album leírása"
                                 id="description"
                                 value={this.state.description}
@@ -118,7 +119,7 @@ class GalleryUploader extends React.Component {
                                 style={{color: 'white', display: 'inline-block', marginRight: '1rem', height: 37}}/>
                         <input type="file" multiple id="files" className="d-none" onChange={this.handleOnChange}/>
 
-                        {(this.state.files[0] || this.props.update) && <Button positive
+                        {(this.state.files[0] || update) && <Button positive
                                                         icon="upload"
                                                         type="submit"
                                                         content={this.props.update ? "Frissítés" : "Feltöltés"}

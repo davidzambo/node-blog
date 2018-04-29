@@ -62,6 +62,21 @@ module.exports = {
             });
     },
 
+    unsubscribe(req, res){
+        NewsLetter.findOne({email: req.body.email})
+            .exec((err, reader) => {
+                if (err) return res.status(417).json(err);
+                List.members(req.body.email).delete((err, mailgunResponse) => {
+                    if (err) return res.status(404)
+                        .json({message: 'Ez az emailcím nincs a hírlevélolvasóim között!', err});
+                    reader.remove(err => {
+                        if (err) return res.status(400).json(err);
+                        res.status(201).json({message: 'Sikeresen leiratkoztál a levelezőlistámról!', mailgunResponse});
+                    })
+                })
+            })
+    },
+
     remove(req, res){
         NewsLetter.findOne({
             _id: req.query.token,

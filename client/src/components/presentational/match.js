@@ -61,11 +61,11 @@ export class Match extends React.Component {
         return (
             <Segment>
                 <Grid stretched>
-                    <Grid.Column mobile={4} tablet={3} computer={2} color={'blue'}>
+                    <Grid.Column mobile={4} tablet={3} computer={2} color={'teal'}>
                         <Header as={'h4'} className='no-margin' textAlign='center'
                                 content={date.format('MMMM')}/>
                         <Header as={'h2'} className='no-margin' textAlign='center'
-                                content={date.format('DD')}/>
+                                content={date.format('Do')}/>
                         <Header as={'h5'} className='no-margin' textAlign='center'
                                 content={date.format('HH:mm')}/>
                     </Grid.Column>

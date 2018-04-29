@@ -4,7 +4,7 @@ import Layout from '../presentational/layout';
 import GalleryUploader from "../presentational/gallery.uploader";
 import axios from 'axios';
 import Gallery from "../presentational/gallery";
-import {Card, Segment, Divider, Header, Icon} from "semantic-ui-react";
+import {Segment, Divider, Header, Icon} from "semantic-ui-react";
 import {setGalleries} from "../../actions/gallery";
 import ConfirmModal from "../presentational/confirm-modal";
 
@@ -43,11 +43,11 @@ class GalleryList extends React.Component{
                         </Header.Content>
                     </Header>
                     <Divider horizontal/>
-                    <Card.Group itemsPerRow={3}>
+                    <Segment.Group>
                         {this.props.galleries.map(gallery => {
                             return <Gallery details={gallery} key={gallery._id}/>
                         })}
-                    </Card.Group>
+                    </Segment.Group>
                     {this.props.isAuthenticated && <div>
                         <GalleryUploader/>
                         <ConfirmModal />

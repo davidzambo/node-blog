@@ -64,5 +64,28 @@ module.exports = {
                     res.status(206).json({error: 'Sikertelen bejelentkezési kísérletei miatt 24 órára blokkoltuk az ip címét!'});
                 }
             });
+    },
+
+    update(req, res){
+        console.log(req.body);
+        User.findOne()
+            .exec((err, user) => {
+                if (err) console.error(err);
+                console.log(user);
+                if (passwordHash.verify(req.body.oldPassword, user.password)){
+                    console.log('matched')
+                    if (req.body.newPassword !== req.body.newPasswordConfirm) {
+                        return res.status(206).json({message: 'A megerősítő jelszó nem egyezik meg az új jelszóval'});
+                    }
+                    user.password = passwordHash.generate(req.body.newPassword);
+                    user.save(err => {
+                        if (err) console.error(err);
+                        res.status(202).json({message: 'A jelszavát sikeresen frissítettük!'});
+                    })
+                } else {
+                    console.log('whops');
+                    res.status(401).json({message: 'A megadott jelszó nem megfelelő'});
+                }
+            })
     }
 }

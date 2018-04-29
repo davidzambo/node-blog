@@ -22,6 +22,10 @@ class Validator {
     static isNumber(str){
         return /^[\d]+$/.test(str);
     }
+
+    static isPassword(str){
+        return /^[\w\d\s]{5,}$/.test(str);
+    }
 }
 
 export default Validator;

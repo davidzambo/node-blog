@@ -54,7 +54,7 @@ export class Post extends Component {
         return (
             <Segment as='article' key={post._id}>
                 <Header as='h1'><a href={'/bejegyzesek/' + post.slug}>{post.title}</a></Header>
-                <Header as='h5' textAlign='left'>{moment(post.date, 'hu').format('YYYY. MMMM D. HH:MM')}</Header>
+                <Header as='h5' textAlign='left'>{moment(post.date).locale('hu').format('YYYY. MMMM Do HH:mm')}</Header>
                 <Divider horizontal/>
                 {Parser(post.body)}
                 {post.tags.map((tag, i) => {

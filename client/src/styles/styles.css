@@ -195,3 +195,41 @@ article img {
 .ui .segment{
     background: rgba(255, 255, 255, 0.8)!important;
 }
+
+.gallery-item-container{
+    text-align: center;
+    display: inline-block!important;
+    margin: 0.1rem!important;
+}
+
+.segment .gallery-item-container {
+    background: transparent!important;
+    border: none!important;
+}
+
+.gallery-cover-image {
+    object-fit: cover;
+    width: 38vw;
+    height: 38vw;
+}
+
+@media screen and (min-width: 768px){
+    .gallery-cover-image {
+        object-fit: cover;
+        width: 19vw;
+        height: 19vw;
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .gallery-cover-image {
+        object-fit: cover;
+        width: 12vw;
+        height: 12vw;
+    }
+}
+
+.text-like-link {
+    color: black;
+    font-weight: bold;
+}

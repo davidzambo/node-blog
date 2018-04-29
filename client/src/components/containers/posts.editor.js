@@ -95,7 +95,7 @@ class ConnectedPostEditor extends Component {
 
     render() {
         const { title, tags, body, category } = this.state;
-        let button = <Button type="submit" color="blue">mentés</Button>
+        let button = <Button type="submit" color="blue" icon labelPosition="left"><Icon name="save"/>mentés</Button>
         if (this.props.update) {
             button = <div>
                 <Button type="button" color='blue' icon labelPosition="left" onClick={this.props.cancelPostAction}>
@@ -118,7 +118,8 @@ class ConnectedPostEditor extends Component {
                                 value={title}
                                 error={title !== '' && !Validator.isPostTitle(title)}
                                 onChange={this.handleChange}
-                                width={16} />
+                                width={16}
+                                required/>
                         </Form.Group>
                         <Form.Group>
                             <Form.Input
@@ -127,7 +128,8 @@ class ConnectedPostEditor extends Component {
                                 value={tags}
                                 error={tags !== '' && !Validator.isTags(tags)}
                                 onChange={this.handleChange}
-                                width={10} />
+                                width={10}
+                                required/>
                             <Form.Select
                                 label='Kategória'
                                 id='category'
@@ -136,7 +138,8 @@ class ConnectedPostEditor extends Component {
                                 options={categories}
                                 onChange={(e, { value }) => this.setState({ category: value })}
                                 placeholder="Kategória"
-                                width={6} />
+                                width={6}
+                                required/>
                         </Form.Group>
                         <ReactQuill
                             label="Cikk:"

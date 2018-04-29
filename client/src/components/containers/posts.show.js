@@ -19,12 +19,7 @@ export class PostShow extends Component {
         }
     }
 
-    componentWillMount(){
-        console.log('postshow');
-    }
-
     componentDidMount() {
-        console.log(this.props);
         axios.get('/api/posts/' + this.props.match.params.slug)
             .then(response => {
                 console.log(response);

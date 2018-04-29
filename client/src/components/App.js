@@ -20,6 +20,8 @@ import AboutMe from "./presentational/about-me";
 import Impressum from "./presentational/impressum";
 import NewsLetterConfirm from "./presentational/NewsLetter/confirm";
 import NotFound from "./presentational/not-found";
+import PasswordEditor from "./containers/password.editor";
+import Unsubscribe from "./presentational/unsubscribe";
 
 const mapStateToProps = state => {
     return {
@@ -60,7 +62,7 @@ class App extends React.Component{
                            render={props => <PostList {...props}/>}/>
 
                     <Route exact path="/bejegyzesek/uj"
-                           render={() => {
+                           render={(props) => {
                                return this.props.isAuthenticated ? <PostEditor/> : <Redirect to='/'/>
                            }}/>
 
@@ -113,6 +115,12 @@ class App extends React.Component{
                     <Route exact path={'/feliratkozas'}
                            render={props => <NewsLetterConfirm {...props}/>}/>
 
+                    <Route exact path={'/leiratkozas'} component={Unsubscribe}/>
+
+                    <Route exact path={'/uj-jelszo'}
+                       render={(props) => {
+                           return this.props.isAuthenticated ? <PasswordEditor/> : <Redirect to="/" />
+                       }}/>
                     <Route component={NotFound} />
                     </Switch>
                 </div>

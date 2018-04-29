@@ -22,21 +22,18 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const menuTitleStyle={
-    display: 'inline',
-    marginTop: 3,
-}
 
 class Navbar extends React.Component {
     render() {
         const authMenuItem =
             this.props.isLoggedIn ?
-                <Dropdown trigger={<div><Icon name='settings' size="large"/><h5 style={menuTitleStyle}> Adminisztráció</h5></div>} className='link item'>
+                <Dropdown trigger={<div><Icon name='settings'/> Adminisztráció</div>} className='link item'>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
                         <Dropdown.Item as={NavLink} exact to='/statisztika'><Icon name='line chart' size="large"/> Statisztikák kezelése</Dropdown.Item>
                         <Dropdown.Item as={NavLink} exact to='/meccsek/'><Icon name="calendar"/> Meccsek kezelése</Dropdown.Item>
                         <Dropdown.Item as={NavLink} exact to='/galeria/'><Icon name="image"/> Galériák kezelése</Dropdown.Item>
+                        <Dropdown.Item as={NavLink} exact to='/uj-jelszo/'><Icon name="key"/> Új jelszó</Dropdown.Item>
                         <Dropdown.Item onClick={() => {
                             Cookies.remove('trdToken');
                             this.props.isAuthenticated(false);

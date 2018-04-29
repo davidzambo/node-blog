@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Card, Image, Icon} from 'semantic-ui-react';
+import {Card, Image, Icon, Segment} from 'semantic-ui-react';
 import Layout from "../presentational/layout";
 import ConfirmModal from "../presentational/confirm-modal";
 import {connect} from "react-redux";
@@ -41,8 +41,6 @@ class GalleryEditor extends React.Component{
                     slug: this.props.match.params.slug
                 }
             });
-            console.log('response');
-            console.log(response);
             this.setState({gallery: response.data.galleries[0]});
         } catch (e){
             console.log('Error: ' + e);
@@ -77,18 +75,20 @@ class GalleryEditor extends React.Component{
     render(){
         return(
             <Layout>
-                <h1>{this.state.gallery.title}</h1>
-                <Card.Group itemsPerRow={4}>
-                    { this.state.gallery.images.map(img => {
-                        return <Card key={img._id}>
-                                    <Image src={`/public/images/${img.thumbnail}`} />
-                                    <Card.Meta onClick={() => this.handleDelete(img)} className="pointer">
-                                        <Icon color="red" name="trash"/> Törlés
-                                    </Card.Meta>
-                                </Card>
-                            })
-                    }
-                </Card.Group>
+                <Segment>
+                    <h1>{this.state.gallery.title}</h1>
+                    <Card.Group itemsPerRow={4}>
+                        { this.state.gallery.images.map(img => {
+                            return <Card key={img._id}>
+                                        <Image src={`/public/images/${img.thumbnail}`} />
+                                        <Card.Meta onClick={() => this.handleDelete(img)} className="pointer">
+                                            <Icon color="red" name="trash"/> Törlés
+                                        </Card.Meta>
+                                    </Card>
+                                })
+                        }
+                    </Card.Group>
+                </Segment>
                 <GalleryUploader update details={this.state.gallery}/>
                 <ConfirmModal/>
             </Layout>

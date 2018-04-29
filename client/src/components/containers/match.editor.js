@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import Layout from '../presentational/layout';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import {Form, Header, Message, Grid, Button} from 'semantic-ui-react';
+import {Form, Header, Message, Grid, Button, Segment} from 'semantic-ui-react';
 import moment from 'moment';
 import axios from 'axios';
+import Validator from "../../libs/validators";
 
 export class MatchEditor extends Component {
     constructor(props) {
@@ -83,8 +84,8 @@ export class MatchEditor extends Component {
                 data: data,
             })
                 .then( response => {
-                    if (response.status === 200)
-                        window.location.href = '/meccsek';
+                    if (response.status === 200 || response.status === 201)
+                        window.location = '/meccsek';
                 })
         }
     }
@@ -93,127 +94,133 @@ export class MatchEditor extends Component {
         const {matchDate, city, address, team, vsTeam, league, ageGroup, hasError} = this.state;
         return (
             <Layout>
-                <Form onSubmit={this.handleSubmit}>
-                    <Grid centered stackable>
-                        <Grid.Row>
-                            <Grid.Column mobile={16}>
-                                <Header content='Új meccs rögzítése' width={16}/>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column mobile={16} tablet={8} computer={8}>
-                                <Form.Input
-                                    label='Csapat neve:'
-                                    placeholder='pl. ENUSE'
-                                    id='team'
-                                    value={team}
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </Grid.Column>
-                            <Grid.Column mobile={16} tablet={8} computer={8}>
-                                <Form.Input
-                                    label='Ellenfél neve:'
-                                    placeholder='pl. DVTK'
-                                    id='vsTeam'
-                                    value={vsTeam}
-                                    onChange={this.handleChange}
-                                    required
-                                />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column mobile={16} tablet={6} computer={6}>
-                                <Form.Input
-                                    label='Város:'
-                                    id='city'
-                                    placeholder='pl.: Budapest'
-                                    value={city}
-                                    onChange={this.handleChange}
-                                    required/>
-                            </Grid.Column>
-                            <Grid.Column mobile={16} tablet={10} computer={10}>
-                                <Form.Input
-                                    label='Pontos cím:'
-                                    id='address'
-                                    placeholder='pl.: Lajosmizsei út 23.'
-                                    value={address}
-                                    onChange={this.handleChange} />
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column width={8}>
-                                <Form.Select
-                                    label='Korosztály:'
-                                    id='ageGroup'
-                                    placeholder='Korosztály'
-                                    selection
-                                    value={ageGroup}
-                                    onChange={this.handleSelect}
-                                    options={optionGenerator({key: 'felnőtt', value: 'felnőtt', text: 'felnőtt' }, 21, 5, 'U', )}
-                                    fluid
-                                    required
-                                />
-                            </Grid.Column>
-                            <Grid.Column width={8} >
-                                <Form.Select
-                                    label='Liga:'
-                                    id='league'
-                                    placeholder='Liga'
-                                    value={league}
-                                    onChange={this.handleSelect}
-                                    options={optionGenerator(null, 1, 7)}
-                                    fluid
-                                    required
-                                />
-                            </Grid.Column>
-                        </Grid.Row>
-
-                        <Grid.Row>
-                            <Grid.Column mobile={16} className='field'>
-                                <div className='field'>
-                                    <label htmlFor="date">Meccs időpontja:</label>
-                                    <DatePicker
-                                        id='date'
-                                        selected={matchDate}
-                                        showTimeSelect={true}
+                <Segment>
+                    <Form onSubmit={this.handleSubmit} error>
+                        <Grid centered stackable>
+                            <Grid.Row>
+                                <Grid.Column mobile={16}>
+                                    <Header content='Új meccs rögzítése' width={16}/>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column mobile={16} tablet={8} computer={8}>
+                                    <Form.Input
+                                        label='Csapat neve:'
+                                        placeholder='pl. ENUSE'
+                                        id='team'
+                                        value={team}
+                                        error={!Validator.isPostTitle(team)}
                                         onChange={this.handleChange}
-                                        dateFormat='YYYY. MMMM D. HH:mm'
-                                        timeFormat='HH:mm'
-                                        minDate={moment()}
-                                        maxDate={moment().add(1, 'year')}
-                                        showDisabledMonthNavigation
-                                        locale='hu-hu'
-                                        inline
+                                        required
                                     />
-                                </div>
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column>
-                                {
-                                    hasError ? <Message
-                                            negative
-                                            icon='exclamation triangle'
-                                            header='Whoopsz :O'
-                                            content='Kérem ellenőrizze, hogy minden mezőt kitöltött-e!'/>
-                                        : ''
-                                }
-                            </Grid.Column>
-                        </Grid.Row>
-                        <Grid.Row>
-                            <Grid.Column>
-                                <Button
-                                    type='submit'
-                                    positive
-                                    icon='save'
-                                    labelPosition='left'
-                                    floated='right'
-                                    content='mentés'/>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </Form>
+                                </Grid.Column>
+                                <Grid.Column mobile={16} tablet={8} computer={8}>
+                                    <Form.Input
+                                        label='Ellenfél neve:'
+                                        placeholder='pl. DVTK'
+                                        id='vsTeam'
+                                        value={vsTeam}
+                                        error={!Validator.isPostTitle(vsTeam)}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column mobile={16} tablet={6} computer={6}>
+                                    <Form.Input
+                                        label='Város:'
+                                        id='city'
+                                        placeholder='pl.: Budapest'
+                                        value={city}
+                                        error={!Validator.isPostTitle(city)}
+                                        onChange={this.handleChange}
+                                        required/>
+                                </Grid.Column>
+                                <Grid.Column mobile={16} tablet={10} computer={10}>
+                                    <Form.Input
+                                        label='Pontos cím:'
+                                        id='address'
+                                        placeholder='pl.: Lajosmizsei út 23.'
+                                        value={address}
+                                        onChange={this.handleChange} />
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column width={8}>
+                                    <Form.Select
+                                        label='Korosztály:'
+                                        id='ageGroup'
+                                        placeholder='Korosztály'
+                                        selection
+                                        value={ageGroup}
+                                        error={ageGroup === ''}
+                                        onChange={this.handleSelect}
+                                        options={optionGenerator({key: 'felnőtt', value: 'felnőtt', text: 'felnőtt' }, 21, 5, 'U', )}
+                                        fluid
+                                        required
+                                    />
+                                </Grid.Column>
+                                <Grid.Column width={8} >
+                                    <Form.Select
+                                        label='Liga:'
+                                        id='league'
+                                        placeholder='Liga'
+                                        value={league}
+                                        error={league === ''}
+                                        onChange={this.handleSelect}
+                                        options={optionGenerator(null, 1, 7)}
+                                        fluid
+                                        required
+                                    />
+                                </Grid.Column>
+                            </Grid.Row>
+
+                            <Grid.Row>
+                                <Grid.Column mobile={16} className='field'>
+                                    <div className='field'>
+                                        <label htmlFor="date">Meccs időpontja:</label>
+                                        <DatePicker
+                                            id='date'
+                                            selected={matchDate}
+                                            showTimeSelect={true}
+                                            onChange={this.handleChange}
+                                            dateFormat='YYYY. MMMM D. HH:mm'
+                                            timeFormat='HH:mm'
+                                            minDate={moment()}
+                                            maxDate={moment().add(1, 'year')}
+                                            showDisabledMonthNavigation
+                                            locale='hu-hu'
+                                            inline
+                                        />
+                                    </div>
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    {
+                                        hasError ? <Message
+                                                negative
+                                                icon='exclamation triangle'
+                                                header='Whoopsz :O'
+                                                content='Kérem ellenőrizze, hogy minden mezőt kitöltött-e!'/>
+                                            : ''
+                                    }
+                                </Grid.Column>
+                            </Grid.Row>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <Button
+                                        type='submit'
+                                        color='blue'
+                                        icon='add'
+                                        labelPosition='left'
+                                        content='mentés'/>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Form>
+                </Segment>
             </Layout>
         );
     }

@@ -16,6 +16,11 @@ class Infobox extends React.Component {
                         </NavLink>
                     </List.Item>
                     <List.Item>
+                        <NavLink to="/leiratkozas">
+                            <Icon name="cancel"/>Hírlevél leiratkozás
+                        </NavLink>
+                    </List.Item>
+                    <List.Item>
                         <NavLink to="/impresszum">
                             <Icon name="info"/>Impresszum
                         </NavLink>
