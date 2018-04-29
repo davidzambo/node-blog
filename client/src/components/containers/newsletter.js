@@ -10,7 +10,7 @@ export class NewsLetter extends Component {
         this.state = {
             email: '',
             firstName: '',
-            message: '',
+            result: '',
             isLoading: false,
             isSuccess: false,
         }
@@ -20,25 +20,22 @@ export class NewsLetter extends Component {
         this.setState({[e.target.id]: e.target.value});
     }
 
-    handleSubmit(){
-        this.setState({ isLoading: true });
-        axios.post('/api/newsletter', this.state)
-            .then(response => {
-                this.setState({
-                    isLoading: false,
-                    message: "A feliratkozás véglegesítéséhez szükséges email kiküldtük az email címedre!",
-                    email: '',
-                    firstName: '',
-                    isSuccess: true
-                })
-            })
-            .catch( e => {
-                this.setState({
-                    isLoading: false,
-                    message: "Ez az emailcím már szerepel a regisztrált hírlevél olvasók között!",
-                    isSuccess: false
-                })
+    async handleSubmit() {
+        this.setState({isLoading: true});
+        try {
+            const response = await axios.post('/api/newsletter', this.state);
+            this.setState({
+                result: <Message icon="check" size="tiny" positive
+                                 content={response.data.message}/>,
+                isLoading: false
             });
+        } catch (e) {
+            this.setState({
+                result: <Message icon="exclamation triangle" size="tiny" negative
+                                 content={e.response.data.message}/>,
+                isLoading: false
+            });
+        }
     }
 
     render(){
@@ -50,15 +47,7 @@ export class NewsLetter extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <Form.Input placeholder='Az Ön keresztneve' id="firstName" icon='font' iconPosition='left' required onChange={this.handleChange} value={this.state.firstName}/>
                     <Form.Input type='email' id="email" placeholder='Az Ön email címe' icon='mail' iconPosition='left' required onChange={this.handleChange} value={this.state.email}/>
-                    {
-                        this.state.message !== '' ?
-                            <Message
-                                icon={this.state.isSuccess ? "check" : "exclamation circle"}
-                                color={this.state.isSuccess ? "green" : "red"}
-                                size="tiny"
-                                content={this.state.message}/>
-                            : ''
-                    }
+                    {this.state.result}
                     <Form.Button
                         type="submit"
                         loading={this.state.isLoading}
