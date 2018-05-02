@@ -8,7 +8,8 @@ module.exports = {
         Match.find()
             .sort({matchDate: 1})
             .exec((err, matches) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({matches});
             });
     },
@@ -16,9 +17,8 @@ module.exports = {
     create(req, res) {
         const match = new Match(req.body);
         match.save(err => {
-            if (err) {
-                console.error(err);
-            }
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
             const post = new Post({
                 title: `${moment(req.body.matchDate).locale('hu').format('YYYY. MMMM Do')} ${req.body.team} - ${req.body.vsTeam} mérkőzés!`,
                 tags: 'meccs',
@@ -31,13 +31,13 @@ module.exports = {
             post.body += `<p>Korosztály: ${req.body.ageGroup}</p>`;
             post.body += `<p>Liga: ${req.body.league}</p>`;
             post.save(err => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 Match.find()
                     .sort({date: 1})
                     .exec((err, matches) => {
-                        if (err) {
-                            console.error(err);
-                        }
+                        if (err) return res.status(400)
+                            .json({err, message: "Az adatbázis nem elérhető!"});
                         res.status(200).json({matches});
                     })
             });

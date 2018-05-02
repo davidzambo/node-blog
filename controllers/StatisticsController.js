@@ -5,7 +5,8 @@ module.exports = {
         Statistics.find()
             .sort({season: -1})
             .exec( (err, statistics) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({statistics});
             })
     },
@@ -27,7 +28,8 @@ module.exports = {
     show(req, res){
         Statistics.findOne({_id: req.params.id})
             .exec( (err, statistics) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({statistics});
             });
     },
@@ -42,12 +44,24 @@ module.exports = {
         };
 
         Statistics.findOneAndUpdate({_id: req.body._id}, {$set: update}, (err, statistic) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({statistic});
             })
     },
 
     destroy(req, res){
-        res.status(200).json({msg: 'ok'});
+        Statistics.findOneAndRemove({_id: req.body._id}, err => {
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
+
+            Statistics.find()
+                .sort({season: -1})
+                .exec( (err, statistics) => {
+                    if (err) return res.status(400)
+                        .json({err, message: "Az adatbázis nem elérhető!"});
+                    return res.status(200).json({statistics});
+                })
+        })
     },
 };

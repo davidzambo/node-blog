@@ -16,7 +16,8 @@ module.exports = {
         Post.find(filter)
             .sort({date: -1})
             .exec((err, posts) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({
                     posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
                     count: posts.length,
@@ -28,7 +29,8 @@ module.exports = {
 
     show(req, res) {
         Post.findOne({slug: req.params.slug}).exec((err, post) => {
-            if (err) console.error(err);
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});;
             res.status(200).json({post});
         })
     },
@@ -53,9 +55,8 @@ module.exports = {
             imgRegExp = /<img src[^>]+/g,
             imagesToUnlink = [];
         Post.findOne({_id: req.body._id}).exec((err, post) => {
-            if (err) {
-                console.error(err);
-            }
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
             // compare the post's body with the new body, looking for image changes.
             const originalImages = post.body.match(imgRegExp);
             if (originalImages !== null) {
@@ -103,9 +104,8 @@ module.exports = {
         let imgRegExp = /<img src[^>]+/g,
             imagesToUnlink = [];
         Post.findOne({_id: req.params.id}).exec((err, post) => {
-            if (err) {
-                console.error(err);
-            }
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
             imagesToUnlink = post.body.match(imgRegExp);
             if (imagesToUnlink !== null) {
                 imagesToUnlink.map(img => {
@@ -128,7 +128,8 @@ module.exports = {
                 });
             }
             post.remove( err => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 Post.find().sort({data: -1}).exec((err, posts) => {
                     if (err) console.error(err);
                     res.status(200).json({posts});
@@ -158,7 +159,8 @@ module.exports = {
                     }
                 }
             ], (err, result) =>{
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({result: result[0].distinctDate});
             });
         },
@@ -170,7 +172,8 @@ module.exports = {
                 limit = 3,
                 page = req.query.page || 1;
             Post.find({date: {$gte: from, $lt: to}}, (err, posts) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200).json({
                     posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
                     count: posts.length,

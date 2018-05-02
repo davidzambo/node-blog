@@ -11,19 +11,26 @@ module.exports = {
         NewsLetter.create({
             email: req.body.email,
             firstName: req.body.firstName
-        }, (err, newsLetter) => {
-            if (err) {
-                console.error(err);
-                if (err.code === 11000){
-                    return res.status(304)
-                        .json({message: "Error"});
+        }, (error, newsLetter) => {
+            if (error) {
+                if (error.code === 11000){
+                    return res.status(409)
+                        .json({
+                            message: "Ez az emailcím már szerepel a regisztrált hírlevél olvasók között!",
+                            error,
+                        });
+                } else {
+                    return res.status(417).json({error, message: 'Hiba történt a feliratkozás során!'});
                 }
             }
 
             Mailgun.messages().send(messages.optIn(req.body.email, newsLetter._id), (err, body) => {
-                if (err) console.error(err);
+                if (err) return res.status(409).json({
+                    err,
+                    message: 'Hiba történt a hírlevél feliratkozás során!'
+                });
                 res.status(201)
-                    .json({message: "Ok"});
+                    .json({message: "A feliratkozás véglegesítéséhez szükséges email kiküldtük az email címedre!"});
             });
         })
     },
@@ -34,14 +41,16 @@ module.exports = {
             email: req.query.email
         })
             .exec((err, newsLetter) => {
-                if (err) console.error(err);
+                if (err) return res.status(417)
+                    .json({err, message: "Hiba történt az adatbázis elérés során!"});
                 if (newsLetter){
                     if (newsLetter.approved){
-                        return res.status(200).json({message: 'Ön már megerősítette az emailcímét!'});
+                        return res.status(409).json({message: 'Ön már megerősítette az email címét!'});
                     }
                     newsLetter.approved = true;
                     newsLetter.save(err => {
-                       if (err) console.error(err);
+                       if (err) return res.status(417)
+                           .json({err, message: "Hiba történt az adatbázisba mentés során!"});
 
                         const newSubscriber = {
                             subscribed: true,
@@ -49,15 +58,15 @@ module.exports = {
                             address: newsLetter.email
                         };
 
-                        List.members().create( newSubscriber, (err, data) => {
-                            if (err) console.error(err);
-                            console.log(data);
+                        List.members().create( newSubscriber, err => {
+                            if (err) return res.status(417)
+                                .json({err, message: "Hiba történt a hírlevél feliratkozás megerősítése során!"});
                             return res.status(201).json({message: 'A feliratkozás megerősítését rögzítettük!'});
                         });
 
                     });
                 } else {
-                    return res.status(304).json({error: "Valami hiba történt!"});
+                    return res.status(304).json({error: "Az email cím nem szerepel a rendszerünkben!"});
                 }
             });
     },
@@ -77,32 +86,6 @@ module.exports = {
             })
     },
 
-    remove(req, res){
-        NewsLetter.findOne({
-            _id: req.query.token,
-            email: req.query.email
-        })
-        .exec((err, newsLetter) => {
-            if (err) console.error(err);
-            newsLetter.remove(err => res.status(200));
-        });
-    },
-
-    send(data, next){
-        const message = {
-            from: SENDER,
-            to: data.email,
-            subject: data.subject,
-            html: data.message
-        };
-
-        Mailgun.messages().send(message, (err, body) => {
-            if (err) console.error(err);
-            console.log(body);
-            next()
-        })
-    },
-
     sendNotification(data){
         const message = {
             from: SENDER,
@@ -111,9 +94,8 @@ module.exports = {
             html: messages.newPost(data)
         };
 
-        Mailgun.messages().send(message, (err, body) => {
+        Mailgun.messages().send(message, err => {
             if (err) console.error(err);
-            console.log(body);
         })
     },
 
@@ -145,37 +127,6 @@ const messages = {
         return message;
     }
 }
-/*
-* Newsletter.findOne({email: req.body.email}, (err, subscribed) => {
-            if (err) console.error(err);
-
-            if (subscribed) {
-                return res.status(400).json({error: 'Ezzel az email címmel már regisztrált hírlevelemre!'});
-
-            } else {
-                Mailgun.validate(req.body.email, (err, body) => {
-                    if (err) console.error(err);
-                    console.log(body);
-
-                    if (body.is_valid) {
-                        const newsletter = new Newsletter({
-                            firstName: req.body.firstName,
-                            email: req.body.email
-                        });
-
-                        newsletter.save(err => {
-                            if (err) console.error(err);
-                            return res.status(200).json({message: 'A feliratkozás érvényesítéséhez szükséges emailt elküldtük a megadott email címre! !'});
-
-                        });
-                    } else {
-
-                    }
-                });
-            }
-
-        });*/
-
 /**    subscribe(req, res) {
         Validator.validate(req.body.email, (err, body) => {
            if (err) console.error(err);

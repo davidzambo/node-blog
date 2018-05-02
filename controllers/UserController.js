@@ -10,7 +10,8 @@ module.exports = {
             .limit(limit)
             .sort({date: -1})
             .exec((err, loginAttempts) => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});;
                 let canTryLogin = false;
                 if (loginAttempts[limit - 1] == undefined) {
                     canTryLogin = true;
@@ -40,7 +41,8 @@ module.exports = {
                     });
                     User.findOne({email: req.body.email})
                         .exec((err, user) => {
-                            if (err) console.error(err);
+                            if (err) return res.status(400)
+                                .json({err, message: "Az adatbázis nem elérhető!"});;
                             if (user === null) {
                                 loginAttempt.result = false;
                                 loginAttempt.save();
@@ -67,13 +69,11 @@ module.exports = {
     },
 
     update(req, res){
-        console.log(req.body);
         User.findOne()
             .exec((err, user) => {
-                if (err) console.error(err);
-                console.log(user);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});;
                 if (passwordHash.verify(req.body.oldPassword, user.password)){
-                    console.log('matched')
                     if (req.body.newPassword !== req.body.newPasswordConfirm) {
                         return res.status(206).json({message: 'A megerősítő jelszó nem egyezik meg az új jelszóval'});
                     }
@@ -83,7 +83,6 @@ module.exports = {
                         res.status(202).json({message: 'A jelszavát sikeresen frissítettük!'});
                     })
                 } else {
-                    console.log('whops');
                     res.status(401).json({message: 'A megadott jelszó nem megfelelő'});
                 }
             })

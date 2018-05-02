@@ -5,6 +5,7 @@ import {Header, Table, Button, Segment, Icon} from "semantic-ui-react";
 import Statistics from "../presentational/statistics";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
+import ConfirmModal from "../presentational/confirm-modal";
 
 const mapStateToProps = state => {
     return {
@@ -15,6 +16,7 @@ const mapStateToProps = state => {
 class StatisticsList extends React.Component {
     constructor(props){
         super(props);
+        this.handleUpdate = this.handleUpdate.bind(this);
         this.state = {
             statistics: []
         };
@@ -26,6 +28,10 @@ class StatisticsList extends React.Component {
             const {statistics} = response.data;
             this.setState({statistics});
         }
+    }
+
+    handleUpdate(statistics){
+        this.setState({statistics});
     }
 
     render(){
@@ -54,12 +60,13 @@ class StatisticsList extends React.Component {
                             </Table.Row>
                         </Table.Header>
                         <Table.Body>
-                            {statistics.map( (statistic, i) => <Statistics key={i} details={statistic}/> )}
+                            {statistics.map( (statistic, i) => <Statistics key={i} details={statistic} update={this.handleUpdate}/> )}
                         </Table.Body>
                     </Table>
                     { this.props.isAuthenticated && <Button as={Link} to="/statisztika/uj" color="blue" icon labelPosition="left">
                         <Icon name="add"/> Új statisztika rögzítése</Button>
                         }
+                    <ConfirmModal/>
                 </Segment>
             </Layout>
         );

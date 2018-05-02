@@ -1,6 +1,5 @@
 const api = require('express').Router();
 const PostController = require('../controllers/PostController');
-const CategoryController = require('../controllers/CategoryController');
 const UsersController = require('../controllers/UserController');
 const MatchController = require('../controllers/MatchController');
 const StatisticsController = require('../controllers/StatisticsController');
@@ -49,8 +48,6 @@ module.exports = (function(){
     api.post('/newsletter', NewsletterController.subscribe);
     api.put('/newsletter', NewsletterController.approve);
     api.delete('/newsletter', NewsletterController.unsubscribe);
-
-    api.get('/category/:category', CategoryController.index);
 
     api.get('/gallery/', GalleryController.show);
     api.post('/gallery/',

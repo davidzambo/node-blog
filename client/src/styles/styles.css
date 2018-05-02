@@ -68,9 +68,12 @@ article img {
     cursor: pointer;
 }
 
+.today>.inner-grid>.date{
+    color: white;
+}
+
 .today>.inner-grid{
     background-color: #56CAF4!important;
-    color: white!important;
     border-radius: 50%;
 }
 
@@ -95,13 +98,6 @@ article img {
     font-weight: normal;
 }
 
-.inner-grid:hover {
-    background-color: #56CAF4;
-    border-radius: 50%;
-    max-width: 25px;
-    max-height: 25px;
-    transition: all 0.1s;
-}
 .date {
     text-align: center;
     display: flex;
@@ -125,8 +121,8 @@ article img {
     max-height: 30px;
 }
 
-.date+.matchEvent{
-    background-color: rgba(255,0,0,0.2);
+.matchEvent{
+    background-color: rgba(255,0,0,0.1);
     border-radius: 50%;
     position: absolute;
     top:0;
@@ -137,8 +133,9 @@ article img {
     z-index: -1;
 }
 
-.event-title{
-
+.today>.inner-grid>.matchEvent{
+    background-color: #56CAF4!important;
+    color: white!important;
 }
 
 .half-padded{

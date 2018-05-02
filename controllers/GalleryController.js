@@ -10,8 +10,8 @@ module.exports = {
         }
         Gallery.find(filter)
             .exec((err, galleries) => {
-                if (err) console.error(err);
-                console.log(galleries.length);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 res.status(200)
                     .json({galleries});
             })
@@ -19,7 +19,8 @@ module.exports = {
 
     create(req, res){
         Gallery.findOne({title: req.body.title}, (err, gallery) => {
-            if (err) console.error(err);
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
             if (!gallery) {
                 gallery = new Gallery({
                     title: req.body.title,
@@ -51,7 +52,8 @@ module.exports = {
     update(req, res){
         Gallery.findOne({_id: req.body._id})
             .exec((err, gallery) => {
-                if (err) console.log(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
                 gallery.title = req.body.title;
                 gallery.description = req.body.description;
                 for (let file of req.files){
@@ -78,7 +80,8 @@ module.exports = {
 
     destroy(req, res){
         Gallery.findOne({_id: req.body._id}, (err, gallery) => {
-            if (err) console.error(err);
+            if (err) return res.status(400)
+                .json({err, message: "Az adatbázis nem elérhető!"});
             if (!gallery){
                 return res.json({error: 'Undefined gallery'});
             }
