@@ -56,7 +56,6 @@ module.exports = {
     imageResizer(img, maxWidth = 1350, suffix = "") {
         try {
             const createdFile = suffix === '' ? img : img.replace('original', suffix);
-            console.log(createdFile, maxWidth);
             lwip.open(img, (err, image) => {
                 if (err) console.error(err);
                 if (image.width() > maxWidth) {
@@ -64,14 +63,12 @@ module.exports = {
                             if (err) throw err;
                             resized.writeFile(createdFile, err => {
                                 if (err) throw err;
-                                console.log('saved');
                                 return createdFile;
                             });
                         });
                 } else {
                     image.writeFile(createdFile, err => {
                         if (err) throw err;
-                        console.log('saved-renamed');
                         return createdFile;
                     })
                 }

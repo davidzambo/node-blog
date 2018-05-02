@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, Button, Segment, Header} from 'semantic-ui-react';
+import {Form, Button, Segment, Header, Message} from 'semantic-ui-react';
 import axios from 'axios';
 import Validator from "../../libs/validators";
 import {connect} from "react-redux";
@@ -19,12 +19,12 @@ class GalleryUploader extends React.Component {
         this.state = {
             title: '',
             description: '',
-            files: []
+            files: [],
+            result: ''
         }
     }
 
     componentDidMount(){
-        console.log(this.props);
         if (this.props.update) {
             this.setState({
                 title: this.props.details.title
@@ -45,7 +45,7 @@ class GalleryUploader extends React.Component {
     handleOnChange(e) {
         if (e.target.id === 'files') {
             let data = Array.from(e.target.files);
-            this.setState({files: data}, () => console.log(this.state));
+            this.setState({files: data});
         } else {
             this.setState({[e.target.id]: e.target.value});
         }
@@ -54,7 +54,8 @@ class GalleryUploader extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        if (Validator.isTitle(this.state.title) && this.state.files > 0) {
+        if (Validator.isTitle(this.state.title) && (this.state.files.length > 0 || this.props.update)) {
+            console.log('elindul');
             this.setState({isLoading: true});
             const data = new FormData(),
                 {files, description, title} = this.state;
@@ -68,7 +69,6 @@ class GalleryUploader extends React.Component {
             if (this.props.update){
                 data.append('_id', this.state._id);
             }
-
             axios({
                 url: '/api/gallery',
                 data: data,
@@ -78,17 +78,15 @@ class GalleryUploader extends React.Component {
                 },
                 withCredentials: true,
             }).then(response => {
-                if (this.props.update){
-                    window.history.back();
-                } else {
-                    this.props.setGalleries(response.data.galleries);
-                    this.setState({
-                        title: '',
-                        description: '',
-                        files: [],
-                        isLoading: false});
-                }
-            })
+                this.props.setGalleries(response.data.galleries);
+                this.setState({
+                    title: '',
+                    description: '',
+                    files: [],
+                    isLoading: false,
+                    result: <Message icon="check" positive header="Gratulálunk!" content={response.data.message}/>
+                });
+            }).catch( error => this.setState({result: <Message icon="exclamation circle" negative header="Whoops" content={error.response.data.message}/>, isLoading: false}));
         }
     }
 
@@ -117,7 +115,7 @@ class GalleryUploader extends React.Component {
                                 htmlFor="files"
                                 as="label"
                                 style={{color: 'white', display: 'inline-block', marginRight: '1rem', height: 37}}/>
-                        <input type="file" multiple id="files" className="d-none" onChange={this.handleOnChange}/>
+                        <input type="file" multiple id="files" className="d-none" onChange={this.handleOnChange} accept="image/x-png,image/gif,image/jpeg"/>
 
                         {(this.state.files[0] || update) && <Button positive
                                                         icon="upload"
@@ -126,6 +124,7 @@ class GalleryUploader extends React.Component {
                                                         loading={this.state.isLoading}
                                                         className="d-inline"/>}
                     </Form.Field>
+                    {this.state.result}
                 </Form>
             </Segment>
         );

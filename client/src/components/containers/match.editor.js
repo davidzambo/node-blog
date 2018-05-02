@@ -33,7 +33,7 @@ export class MatchEditor extends Component {
             const match = response.data.match;
             match.matchDate = moment(match.matchDate);
             this.setState({
-                id: match._id,
+                _id: match._id,
                 matchDate: match.matchDate,
                 city: match.city,
                 address: match.address,
@@ -86,7 +86,10 @@ export class MatchEditor extends Component {
                 .then( response => {
                     if (response.status === 200 || response.status === 201)
                         window.location = '/meccsek';
-                })
+                        // console.log(response);
+                }).catch(err => {
+                    console.error(err);
+            })
         }
     }
 

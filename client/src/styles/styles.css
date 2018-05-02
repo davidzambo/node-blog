@@ -138,6 +138,10 @@ article img {
     color: white!important;
 }
 
+.inactive > .inner-grid > .matchEvent {
+    background-color: transparent;
+}
+
 .half-padded{
     padding: 0.25rem 0.5rem!important;
 }
@@ -229,4 +233,20 @@ article img {
 .text-like-link {
     color: black;
     font-weight: bold;
+}
+
+.tablet-navbar{
+    display: flex!important;
+    justify-content: space-between;
+    flex-direction: row;
+    text-align: left!important;
+}
+
+.tablet-navbar a {
+    font-size: 1.2rem;
+}
+
+.tablet-navbar a i {
+    float: none!important;
+    margin-right: 10px!important;
 }

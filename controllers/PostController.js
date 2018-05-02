@@ -7,7 +7,7 @@ const NewsLetter = require('./NewsletterController');
 module.exports = {
 
     index(req, res) {
-        const limit = 3,
+        const limit = 5,
             page = req.query.page || 1,
             category = req.query.category,
             filter = (category === undefined) ? {} : {category: category};
@@ -18,7 +18,7 @@ module.exports = {
             .exec((err, posts) => {
                 if (err) return res.status(400)
                     .json({err, message: "Az adatbázis nem elérhető!"});
-                res.status(200).json({
+                return res.status(200).json({
                     posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
                     count: posts.length,
                     page: page,
@@ -30,8 +30,8 @@ module.exports = {
     show(req, res) {
         Post.findOne({slug: req.params.slug}).exec((err, post) => {
             if (err) return res.status(400)
-                .json({err, message: "Az adatbázis nem elérhető!"});;
-            res.status(200).json({post});
+                .json({err, message: "Az adatbázis nem elérhető!"});
+            return res.status(200).json({post});
         })
     },
 
@@ -41,11 +41,12 @@ module.exports = {
         post.body = Helper.base64ToFileStorer(body, 'public/images');
         post.tags = Helper.tagsHandler(req.body.tags);
         post.save((err) => {
-            if (err) console.error(err);
+            if (err) return res.status(400).json({err, message: "Hiba a mentés során!"});
             NewsLetter.sendNotification(post);
             Post.find().sort({date: -1}).exec((err, posts) => {
-                if (err) console.error(err);
-                res.status(200).json({posts});
+                if (err) return res.status(400)
+                    .json({err, message: "Az adatbázis nem elérhető!"});
+                return res.status(200).json({posts});
             });
         })
     },
@@ -70,7 +71,6 @@ module.exports = {
                 }
                 imagesToUnlink.map(img => {
                     let src = __dirname + '/..' + img.slice(10, -1)
-                    //console.log(src);
                     fs.stat(src, (err, stat) => {
                         if (err) {
                             console.error(err);
@@ -91,10 +91,11 @@ module.exports = {
             post.tags = Helper.tagsHandler(req.body.tags);
             post.category = req.body.category;
             post.save((err) => {
-                if (err) console.error(err);
+                if (err) return res.status(400).json({err, message: "Hiba a mentés során!"});
                 Post.find().sort({data: -1}).exec((err, posts) => {
-                    if (err) console.error(err);
-                    res.status(200).json({posts});
+                    if (err) return res.status(400)
+                        .json({err, message: "Az adatbázis nem elérhető!"});
+                    return res.status(200).json({posts});
                 })
             });
         })
@@ -103,7 +104,7 @@ module.exports = {
     destroy(req, res) {
         let imgRegExp = /<img src[^>]+/g,
             imagesToUnlink = [];
-        Post.findOne({_id: req.params.id}).exec((err, post) => {
+        Post.findOne({_id: req.body._id}).exec((err, post) => {
             if (err) return res.status(400)
                 .json({err, message: "Az adatbázis nem elérhető!"});
             imagesToUnlink = post.body.match(imgRegExp);
@@ -129,10 +130,12 @@ module.exports = {
             }
             post.remove( err => {
                 if (err) return res.status(400)
-                    .json({err, message: "Az adatbázis nem elérhető!"});
+                    .json({err, message: "A posztot nem tudtuk törölni!"});
+
                 Post.find().sort({data: -1}).exec((err, posts) => {
-                    if (err) console.error(err);
-                    res.status(200).json({posts});
+                    if (err) return res.status(400)
+                        .json({err, message: "Az adatbázis nem elérhető!"});
+                    return res.status(200).json({posts});
                 })
             });
         })
@@ -161,20 +164,23 @@ module.exports = {
             ], (err, result) =>{
                 if (err) return res.status(400)
                     .json({err, message: "Az adatbázis nem elérhető!"});
-                res.status(200).json({result: result[0].distinctDate});
+                if (result[0] && result[0].distinctDate) {
+                    return res.status(200).json({result: result[0].distinctDate});
+                } else {
+                    return res.status(200).json({result: []});
+                }
             });
         },
 
         show(req, res) {
-            // const from = new Date(req.params.year + '-' + req.params.month);
             const from = moment().year(req.params.year).month(req.params.month-1).date(1).format(),
                 to = moment().year(req.params.year).month(req.params.month).date(1).format(),
-                limit = 3,
+                limit = 5,
                 page = req.query.page || 1;
             Post.find({date: {$gte: from, $lt: to}}, (err, posts) => {
                 if (err) return res.status(400)
                     .json({err, message: "Az adatbázis nem elérhető!"});
-                res.status(200).json({
+                return res.status(200).json({
                     posts: posts.slice( (page - 1 )*limit, (page - 1 ) * limit + limit),
                     count: posts.length,
                     page: page,

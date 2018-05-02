@@ -26,6 +26,8 @@ module.exports = {
                     title: req.body.title,
                     description: req.body.description,
                 });
+            } else {
+                return res.status(400).json({err, message: "Már van ilyen nevű galéria!"});
             }
             for (let file of req.files) {
                 const filename = file.filename;
@@ -38,10 +40,12 @@ module.exports = {
             };
 
             gallery.save(err => {
-                if (err) console.error(err);
+                if (err) return res.status(400)
+                    .json({err, message: "Hiba az adatbázisba mentés során!"});
                 Gallery.find()
                     .exec((err, galleries) => {
-                        if (err) console.error(err);
+                        if (err) return res.status(400)
+                            .json({err, message: "Az adatbázis nem elérhető!"});
                         res.status(201)
                             .json({galleries});
                     });
@@ -67,10 +71,12 @@ module.exports = {
                 }
 
                 gallery.save(err => {
-                   if (err) console.error(err);
+                   if (err) return res.status(400)
+                       .json({err, message: "Hiba az adatbázisba mentés során!"});
                    Gallery.find()
                        .exec((err, galleries) => {
-                           if (err) console.error(err);
+                           if (err) return res.status(400)
+                               .json({err, message: "Az adatbázis nem elérhető!"});
                            res.status(201)
                                .json({galleries});
                        })
@@ -83,26 +89,29 @@ module.exports = {
             if (err) return res.status(400)
                 .json({err, message: "Az adatbázis nem elérhető!"});
             if (!gallery){
-                return res.json({error: 'Undefined gallery'});
+                return res.json({message: 'Nincs ilyen galéria'});
             }
 
             // delete just one image
             if (req.body.image && req.body.image._id){
                 gallery.images.id(req.body.image._id).remove();
                 gallery.save(err => {
-                    if (err) console.error(err);
+                    if (err) return res.status(400)
+                        .json({err, message: "Hiba az adatbázisba mentés során!"});
                     try {
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', req.body.image.filename));
                         fs.unlinkSync(path.resolve(__dirname, '../',  'public/images', req.body.image.thumbnail));
                         fs.unlinkSync(path.resolve(__dirname, '../',  'public/images', req.body.image.display));
                         Gallery.findOne({_id: req.body._id})
                             .exec((err, gallery) => {
-                                if (err) console.error(err);
+                                if (err) return res.status(400)
+                                    .json({err, message: "Az adatbázis nem elérhető!"});
                                 res.status(200)
                                     .json({gallery});
                             });
-                    } catch (e){
-                        console.log(e);
+                    } catch (err){
+                        return res.status(400)
+                            .json({err, message: "Hiba a fájlok törlése során!"});
                     }
                 })
             // delete whole album
@@ -112,15 +121,17 @@ module.exports = {
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.filename));
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.thumbnail));
                         fs.unlinkSync(path.resolve(__dirname, '../', 'public/images', img.display));
-                    } catch (e){
-                        console.log(e);
+                    } catch (err){
+                        console.log(err);
                     }
                 });
                 gallery.remove(err => {
-                    if (err) console.error(err);
+                    if (err) return res.status(400)
+                        .json({err, message: "Hiba az adatbázisból törlés során!"});
                     Gallery.find()
                         .exec((err, galleries) => {
-                            if (err) console.error(err);
+                            if (err) return res.status(400)
+                                .json({err, message: "Az adatbázis nem elérhető!"});
                             res.status(200)
                                 .json({galleries});
                         });

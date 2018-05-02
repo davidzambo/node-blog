@@ -124,6 +124,7 @@ class ConnectedPostEditor extends Component {
                         <Form.Group>
                             <Form.Input
                                 label="Cimkék:"
+                                placeholder="(A cimkéket a + jellel tudja elválasztani!)"
                                 id="tags"
                                 value={tags}
                                 error={tags !== '' && !Validator.isTags(tags)}

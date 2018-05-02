@@ -32,7 +32,7 @@ export class Post extends Component {
         this.props.setHeader('Bejegyzés törlése');
         this.props.setOnConfirm(() => {
            axios({
-               url: '/api/matches/',
+               url: '/api/posts/',
                method: 'delete',
                data: post
            })
@@ -54,14 +54,14 @@ export class Post extends Component {
         return (
             <Segment as='article' key={post._id}>
                 <Header as='h1'><a href={'/bejegyzesek/' + post.slug}>{post.title}</a></Header>
-                <Header as='h5' textAlign='left'>{moment(post.date).locale('hu').format('YYYY. MMMM Do HH:mm')}</Header>
+                <Header as='h5' textAlign='left'>{post.date && moment(post.date).locale('hu').format('YYYY. MMMM Do HH:mm')}</Header>
                 <Divider horizontal/>
                 {Parser(post.body)}
                 {post.tags.map((tag, i) => {
                     return <Label key={i}>{tag}</Label>
                 })}
                 <Divider horizontal/>
-                {this.props.isAuthenticated ?
+                {(this.props.isAuthenticated && post.date) ?
                     <div>
                         <Button
                             as={Link}

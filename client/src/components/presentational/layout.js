@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './navbar';
+import MobileNavbar from './mobile-navbar';
 import LoginModal from './login.modal';
 import Archive from '../containers/archive';
 import NewsLetter from '../containers/newsletter.js';
@@ -35,36 +36,35 @@ class Layout extends React.Component {
         const isNavbarOpen = this.props.isNavbarOpen;
         return (
             <div style={{minHeight: '100%'}} className="page-content">
-                <Container fluid>
-                    <Grid style={{marginTop: 0}}>
-                        <Responsive as={Grid.Row} color="teal" {...Responsive.onlyMobile}>
-                            <Grid.Column width={16}>
-                                <h4><Icon name='sidebar' size="large" onClick={this.toggleNavbar}/> TothRobertDavid.eu</h4>
-                            </Grid.Column>
-                        </Responsive>
-                    </Grid>
-                </Container>
+                <Responsive color="teal" maxWidth={Responsive.onlyTablet.maxWidth}>
+                    <Container fluid>
+                        <Grid padded>
+                            <Grid.Row color="teal">
+                                <Grid.Column width={16} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'}}>
+                                    <h3 style={{marginBottom: 0}}>Tóth Róbert Dávid</h3>
+                                    <Icon name='sidebar' circular size="large" className="pointer" onClick={this.toggleNavbar}/>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Container>
+                </Responsive>
                 <Sidebar.Pushable>
-                    <Responsive {...Responsive.onlyMobile}>
-                        <Sidebar animation='overlay' visible={isNavbarOpen} direction={'left'}
-                                 size='very wide'>
-                            <Navbar/>
-                        </Sidebar>
-                    </Responsive>
                     <Sidebar.Pusher>
-                        <Responsive minWidth={Responsive.onlyTablet.minWidth}>
-                            <Container fluid>
-                                <Grid style={{paddingTop: 80}}>
-                                    <Grid.Row>
+                        <Container fluid style={{paddingTop: 50}}>
+                            <Grid centered padded>
+                                <Responsive minWidth={Responsive.onlyTablet.maxWidth}>
+                                    <Grid.Row color="teal">
                                         <Grid.Column>
                                             <Navbar/>
                                         </Grid.Column>
                                     </Grid.Row>
-                                </Grid>
-                            </Container>
-                        </Responsive>
-                        <Container fluid>
-                            <Grid centered padded>
+                                </Responsive>
+                                <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
+                                    <Sidebar animation='overlay' visible={true} direction={'right'}
+                                             size='very wide' style={{minWidth: '100vW'}}>
+                                        <MobileNavbar/>
+                                    </Sidebar>
+                                </Responsive>
                                 <Grid.Row columns={2}>
                                     <Grid.Column mobile={16} tablet={12} computer={12} largeScreen={10} widescreen={10}>
                                         {this.props.children}

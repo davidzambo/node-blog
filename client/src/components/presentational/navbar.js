@@ -44,7 +44,7 @@ class Navbar extends React.Component {
 
         return (
 
-            <Menu stackable fluid inverted borderless color="orange" fixed="top" style={{marginTop: 14}}>
+            <Menu stackable fluid inverted borderless color="teal" fixed="top">
                 <Divider horizontal/>
                 <Menu.Item as={NavLink} exact to='/'><Icon name='home'/>Kezdőlap</Menu.Item>
                 <Menu.Item as={NavLink} exact to='/rolam'><Icon name="id badge"/>Rólam</Menu.Item>

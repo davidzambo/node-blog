@@ -58,7 +58,6 @@ export class StatisticsEditor extends React.Component{
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.state);
         let isAllFilled = true;
         for (let prop in this.state) {
             if (this.state.hasOwnProperty(prop)) {
@@ -80,7 +79,6 @@ export class StatisticsEditor extends React.Component{
             if (!this.props.update){
                 delete data._id;
             }
-            console.log(data);
 
             axios({
                 url: '/api/statistics',
@@ -88,7 +86,6 @@ export class StatisticsEditor extends React.Component{
                 data: data,
             })
                 .then( response => {
-                    console.log(response);
                     if (response.status === 200)
                         window.history.back();
                 });
