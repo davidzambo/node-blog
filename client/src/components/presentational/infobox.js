@@ -1,5 +1,5 @@
 import React from 'react';
-import {Segment, Icon, List, Label} from 'semantic-ui-react';
+import {Segment, Icon, List, Label, Divider} from 'semantic-ui-react';
 import {NavLink} from 'react-router-dom';
 
 class Infobox extends React.Component {
@@ -23,6 +23,16 @@ class Infobox extends React.Component {
                     <List.Item>
                         <NavLink to="/impresszum">
                             <Icon name="info"/>Impresszum
+                        </NavLink>
+                    </List.Item>
+                    <Divider/>
+                    <List.Item style={{textAlign: 'center'}}>
+                        <NavLink to="https://www.dcmf.hu">
+                            <Label as='a' color='black' icon>
+                                <Icon name="code"/>
+                                codedBy:
+                                <Label.Detail style={{backgroundColor: 'red'}}>DCMF</Label.Detail>
+                            </Label>
                         </NavLink>
                     </List.Item>
                 </List>
