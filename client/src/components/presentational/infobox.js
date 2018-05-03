@@ -27,13 +27,11 @@ class Infobox extends React.Component {
                     </List.Item>
                     <Divider/>
                     <List.Item style={{textAlign: 'center'}}>
-                        <NavLink to="https://www.dcmf.hu">
-                            <Label as='a' color='black' icon>
-                                <Icon name="code"/>
-                                codedBy:
-                                <Label.Detail style={{backgroundColor: 'red'}}>DCMF</Label.Detail>
-                            </Label>
-                        </NavLink>
+                        <Label color='black' className="pointer" onClick={() => window.open("https://www.dcmf.hu", '_blank')}>
+                            <Icon name="code"/>
+                            codedBy:
+                            <Label.Detail style={{backgroundColor: 'red'}}>DCMF</Label.Detail>
+                        </Label>
                     </List.Item>
                 </List>
             </Segment>

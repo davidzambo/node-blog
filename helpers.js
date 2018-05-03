@@ -2,12 +2,9 @@ const base64img = require('base64-img');
 const lwip = require('lwip');
 const path = require('path');
 const uuidv4 = require('uuidv4');
+const easyimage = require('easyimage');
 
 module.exports = {
-
-    twoDigitNumber(nmb){
-        return (nmb < 10) ? '0' + nmb : nmb;
-    },
     
     /**
      * @param {*} body  html string
@@ -53,59 +50,20 @@ module.exports = {
         }, []);
     },
 
-    imageResizer(img, maxWidth = 1350, suffix = "") {
+    async imageResizer(img, maxWidth = 1350, suffix = "") {
+
+        const createdFile = suffix === '' ? img : img.replace('original', suffix);
         try {
-            const createdFile = suffix === '' ? img : img.replace('original', suffix);
-            lwip.open(img, (err, image) => {
-                if (err) console.error(err);
-                if (image.width() > maxWidth) {
-                    image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
-                            if (err) throw err;
-                            resized.writeFile(createdFile, err => {
-                                if (err) throw err;
-                                return createdFile;
-                            });
-                        });
-                } else {
-                    image.writeFile(createdFile, err => {
-                        if (err) throw err;
-                        return createdFile;
-                    })
-                }
+            const info = await easyimage.info(img);
+            const thumbnail = await easyimage.thumbnail({
+                src: img,
+                width: maxWidth,
+                height: (info.height * (maxWidth / info.width)),
+                dst: createdFile,
             });
+            console.log(thumbnail.path);
         } catch (e) {
-            console.log(e);
+            console.log('Error: ' +e);
         }
     },
-
-    imageUploadResizer(img, maxWidth = 1350, suffix = '') {
-        return new Promise((resolve, reject) => {
-            try {
-                const imgNameParts = img.split('.');
-                imgNameParts[imgNameParts.length-2] += `_${suffix}`;
-                const newFileName = imgNameParts.join('.');
-
-                lwip.open(img, (err, image) => {
-                    if (err) console.error(err);
-                    if (image.width() > maxWidth) {
-                        image.resize(maxWidth, (image.height() * (maxWidth / image.width()) ), (err, resized) => {
-                            if (err) throw err;
-                            resized.writeFile(newFileName, err => {
-                                if (err) throw err;
-                                resolve(path.basename(newFileName));
-                            });
-                        });
-                    } else {
-                        image.writeFile(newFileName, err => {
-                            if (err) throw err;
-                            resolve(path.basename(newFileName));
-                        })
-                    }
-                });
-            } catch (e) {
-                console.log(e);
-                reject(img);
-            }
-        });
-    }
 }
