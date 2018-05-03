@@ -27,7 +27,7 @@ class Navbar extends React.Component {
     render() {
         const authMenuItem =
             this.props.isLoggedIn ?
-                <Dropdown trigger={<div><Icon name='settings'/> Adminisztráció</div>} className='link item'>
+                <Dropdown trigger={<Menu.Item><Icon name='settings'/> Adminisztráció</Menu.Item>} className='link item'>
                     <Dropdown.Menu>
                         <Dropdown.Item as={NavLink} exact to='/bejegyzesek/uj'><Icon name='write' size="large"/> Új cikk</Dropdown.Item>
                         <Dropdown.Item as={NavLink} exact to='/statisztika'><Icon name='line chart' size="large"/> Statisztikák kezelése</Dropdown.Item>

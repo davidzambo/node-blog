@@ -17,7 +17,7 @@ class Archive extends React.Component {
                 <Label color='brown' size="large" ribbon>
                     <Icon name="archive"/>Archívum
                 </Label>
-                <List animated relaxed>
+                <List className="standard-link">
                     {this.props.dates.map((date, i) => {
                         let dateFormat = moment().year(date.year).month(date.month-1).date(1);
                         return <List.Item

@@ -24,6 +24,15 @@ const mapDispatchToProps = dispatch => {
 
 
 class MobileNavbar extends React.Component {
+    constructor(props){
+        super(props);
+        this.toggleNavbar = this.toggleNavbar.bind(this);
+    }
+
+    toggleNavbar(){
+        this.props.setNavbarOpen(!this.props.active)    ;
+    }
+
     render() {
         const authMenuItem =
             this.props.isLoggedIn ?
@@ -46,7 +55,7 @@ class MobileNavbar extends React.Component {
 
         return (
 
-            <Menu fluid inverted borderless vertical color="teal" className="tablet-navbar">
+            <Menu fluid inverted borderless vertical color="teal" className="tablet-navbar" onClick={this.toggleNavbar}>
                 <Menu.Item as={NavLink} exact to='/'><Icon name='home' size="large"/>Kezdőlap</Menu.Item>
                 <Menu.Item as={NavLink} exact to='/rolam'><Icon name="id badge" size="large"/>Rólam</Menu.Item>
                 <Menu.Item as={NavLink} exact to='/en-igy-gondolom'><Icon name='idea' size="large"/>Én így gondolom</Menu.Item>

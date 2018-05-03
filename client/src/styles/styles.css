@@ -197,6 +197,30 @@ article img {
     background: rgba(255, 255, 255, 0.8)!important;
 }
 
+.ui .segment h1 {
+    margin-bottom: 0.5rem;
+}
+
+.ui .segment h5 {
+    margin-top: 0.5rem;
+}
+
+.ui .segment .header a {
+    color: #555;
+    border-left: 10px solid rgb(0, 181, 173);
+    padding-left: 1rem;
+}
+
+.standard-link a {
+    color: #555!important;
+}
+
+.menu a,
+.right .menu .dropdown .link .item *{
+    letter-spacing: -0.5px;
+    font-size: 1.2rem!important;
+}
+
 .gallery-item-container{
     text-align: center;
     display: inline-block!important;
@@ -249,4 +273,19 @@ article img {
 .tablet-navbar a i {
     float: none!important;
     margin-right: 10px!important;
+}
+
+.main-content {
+    min-height: calc(100vh - 70px);
+}
+.main-content *{
+    @import url('https://fonts.googleapis.com/css?family=Dosis');
+    font-family: 'Dosis', sans-serif;
+}
+
+@media screen and (min-width: 999px){
+    .main-content{
+        padding-top: 45px;
+        min-height: 100vh;
+    }
 }

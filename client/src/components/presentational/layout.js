@@ -50,9 +50,9 @@ class Layout extends React.Component {
                 </Responsive>
                 <Sidebar.Pushable>
                     <Sidebar.Pusher>
-                        <Container fluid style={{paddingTop: 50}}>
+                        <Container fluid className="main-content">
                             <Grid centered padded>
-                                <Responsive minWidth={Responsive.onlyTablet.maxWidth}>
+                                <Responsive minWidth={Responsive.onlyComputer.minWidth}>
                                     <Grid.Row color="teal">
                                         <Grid.Column>
                                             <Navbar/>
@@ -60,8 +60,7 @@ class Layout extends React.Component {
                                     </Grid.Row>
                                 </Responsive>
                                 <Responsive maxWidth={Responsive.onlyTablet.maxWidth}>
-                                    <Sidebar animation='overlay' visible={true} direction={'right'}
-                                             size='very wide' style={{minWidth: '100vW'}}>
+                                    <Sidebar animation='overlay' visible={isNavbarOpen} direction={'right'} size='very wide' style={{minWidth: '50vW', backgroundColor: "rgb(0, 181, 173)"}}>
                                         <MobileNavbar/>
                                     </Sidebar>
                                 </Responsive>

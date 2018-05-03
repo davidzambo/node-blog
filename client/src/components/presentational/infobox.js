@@ -9,7 +9,7 @@ class Infobox extends React.Component {
                 <Label color='red' ribbon size="large">
                     <Icon name="info"/>Információk
                 </Label>
-                <List>
+                <List className="standard-link">
                     <List.Item>
                         <NavLink to="/adatvedelmi-nyilatkozat">
                             <Icon name="paragraph"/>Adatvédelmi nyilatkozat
