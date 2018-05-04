@@ -1,5 +1,4 @@
 const base64img = require('base64-img');
-const lwip = require('lwip');
 const path = require('path');
 const uuidv4 = require('uuidv4');
 const easyimage = require('easyimage');

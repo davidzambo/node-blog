@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
 import PostList from './containers/posts.list';
 import PostShow from './containers/posts.show';
 import PostEditor from './containers/posts.editor';

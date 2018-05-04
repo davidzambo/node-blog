@@ -2,12 +2,14 @@
 
 # dependencies
 /node_modules
-/client/node_modules
+
 # testing
 /coverage
 
 # production
+/build
 /client/build
+/client/package-lock.json
 /client/node_modules
 
 # misc
@@ -17,6 +19,9 @@
 .env.test.local
 .env.production.local
 .env
+.gitignore
+.eslintrc
+processes.json
 
 npm-debug.log*
 yarn-debug.log*

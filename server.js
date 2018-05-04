@@ -12,14 +12,14 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true}));
 app.use(cookieParser());
 app.use('/public', express.static('public'));
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Routes
 const api = require('./routes/api');
 app.use('/api', api);
 
-app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+app.get('/*', (req, res) => {
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port, (err) => {

@@ -35,9 +35,9 @@ class Layout extends React.Component {
     render() {
         const isNavbarOpen = this.props.isNavbarOpen;
         return (
-            <div style={{minHeight: '100%'}} className="page-content">
-                <Responsive color="teal" maxWidth={Responsive.onlyTablet.maxWidth}>
-                    <Container fluid>
+            <div style={{minHeight: '100%', minWidth: '100vw'}} className="page-content">
+                <Responsive color="teal" style={{width: '100vw'}} maxWidth={Responsive.onlyTablet.maxWidth}>
+                    <Container fluid id="mobile-navbar-container">
                         <Grid padded>
                             <Grid.Row color="teal">
                                 <Grid.Column width={16} style={{display: 'flex', justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center'}}>

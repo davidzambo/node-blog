@@ -22,7 +22,7 @@ RUN apt-get install -y -q --no-install-recommends \
     nginx \
     sudo \
     wget \
-    python \
+    imagemagick \
     && curl -sL https://deb.nodesource.com/setup_8.x | bash - \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/* \
@@ -51,7 +51,7 @@ WORKDIR ${appDir}
 
 # Add our package.json and install *before* adding our application files
 ADD package.json ./
-RUN yarn
+RUN yarn install --production
 
 # Install pm2 *globally* so we can run our application
 RUN yarn global add pm2
@@ -60,6 +60,6 @@ RUN yarn global add pm2
 ADD . /var/www/app/current
 
 #Expose the port
-EXPOSE 4500
+EXPOSE 3033
 
 CMD ["pm2", "start", "processes.json", "--no-daemon"]

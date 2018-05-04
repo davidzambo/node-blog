@@ -1,8 +1,5 @@
-/* body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-} */
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
 .ql-editor {
     min-height: 500px;
 }
@@ -277,10 +274,7 @@ article img {
 
 .main-content {
     min-height: calc(100vh - 70px);
-}
-.main-content *{
-    @import url('https://fonts.googleapis.com/css?family=Dosis');
-    font-family: 'Dosis', sans-serif;
+    margin: 0!important;
 }
 
 @media screen and (min-width: 999px){
@@ -288,4 +282,9 @@ article img {
         padding-top: 70px;
         min-height: 100vh;
     }
+}
+
+#mobile-navbar-container{
+    margin-left: 0!important;
+    margin-right: 0!important;
 }
