@@ -11,6 +11,8 @@
 /client/build
 /client/package-lock.json
 /client/node_modules
+/client/config
+/client/scripts
 
 # misc
 .DS_Store
