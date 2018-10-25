@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_ADDRESS);
+mongoose.connect(process.env.DB_ADDRESS, {useNewUrlParser: true});
+mongoose.set('useCreateIndex', true);
 const Schema = mongoose.Schema;
 const slug = require('slug');
 const moment = require('moment');

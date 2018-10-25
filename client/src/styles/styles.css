@@ -177,7 +177,7 @@ article img {
     right: -20px;
     bottom: -20px;
     display: block;
-    background-image: url("../images/handball_wallpaper_3.png");
+    background-image: url("../images/handball_wallpaper.jpg");
     background-size: contain;
     filter: blur(15px) sepia(0.4);
     min-height: 110vh;

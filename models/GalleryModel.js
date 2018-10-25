@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const slug = require('slug');
-mongoose.connect(process.env.DB_ADDRESS);
+mongoose.connect(process.env.DB_ADDRESS, {useNewUrlParser: true});
+mongoose.set('useCreateIndex', true);
+
 const Schema = mongoose.Schema;
 const imageSchema = require('./ImageModel');
 
