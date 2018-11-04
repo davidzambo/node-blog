@@ -23,7 +23,7 @@
 .env
 .gitignore
 .eslintrc
-.processes.json
+processes.json
 Dockerfile
 
 npm-debug.log*
